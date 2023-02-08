@@ -7,9 +7,6 @@ load_dotenv()
 DUNE_USERNAME = os.getenv('DUNE_USERNAME')
 DUNE_PASS = os.getenv('DUNE_PASS')
 
-print(DUNE_USERNAME)
-print(DUNE_PASS)
-
 # initialize client
 dune = DuneAnalytics(DUNE_USERNAME, DUNE_PASS)
 
