@@ -14,21 +14,19 @@ export default function Home() {
 
   // All of the icons should be SVGs
   // Click "raw" and copy the url from the list at https://github.com/spothq/cryptocurrency-icons/tree/master/svg/color
-  // All option types except "cryptocurrency" and "nft" must have an icon in this map.
-  // All "cryptocurrency" and "nft" types must have exact names in their respective maps.
+  // All option types except "cryptocurrency" must have an icon in this map.
+  // All "cryptocurrency" types must have exact names in their respective maps.
   const icons = {
     cryptocurrencies: {
       'Bitcoin': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/btc.svg',
       'Ethereum': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/eth.svg',
     },
-    nfts: {
-      'Cause #1': './icons/cause.svg',
-    },
+    nft: './icons/nft.svg',
     bank: './icons/bank.svg',
     btcturk: './icons/btcturk.svg',
   };
 
-  // All entries must have the following: name, description, websiteUrl, endorsementUrls, options
+  // All entries must have the following: name, iconUrl, description, websiteUrl, endorsementUrls, options
   // All options must have the following: type, name
   // If an option has "cryptocurrency" type, it must include: address, sourceUrls
   // If an option has another type, it must include: linkName, linkUrl
@@ -36,6 +34,7 @@ export default function Home() {
   const organizations = [
     {
       name: 'AFAD (Republic Of Turkey Ministry Of Interior Disaster And Emergency Management Presidency)',
+      iconUrl: './icons/organizations/afad.svg',
       description: 'Disaster and Emergency Management Authority, an institution working to prevent disasters and minimize disaster-related damages, plan and coordinate post-disaster response, and promote cooperation among various government agencies.',
       websiteUrl: 'https://en.afad.gov.tr/',
       endorsementUrls: [],
@@ -71,6 +70,7 @@ export default function Home() {
     },
     {
       name: 'Earthquake Türkiye 2023 by Murat Pak',
+      iconUrl: './icons/organizations/cause.svg',
       description: 'Distinguished Turkish NFT artist Pak has built an NFT platform for raising funds for the relief effort. All donations are promised to be channelled to Ahbap.',
       websiteUrl: 'https://cause.quest/',
       endorsementUrls: ['https://twitter.com/beeple/status/1623107218567581697'],
