@@ -87,6 +87,23 @@ const icons: {[index: string]:any} = {
   nft: './icons/nft.svg',
 };
 
+const explorers: {[index: string]: any } = {
+  'Bitcoin': 'https://www.blockchain.com/explorer/addresses/btc/',
+  'Ethereum': 'https://etherscan.io/address/',
+  'Avalanche': 'https://snowtrace.io/address/',
+  'Binance': 'https://bscscan.com/address/',
+  'Polygon': 'https://polygonscan.com/address/',
+  'Solana': 'https://solscan.io/account/',
+  'Cosmos': 'https://www.mintscan.io/cosmos/account/',
+  'Polkadot': 'https://explorer.polkascan.io/polkadot/account/',
+  'Tron': 'https://tronscan.org/#/address/',
+  'Mina': "https://minascan.io/mainnet/account/",
+  'Cardano': "https://cardanoscan.io/address/",
+  'VeChain': "https://explore.vechain.org/accounts//",
+  'Waves': "https://wavesexplorer.com/addresses/",
+  'Tezos': "https://tzstats.com/",
+}
+
 // All entries must have the following: name, description, logoUrl, websiteUrl, twitterUrl, popularity, endorsementUrls, categories, options
 // Categories must include:
 //   * One of: governmental, ngo, individual
@@ -1276,7 +1293,14 @@ export default function Organizations() {
                                       <td className="truncate py-3 sm:py-5 text-sm text-gray-500 ">
                                         {option.type === 'cryptocurrency'
                                           ? <div>
-                                              <p className="truncate">{option.address}</p>
+                                              <Link href={`${explorers[option.name]}${option.address}`} passHref={true}>
+                                                <span className="inline-flex items-center rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-red-900">
+                                                  <span className="truncate ">Explorer</span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3 ml-1">
+                                                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                                    </svg>
+                                                  </span>
+                                              </Link>
                                               <div className='space-x-2 mt-0.5'>
                                                 {option.sourceUrls?.map((sourceUrl: string) => (
                                                   <Link href={sourceUrl} passHref={true}>
@@ -1308,7 +1332,7 @@ export default function Organizations() {
                                         }
                                         {
                                           option.warning &&
-                                            <Tooltip content={option.warning} className="align-center" placement="right">
+                                            <Tooltip content={option.warning} className="align-center" placement="auto">
                                               <div className='flex items-center'>
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z" />
