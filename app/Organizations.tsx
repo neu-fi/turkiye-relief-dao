@@ -100,7 +100,7 @@ const icons: {[index: string]:any} = {
 //   * If an option has "cryptocurrency" type, it must include: address, sourceUrls
 //   * If an option has another type, it must include: linkName, linkUrl
 //   * Options could have the following: info, warning
-const organizations = [
+const organizations: {[index: string]:any} = [
   {
     name: 'AFAD',
     description: 'Disaster and Emergency Management Authority, an institution working to prevent disasters and minimize disaster-related damages, plan and coordinate post-disaster response, and promote cooperation among various government agencies.',
@@ -306,7 +306,9 @@ const initialSortOptions = [
   { name: 'Suggested', current: true },
   { name: 'Most Popular', current: false },
 ]
-const initialFilters = [
+type FilterOption = {id:string,label:string,checked:boolean};
+type Filter = {id:string,name:string,options:FilterOption[]};
+const initialFilters: Filter[]  = [
   {
     id: 'types',
     name: 'Donation Types',
@@ -384,6 +386,26 @@ export default function Organizations() {
       clickedOption.current = true;
       return [...prev];
     });
+  }
+
+  const isOrganizationFiltered = (organization: any) => {
+    const filtered = true;
+    const categoryFilters = filters.find(item => item?.id.toString() === 'categories');
+    if (categoryFilters === undefined) {
+      alert("Assertion failed");
+      return false;
+    }
+    for (var category of organization.categories) {
+      var categoryFilterOption = categoryFilters.options.find(item => item.id === category)
+      if (categoryFilterOption === undefined) {
+        alert("Assertion failed");
+        return false;
+      }
+      if (categoryFilterOption.checked === false) {
+        return false;
+      }
+    }
+    return true;
   }
 
   return (
@@ -611,6 +633,7 @@ export default function Organizations() {
               {/* Contents */}
               <div className="lg:col-span-3">
                 {organizations.map((organization) => (
+                  isOrganizationFiltered(organization) &&
                   <div className="bg-gray-50 mb-8 sm:rounded-lg border-solid border-4 border-gray-100 shadow ring-1 ring-black ring-opacity-5">
                     <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
                       <div className="-ml-4 -mt-4 flex flex-wrap items-center sm:flex-nowrap grow justify-center">
