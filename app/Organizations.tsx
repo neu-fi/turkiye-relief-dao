@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Tooltip } from 'flowbite-react'
 
 // All the cryptocurrency networks must be listed here
-const NETWORKS = ["Bitcoin", "Ethereum", "Avalanche", "Binance", "Polygon", "Solana", "Cosmos", "Polkadot", "Tron", "Mina", "Cardano", "VeChain", "Waves", "Tezos",];
+const NETWORKS = ["Bitcoin", "Ethereum", "Avalanche", "Binance", "Polygon", "Solana", "Cosmos", "Polkadot", "Tron", "Mina", "Cardano", "VeChain", "Waves", "Tezos", "Celo", "Gnosis"];
 
 type Network = typeof NETWORKS[number];
 
@@ -45,6 +45,10 @@ const categoryDetails: {[index: string]:any} = {
   ngo: {
     name: 'NGO',
     classes: 'bg-green-100 text-green-800',
+  },
+  dao: {
+    name: 'DAO',
+    classes: 'bg-purple-100 text-purple-800',
   },
   individual: {
     name: 'Individual',
@@ -80,6 +84,8 @@ const icons: {[index: string]:any} = {
     'VeChain': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/vet.svg",
     'Waves': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/waves.svg",
     'Tezos': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/xtz.svg",
+    'Celo': "https://cryptologos.cc/logos/celo-celo-logo.svg",
+    'Gnosis': "https://cryptologos.cc/logos/gnosis-gno-gno-logo.svg",
   },
   bank: './icons/bank.svg',
   btcturk: './icons/btcturk.svg',
@@ -259,6 +265,49 @@ const organizations: {[index: string]:any} = [
         name: 'Credit Card',
         linkName: 'Option of Credit Card on their official website',
         linkUrl: 'https://fonzip.com/ihtiyacharitasi/onlineimece',
+      },
+    ],
+  },
+  {
+    name: "Anka Relief DAO",
+    description:
+      "Multi-sig crypto relief fund operated by industry leaders to support the people of Türkiye after the disastrous earthquakes that hit the region.",
+    logoUrl: "./icons/organizations/anka.png",
+    websiteUrl: "https://ankarelief.org",
+    twitterUrl: "https://twitter.com/ankarelief",
+    popularity: 5,
+    endorseMentUrls: [],
+    categories: ["international", "dao"],
+    options: [
+      {
+        type: "cryptocurrency",
+        name: "Ethereum",
+        address: "0xCE4d5B5933B369e9c937ffCfBB9e3aeb3d2c265B",
+        sourceUrls: ["https://ankarelief.org"],
+      },
+      {
+        type: "cryptocurrency",
+        name: "Avalanche",
+        address: "0xEFC8e3472c782E74b64212191F17C1463645cc4A",
+        sourceUrls: ["https://ankarelief.org"],
+      },
+      {
+        type: "cryptocurrency",
+        name: "Binance",
+        address: "0x0aC81b9737E44b748B5498D05CFE43CEfB2F55d2",
+        sourceUrls: ["https://ankarelief.org"],
+      },
+      {
+        type: "cryptocurrency",
+        name: "Celo",
+        address: "0x5e9E52e9789F670F80A7de6e438cC491878981B8",
+        sourceUrls: ["https://ankarelief.org"],
+      },
+      {
+        type: "cryptocurrency",
+        name: "Gnosis",
+        address: "0xc1460588cA2BcAEB28c80327413e91655505A784",
+        sourceUrls: ["https://ankarelief.org"],
       },
     ],
   },
@@ -870,6 +919,8 @@ const initialFilters: Filter[]  = [
       { id: 'VeChain', label: 'VeChain', checked: true },
       { id: 'Waves', label: 'Waves', checked: true },
       { id: 'Tezos', label: 'Tezos', checked: true },
+      { id: 'Celo', label: 'Celo', checked: true },
+      { id: 'Gnosis', label: 'Gnosis', checked: true },
     ],
   },
   {
@@ -878,13 +929,13 @@ const initialFilters: Filter[]  = [
     options: [
       { id: 'governmental', label: 'Governmental', checked: true },
       { id: 'ngo', label: 'NGO', checked: true },
+      { id: 'dao', label: 'DAO', checked: true },
       { id: 'individual', label: 'Individual', checked: true },
       { id: 'turkish', label: 'Turkish', checked: true },
       { id: 'international', label: 'International', checked: true },
     ],
   },
 ];
-
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
