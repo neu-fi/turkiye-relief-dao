@@ -666,7 +666,7 @@ export default function Organizations() {
 
               {/* Contents */}
               <div className="lg:col-span-3">
-                {organizations.map((organization) => (
+                {organizations.map((organization: any) => (
                   isOrganizationFiltered(organization) &&
                   <div className="bg-gray-50 mb-8 sm:rounded-lg border-solid border-4 border-gray-100 shadow ring-1 ring-black ring-opacity-5">
                     <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
@@ -684,7 +684,7 @@ export default function Organizations() {
                                 {organization.name}
                               </h3>
                               <div className='space-x-2'>
-                                {organization.categories.map((category) => (
+                                {organization.categories.map((category: any) => (
                                   <span className={classNames(
                                     "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
                                     categoryDetails[category].classes
