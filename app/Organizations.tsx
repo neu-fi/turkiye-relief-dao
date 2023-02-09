@@ -1129,7 +1129,7 @@ export default function Organizations() {
 
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
-                <div>
+                {/* <div>
                   <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
                     Sort
                     <ChevronDownIcon
@@ -1137,7 +1137,7 @@ export default function Organizations() {
                       aria-hidden="true"
                     />
                   </Menu.Button>
-                </div>
+                </div> */}
 
                 <Transition
                   as={Fragment}
