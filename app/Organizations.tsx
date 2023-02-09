@@ -411,7 +411,14 @@ export default function Organizations() {
         return false;
       }
     }
-    return true;
+    // Look for a filtered option
+    for (var option of organization.options) {
+      if (isOptionFiltered(option)) {
+        return true;
+      }
+    }
+    // The organization doesn't have any filtered options
+    return false;
   }
 
   const isOptionFiltered = (option: any) => {
@@ -668,7 +675,7 @@ export default function Organizations() {
               <div className="lg:col-span-3">
                 {organizations.map((organization: any) => (
                   isOrganizationFiltered(organization) &&
-                  <div className="bg-gray-50 mb-8 sm:rounded-lg border-solid border-4 border-gray-100 shadow ring-1 ring-black ring-opacity-5">
+                  <div data-type="organization" className="bg-gray-50 mb-8 sm:rounded-lg border-solid border-4 border-gray-100 shadow ring-1 ring-black ring-opacity-5">
                     <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
                       <div className="-ml-4 -mt-4 flex flex-wrap items-center sm:flex-nowrap grow justify-center">
                         <div className="ml-4 mt-4">
