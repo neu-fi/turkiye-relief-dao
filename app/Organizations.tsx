@@ -44,6 +44,29 @@ interface Option {
   warning?: string,
 }
 
+const categoryDetails: {[index: string]:any} = {
+  governmental: {
+    name: 'Governmental',
+    classes: 'bg-gray-100 text-gray-800',
+  },
+  ngo: {
+    name: 'NGO',
+    classes: 'bg-green-100 text-green-800',
+  },
+  individual: {
+    name: 'Individual',
+    classes: 'bg-amber-100 text-amber-800',
+  },
+  turkish: {
+    name: 'Turkish',
+    classes: 'bg-red-100 text-red-800',
+  },
+  international: {
+    name: 'International',
+    classes: 'bg-blue-100 text-blue-800',
+  },
+}
+
 // All of the icons should be SVGs
 // Click "raw" and copy the url from the list at https://github.com/spothq/cryptocurrency-icons/tree/master/svg/color
 // All option types except "cryptocurrency" and "nft" must have an icon in this map.
@@ -83,7 +106,7 @@ const organizations = [
     twitterUrl: 'https://twitter.com/AFADTurkiye',
     popularity: 6,
     endorsementUrls: [],
-    categories: ['governmental', 'turkish'],
+    categories: ['turkish', 'governmental'],
     options: [
       {
         type: 'cryptocurrency',
@@ -122,7 +145,7 @@ const organizations = [
     twitterUrl: 'https://twitter.com/ahbap',
     popularity: 10,
     endorsementUrls: ['https://twitter.com/avalancheavax/status/1622975707528962049'],
-    categories: ['ngo', 'turkish'],
+    categories: ['turkish', 'ngo'],
     options: [
       {
         type: 'cryptocurrency',
@@ -158,7 +181,7 @@ const organizations = [
     twitterUrl: 'https://twitter.com/ihtiyacharitasi',
     popularity: 1,
     endorsementUrls: ['https://twitter.com/iksv_istanbul/status/1622936410704560129'], // Turkish
-    categories: ['ngo', 'turkish'],
+    categories: ['turkish', 'ngo'],
     options: [
       {
         type: 'cryptocurrency',
@@ -225,7 +248,7 @@ const organizations = [
     twitterUrl: 'https://twitter.com/TOGVakfi',
     popularity: 4,
     endorsementUrls: ['https://www.tog.org.tr/destekcilerimiz/kurumsal-destekcilerimiz/'], // Turkish
-    categories: ['ngo', 'turkish'],
+    categories: ['turkish', 'ngo'],
     options: [
       {
         type: 'cryptocurrency',
@@ -263,7 +286,7 @@ const organizations = [
     twitterUrl: 'https://twitter.com/muratpak',
     popularity: 2,
     endorsementUrls: ['https://twitter.com/beeple/status/1623107218567581697'],
-    categories: ['individual', 'turkish'],
+    categories: ['turkish', 'individual'],
     options: [
       {
         type: 'nft',
@@ -600,14 +623,16 @@ export default function Organizations() {
                               <h3 className="text-lg font-semibold ml-1 leading-6 text-gray-900">
                                 {organization.name}
                               </h3>
-                              <p>
-                                <span className="inline-flex items-center rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-800">
-                                  Turkish
-                                </span>
-                                <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 mr-1.5">
-                                  Governmental
-                                </span>
-                              </p>
+                              <div className='space-x-2'>
+                                {organization.categories.map((category) => (
+                                  <span className={classNames(
+                                    "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
+                                    categoryDetails[category].classes
+                                  )}>
+                                    {categoryDetails[category].name}
+                                  </span>
+                                ))}
+                              </div>
                             </div>
                           </div>
                         </div>
