@@ -321,7 +321,7 @@ export default function Organizations() {
   }
 
   return (
-    <div className="bg-white">
+    <div className="bg-white px-6 lg:px-8">
       <div>
         {/* Mobile filter dialog */}
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
