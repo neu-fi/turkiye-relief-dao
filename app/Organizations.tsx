@@ -425,7 +425,7 @@ export default function Organizations() {
       alert("Assertion failed D " + option.type);
       return false;
     }
-    if (option.type === "cryptocurrency") {
+    if (option.type === "cryptocurrency" && typeFilter.checked) {
       var cryptocurrencyFilters = filters.find(item => item?.id.toString() === 'cryptocurrencies');
       if (cryptocurrencyFilters === undefined) {
         alert("Assertion failed E");
