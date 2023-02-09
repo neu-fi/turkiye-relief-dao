@@ -1262,11 +1262,11 @@ export default function Organizations() {
                                     isOptionFiltered(option) &&
                                     <tr key={option.name} className="flex justify-items-end w-full place-items-center">
                                       <td className="py-2 pl-3 pr-3 text-sm sm:pl-6 sm:py-5">
-                                        <div className="flex w-36 items-center">
+                                        <div className="flex w-content items-center">
                                           <div className="h-6 w-6 flex-shrink-0">
                                             <img className="h-6 w-6" src={optionToIconUrl(option)} alt="" />
                                           </div>
-                                          <div className="ml-2">
+                                          <div className="hidden sm: block ml-2">
                                             <div className="font-medium text-gray-600">
                                               {option.name}
                                             </div>
@@ -1277,7 +1277,7 @@ export default function Organizations() {
                                         {option.type === 'cryptocurrency'
                                           ? <div>
                                               <p className="truncate">{option.address}</p>
-                                              <div className='space-x-2 mt-0.5'>
+                                              <div className='flex flex-col w-fit items-start justify-start space-y-2 sm:block sm:space-x-2 mt-1'>
                                                 {option.sourceUrls?.map((sourceUrl: string) => (
                                                   <Link href={sourceUrl} passHref={true}>
                                                     <span className="inline-flex items-center rounded bg-red-100 px-2 py-0.5 text-xs font-medium text-red-900">
