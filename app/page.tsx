@@ -1,5 +1,3 @@
-import Link from 'next/link'
-
 import DamageStats from './DamageStats';
 import DonationStats from './DonationStats';
 import Organizations from './Organizations';
