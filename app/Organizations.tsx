@@ -321,12 +321,18 @@ const initialFilters: Filter[]  = [
     ],
   },
   {
-    id: 'crypto',
+    id: 'cryptocurrencies',
     name: 'Cryptocurrency Networks',
     options: [
-      { id: 'bitcoin', label: 'Bitcoin', checked: true },
-      { id: 'ethereum', label: 'Ethereum', checked: true },
-      { id: 'avalanche', label: 'Avalanche', checked: true },
+      { id: 'Bitcoin', label: 'Bitcoin', checked: true },
+      { id: 'Ethereum', label: 'Ethereum', checked: true },
+      { id: 'Avalanche', label: 'Avalanche', checked: true },
+      { id: 'Binance', label: 'Binance', checked: true },
+      { id: 'Polygon', label: 'Polygon', checked: true },
+      { id: 'Solana', label: 'Solana', checked: true },
+      { id: 'Cosmos', label: 'Cosmos', checked: true },
+      { id: 'Polkadot', label: 'Polkadot', checked: true },
+      { id: 'Tron', label: 'Tron', checked: true },
     ],
   },
   {
@@ -414,17 +420,27 @@ export default function Organizations() {
       alert("Assertion failed C");
       return false;
     }
-    // if (option.type === "cryptocurrency") {
-    //   return true;
-    // } else {
-    // }
-
     var typeFilter = typeFilters.options.find(item => item.id === option.type);
     if (typeFilter === undefined) {
       alert("Assertion failed D " + option.type);
       return false;
     }
-    return typeFilter.checked;
+    if (typeFilter.checked === false) {
+      return false
+    }
+    if (option.type === "cryptocurrency") {
+      var cryptocurrencyFilters = filters.find(item => item?.id.toString() === 'cryptocurrencies');
+      if (cryptocurrencyFilters === undefined) {
+        alert("Assertion failed E");
+        return false;
+      }
+      var cryptocurrencyFilter = cryptocurrencyFilters.options.find(item => item.id === option.name);
+      if (cryptocurrencyFilter === undefined) {
+        alert("Assertion failed F");
+        return false;
+      }
+      return cryptocurrencyFilter.checked;
+    }
   }
 
   return (
