@@ -4,6 +4,8 @@ import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid'
+import { ClipboardIcon } from '@heroicons/react/20/solid'
+import { LinkIcon, PhoneIcon } from '@heroicons/react/20/solid'
 
 // All the cryptocurrency networks must be listed here
 const networks = [
@@ -226,7 +228,7 @@ const organizations = [
       {
         type: 'bank',
         name: 'Bank accounts',
-        linkName: 'The list of Community Volunteers Foundation bank accounts on their official website',
+        linkName: 'The list of bank accounts on the official website',
         linkUrl: 'https://www.tog.org.tr/bagisci-ol/#1630673115839-aeef1bfb-85a7',
       },
     ],
@@ -288,6 +290,18 @@ const initialFilters = [
     ],
   },
 ]
+
+const people = [
+  {
+    name: 'Lindsay Walton',
+    title: 'Front-end Developer',
+    department: 'Optimization',
+    email: 'lindsay.walton@example.com',
+    role: 'Member',
+    image:
+      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  },
+];
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
@@ -406,7 +420,7 @@ export default function Organizations() {
                                         defaultChecked={option.checked}
 
                                         onChange={checkboxChangeHandler}
-                                        className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
+                                        className="h-4 w-4 rounded border-gray-300 text-red-600"
                                       />
                                       <label
                                         htmlFor={`filter-${section.id}-${option.id}`}
@@ -535,7 +549,7 @@ export default function Organizations() {
                                     type="checkbox"
                                     defaultChecked={option.checked}
                                     onChange={checkboxChangeHandler}
-                                    className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
+                                    className="h-4 w-4 rounded border-gray-300 text-red-600"
                                   />
                                   <label
                                     htmlFor={`filter-${section.id}-${option.id}`}
@@ -554,11 +568,106 @@ export default function Organizations() {
                 ))}
               </form>
 
-              {/* Product grid */}
+              {/* Contents */}
               <div className="lg:col-span-3">
-                {/* Replace with your content */}
-                <div className="h-96 rounded-lg border-4 border-dashed border-gray-200 lg:h-full" />
+
+                {/* Add organizations */}
+                <div className="bg-gray-50 sm:rounded-lg border-solid border-4 border-gray-100 shadow ring-1 ring-black ring-opacity-5">
+                    <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
+                      <div className="-ml-4 -mt-4 flex flex-wrap items-center sm:flex-nowrap grow justify-center">
+                        <div className="ml-4 mt-4">
+                          <div className="flex items-center">
+                            <div className="flex-shrink-0">
+                              <img
+                                className="h-16 w-16"
+                                src="./icons/organizations/afad.svg"
+                              />
+                            </div>
+                            <div className="ml-4">
+                              <h3 className="text-lg font-semibold ml-1 leading-6 text-gray-900">
+                                An Example
+                              </h3>
+                              <p>
+                                <span className="inline-flex items-center rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-800">
+                                  Turkish
+                                </span>
+                                <span className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 mr-1.5">
+                                  Governmental
+                                </span>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="mt-4 flex grow justify-center sm:justify-end">
+                          <button
+                            type="button"
+                            className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+                          >
+                            <div className="-ml-1 mr-2 h-5 w-5 text-gray-400 fill-current" aria-hidden="true">
+                              <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Twitter</title><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                            </div>
+                            <span>Twitter</span>
+                          </button>
+                          <button
+                            type="button"
+                            className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+                          >
+                            <LinkIcon className="-ml-1 mr-2 h-5 w-5 text-gray-400" aria-hidden="true" />
+                            <span>Website</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                
+                    <div className="px-4 sm:px-6 lg:px-8">
+                      <p className="mt-4 text-sm text-gray-700">
+                        Distinguished Turkish NFT artist Pak has built an NFT platform for raising funds for the relief effort. All donations are promised to be channelled to Ahbap.
+                      </p>
+                      <div className="mt-6 flex flex-col">
+                        <div className="-mt-2 -mx-4 overflow-x-auto sm:mb-4 sm:-mx-6 lg:-mx-8 border-gray-200 border-t sm:border-none">
+                          <div className="min-w-full align-middle sm:py-2 md:px-6 lg:px-8">
+                            <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                              <table className="table-fixed flex flex-col divide-y divide-gray-300">
+                                <tbody className="divide-y divide-gray-200 bg-white">
+                                  {organizations[2].options.map((option) => (
+                                    <tr key={option.name} className="flex">
+                                      <td className="py-2 pl-3 pr-3 text-sm sm:pl-6 sm:py-5">
+                                        <div className="flex w-28 items-center">
+                                          <div className="h-6 w-6 flex-shrink-0">
+                                            <img className="h-6 w-6" src='./icons/organizations/cause.svg' alt="" />
+                                          </div>
+                                          <div className="ml-3">
+                                            <div className="font-medium text-gray-600">
+                                              {option.name}
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </td>
+                                      <td className="truncate px-3 py-3 sm:py-5 text-sm text-gray-500 ">
+                                          0xbe4cde5eeeed1f0a97a9457f6ef5b71eae108652
+                                      </td>
+                                      <td className=" px-3 py-3 text-sm text-gray-500">
+                                        <button
+                                          type="button"
+                                          className="relative ml-3 inline-flex items-center rounded-md sm:border border-gray-300 bg-white sm:px-4 sm:py-2 font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+                                        >
+                                          <ClipboardIcon className="-ml-0.5 h-4 w-4 text-gray-400" aria-hidden="true" />
+                                          <p className='hidden md:block ml-2'>Copy</p>
+                                        </button>
+                                      </td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                 {/* /End replace */}
+              </div>
+
               </div>
             </div>
           </section>

@@ -26,7 +26,7 @@ export default function DonationStats() {
       </div>
       <div className="mx-auto max-w-4xl px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
         <div className="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
-          <h2 className="text-base font-semibold text-white">Rushing For Help</h2>
+          <h2 className="text-base font-semibold text-white">Asking for Help</h2>
           <p className="mt-3 text-3xl font-bold tracking-tight text-rose-200">
             The International Response
           </p>
