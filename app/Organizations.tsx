@@ -754,14 +754,27 @@ export default function Organizations() {
                                         </div>
                                       </td>
                                       <td className="truncate py-3 sm:py-5 text-sm text-gray-500 ">
-                                        {option.type === 'cryptocurrency' ? option.address : option.linkName}
+                                        {option.type === 'cryptocurrency'
+                                          ? <p className="truncate">{option.address}</p>
+                                          : <p className="truncate">{option.linkName}</p>
+                                        }
                                       </td>
-                                      <td className="px-3 py-3 text-sm text-gray-500 grow ">
+                                      <td className="px-3 py-3 text-sm text-gray-500 grow space-x-1 inline-flex">
+                                        {option.info && <div className='flex items-center'>
+                                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 align-middle">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                                          </svg>
+                                        </div>}
+                                        {option.warning && <div className='flex items-center'>
+                                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                                        </svg>
+                                        </div>}
                                         <button
                                           type="button"
                                           className={
                                             classNames(
-                                              "relative ml-3 inline-flex items-center rounded-md sm:border border-gray-300 bg-white sm:px-4 sm:py-2 font-medium text-gray-700 shadow-sm hover:bg-gray-50 float-right",
+                                              "relative l-5 inline-flex items-center rounded-md sm:border border-gray-300 bg-white sm:px-4 sm:py-2 font-medium text-gray-700 shadow-sm hover:bg-gray-50 float-right",
                                               option.address ? "block" : "hidden"
                                             )
                                           }
@@ -769,7 +782,7 @@ export default function Organizations() {
                                             if (option.address) {
                                               toast(
                                                 <div className='inline-flex items-center'>
-                                                  <ClipboardIcon className="h-8 w-8 text-gray-200 mr-5" aria-hidden="true" />
+                                                  <ClipboardIcon className="h-8 w-8 sm:h-8 sm:w-8 text-gray-200 mr-5" aria-hidden="true" />
                                                   <p>Copied {option.name} address of {organization.name}"</p>
                                                 </div>
                                                 , {
@@ -785,7 +798,7 @@ export default function Organizations() {
                                             }
                                           }}
                                         >
-                                          <ClipboardIcon className="-ml-0.5 h-4 w-4 text-gray-400" aria-hidden="true" />
+                                          <ClipboardIcon className="-ml-0.5 h-6 w-6 sm:h-4 sm:w-4 text-gray-400" aria-hidden="true" />
                                           <p className='hidden md:block ml-2'>Copy</p>
                                         </button>
                                       </td>
