@@ -109,6 +109,8 @@ const explorers: {[index: string]: any } = {
   'VeChain': "https://explore.vechain.org/accounts//",
   'Waves': "https://wavesexplorer.com/addresses/",
   'Tezos': "https://tzstats.com/",
+  'Celo': "https://celoscan.io/address/",
+  'Gnosis': "https://gnosisscan.io/address/",
 }
 
 // All entries must have the following: name, description, logoUrl, websiteUrl, twitterUrl, popularity, endorsementUrls, categories, options
@@ -1346,7 +1348,7 @@ export default function Organizations() {
                                       <td className="truncate py-3 sm:py-5 text-sm text-gray-500 ">
                                         {option.type === 'cryptocurrency'
                                           ?  <div className="flex flex-wrap sm:items-center">
-                                              <Link href={`${explorers[option.name]}${option.address}`} passHref={true}>
+                                              <Link href={`${explorers[option.name]}${option.address}`} passHref={true} className="mr-2">
                                                 <span className="inline-flex items-center rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-red-900">
                                                   <span className="truncate ">Explorer</span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3 ml-1">
@@ -1354,10 +1356,10 @@ export default function Organizations() {
                                                     </svg>
                                                   </span>
                                               </Link>
-                                              <div className='flex flex-wrap w-fit justify-start sm:block sm:space-x-2 mt-1 sm:mt-0 '>
+                                              <div className='flex flex-wrap w-fit justify-start sm:block sm:space-x-2'>
                                                 {option.sourceUrls?.map((sourceUrl: string) => (
-                                                  <Link href={sourceUrl} passHref={true} class="flex-1 mr-2">
-                                                    <span className="inline-flex items-center rounded bg-red-100 px-2 text-xs font-medium text-red-900">
+                                                  <Link href={sourceUrl} passHref={true} className="flex-1 mr-2 sm:mr-0">
+                                                    <span className="inline-flex items-center rounded bg-red-100 px-2 py-0.5 text-xs font-medium text-red-900">
                                                       Source
                                                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3 ml-1">
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
