@@ -42,17 +42,22 @@ const icons = {
   card: 'card.svg'
 };
 
-// All entries must have the following: name, description, websiteUrl, endorsementUrls, options
+// All entries must have the following: name, description, websiteUrl, popularity, endorsementUrls, categories, options
+// Categories must include:
+//   * One of: governmental, ngo, individual
+//   * One of: turkish, international
 // All options must have the following: type, name
-// If an option has "cryptocurrency" type, it must include: address, sourceUrls
-// If an option has another type, it must include: linkName, linkUrl
-// Options could have the following: info, warning
+//   * If an option has "cryptocurrency" type, it must include: address, sourceUrls
+//   * If an option has another type, it must include: linkName, linkUrl
+//   * Options could have the following: info, warning
 const organizations = [
   {
     name: 'AFAD (Republic Of Turkey Ministry Of Interior Disaster And Emergency Management Presidency)',
     description: 'Disaster and Emergency Management Authority, an institution working to prevent disasters and minimize disaster-related damages, plan and coordinate post-disaster response, and promote cooperation among various government agencies.',
     websiteUrl: 'https://en.afad.gov.tr/',
+    popularity: 6,
     endorsementUrls: [],
+    categories: ['governmental', 'turkish'],
     options: [
       {
         type: 'cryptocurrency',
@@ -84,25 +89,12 @@ const organizations = [
     ],
   },
   {
-    name: 'Earthquake Türkiye 2023 by Murat Pak',
-    description: 'Distinguished Turkish NFT artist Pak has built an NFT platform for raising funds for the relief effort. All donations are promised to be channelled to Ahbap.',
-    websiteUrl: 'https://cause.quest/',
-    endorsementUrls: ['https://twitter.com/beeple/status/1623107218567581697'],
-    options: [
-      {
-        type: 'nft',
-        name: 'Cause #1',
-        linkName: 'Mint Earthquake Türkiye 2023 NFTs',
-        linkUrl: 'https://cause.quest',
-        warning: 'Non-transferable',
-      },
-    ],
-  },
-  {
     name: 'Ahbap',
     description: 'A Turkey based non-profit organization established on the principles of solidarity and cooperation, founded by the Turkish musician and philanthropist, Haluk Levent.',
     websiteUrl: 'https://ahbap.org/',
+    popularity: 10,
     endorsementUrls: ['https://twitter.com/avalancheavax/status/1622975707528962049'],
+    categories: ['ngo', 'turkish'],
     options: [
       {
         type: 'cryptocurrency',
@@ -134,7 +126,9 @@ const organizations = [
     name: 'NeedsMap',
     description: 'An online social platform cooperative based in Turkey, where individuals and organizations wishing to support those in need can connect',
     websiteUrl: 'https://www.ihtiyacharitasi.org/',
+    popularity: 3,
     endorsementUrls: ['https://twitter.com/iksv_istanbul/status/1622936410704560129'], // Turkish
+    categories: ['ngo', 'turkish'],
     options: [
       {
         type: 'cryptocurrency',
@@ -197,7 +191,9 @@ const organizations = [
     name: 'Community Volunteers Foundation',
     description: 'The Community Volunteer Foundation is a Turkish organization that helps young people uncover their potential through education and project development, while also addressing their housing, scholarship, and cultural needs.',
     websiteUrl: 'https://www.tog.org.tr/',
+    popularity: 4,
     endorsementUrls: ['https://www.tog.org.tr/destekcilerimiz/kurumsal-destekcilerimiz/'], // Turkish
+    categories: ['ngo', 'turkish'],
     options: [
       {
         type: 'cryptocurrency',
@@ -224,6 +220,23 @@ const organizations = [
         name: 'Bank accounts',
         linkName: 'The list of Community Volunteers Foundation bank accounts on their official website',
         linkUrl: 'https://www.tog.org.tr/bagisci-ol/#1630673115839-aeef1bfb-85a7',
+      },
+    ],
+  },
+  {
+    name: 'Earthquake Türkiye 2023 by Murat Pak',
+    description: 'Distinguished Turkish NFT artist Pak has built an NFT platform for raising funds for the relief effort. All donations are promised to be channelled to Ahbap.',
+    websiteUrl: 'https://cause.quest/',
+    popularity: 2,
+    endorsementUrls: ['https://twitter.com/beeple/status/1623107218567581697'],
+    categories: ['individual', 'turkish'],
+    options: [
+      {
+        type: 'nft',
+        name: 'Cause #1',
+        linkName: 'Mint Earthquake Türkiye 2023 NFTs',
+        linkUrl: 'https://cause.quest',
+        warning: 'Non-transferable',
       },
     ],
   },
@@ -254,11 +267,12 @@ const initialFilters = [
     ],
   },
   {
-    id: 'category',
-    name: 'Category',
+    id: 'categories',
+    name: 'Categories',
     options: [
       { id: 'governmental', label: 'Governmental', checked: true },
       { id: 'ngo', label: 'NGO', checked: true },
+      { id: 'individual', label: 'Individual', checked: true },
       { id: 'turkish', label: 'Turkish', checked: true },
       { id: 'international', label: 'International', checked: true },
     ],
