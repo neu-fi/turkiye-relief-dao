@@ -52,7 +52,7 @@ const icons = {
 //   * Options could have the following: info, warning
 const organizations = [
   {
-    name: 'AFAD (Republic Of Turkey Ministry Of Interior Disaster And Emergency Management Presidency)',
+    name: 'AFAD (Republic Of Türkiye Ministry Of Interior Disaster And Emergency Management Presidency)',
     description: 'Disaster and Emergency Management Authority, an institution working to prevent disasters and minimize disaster-related damages, plan and coordinate post-disaster response, and promote cooperation among various government agencies.',
     logoUrl: './icons/organizations/afad.svg',
     websiteUrl: 'https://en.afad.gov.tr/',
@@ -128,7 +128,7 @@ const organizations = [
   },
   {
     name: 'Needs Map (İhtiyaç Haritası)',
-    description: 'An online social platform cooperative based in Turkey, where individuals and organizations wishing to support those in need can connect',
+    description: 'An online social platform cooperative based in Türkiye, where individuals and organizations wishing to support those in need can connect',
     logoUrl: './icons/organizations/needsmap.svg',
     websiteUrl: 'https://www.needsmap.coop/',
     twitterUrl: 'https://twitter.com/ihtiyacharitasi',
