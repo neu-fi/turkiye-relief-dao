@@ -313,10 +313,11 @@ const initialFilters: Filter[]  = [
     id: 'types',
     name: 'Donation Types',
     options: [
-      { id: 'crypto', label: 'Cryptocurrencies', checked: true },
+      { id: 'cryptocurrency', label: 'Cryptocurrencies', checked: true },
       { id: 'nft', label: 'NFTs', checked: true },
       { id: 'card', label: 'Credit Cards', checked: true },
       { id: 'bank', label: 'Bank Transfers', checked: true },
+      { id: 'btcturk', label: 'Other', checked: true },
     ],
   },
   {
@@ -389,16 +390,15 @@ export default function Organizations() {
   }
 
   const isOrganizationFiltered = (organization: any) => {
-    const filtered = true;
     const categoryFilters = filters.find(item => item?.id.toString() === 'categories');
     if (categoryFilters === undefined) {
-      alert("Assertion failed");
+      alert("Assertion failed A");
       return false;
     }
     for (var category of organization.categories) {
       var categoryFilterOption = categoryFilters.options.find(item => item.id === category)
       if (categoryFilterOption === undefined) {
-        alert("Assertion failed");
+        alert("Assertion failed B");
         return false;
       }
       if (categoryFilterOption.checked === false) {
@@ -406,6 +406,25 @@ export default function Organizations() {
       }
     }
     return true;
+  }
+
+  const isOptionFiltered = (option: any) => {
+    const typeFilters = filters.find(item => item?.id.toString() === 'types');
+    if (typeFilters === undefined) {
+      alert("Assertion failed C");
+      return false;
+    }
+    // if (option.type === "cryptocurrency") {
+    //   return true;
+    // } else {
+    // }
+
+    var typeFilter = typeFilters.options.find(item => item.id === option.type);
+    if (typeFilter === undefined) {
+      alert("Assertion failed D " + option.type);
+      return false;
+    }
+    return typeFilter.checked;
   }
 
   return (
@@ -698,6 +717,7 @@ export default function Organizations() {
                               <table className="flex flex-col divide-y divide-gray-300">
                                 <tbody className="divide-y divide-gray-200 bg-white">
                                   {organization.options.map((option: Option) => (
+                                    isOptionFiltered(option) &&
                                     <tr key={option.name} className="flex justify-items-end  w-full">
                                       <td className="py-2 pl-3 pr-3 text-sm sm:pl-6 sm:py-5">
                                         <div className="flex w-36 items-center">
