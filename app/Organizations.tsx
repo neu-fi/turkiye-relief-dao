@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 'use client'
 
 import { Fragment, useState } from 'react'
@@ -1255,6 +1256,7 @@ export default function Organizations() {
                               <img
                                 className="h-16 w-16 mix-blend-multiply"
                                 src={organization.logoUrl}
+                                alt="logo"
                               />
                             </div>
                             <div className="ml-4">
@@ -1317,7 +1319,7 @@ export default function Organizations() {
                                           <div className="h-6 w-6 flex-shrink-0">
                                             <img className="h-6 w-6" src={optionToIconUrl(option)} alt="" />
                                           </div>
-                                          <div className="hidden sm: block ml-2">
+                                          <div className="hidden sm:block ml-2">
                                             <div className="font-medium text-gray-600">
                                               {option.name}
                                             </div>
@@ -1326,12 +1328,12 @@ export default function Organizations() {
                                       </td>
                                       <td className="truncate py-3 sm:py-5 text-sm text-gray-500 ">
                                         {option.type === 'cryptocurrency'
-                                          ? <div>
-                                              <p className="truncate">{option.address}</p>
-                                              <div className='flex flex-col w-fit items-start justify-start space-y-2 sm:block sm:space-x-2 mt-1'>
+                                          ? <div className="flex flex-wrap sm:items-center">
+                                              <p className="truncate sm:mr-2">{option.address}</p>
+                                              <div className='flex flex-wrap w-fit justify-start sm:block sm:space-x-2 mt-1 sm:mt-0 '>
                                                 {option.sourceUrls?.map((sourceUrl: string) => (
-                                                  <Link href={sourceUrl} passHref={true}>
-                                                    <span className="inline-flex items-center rounded bg-red-100 px-2 py-0.5 text-xs font-medium text-red-900">
+                                                  <Link href={sourceUrl} passHref={true} class="flex-1 mr-2">
+                                                    <span className="inline-flex items-center rounded bg-red-100 px-2 text-xs font-medium text-red-900">
                                                       Source
                                                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3 ml-1">
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
@@ -1346,7 +1348,7 @@ export default function Organizations() {
                                             :<p>{option.linkName}</p>
                                         }
                                       </td>
-                                      <td className="px-3 py-3 text-sm text-gray-400 grow space-x-2 inline-flex place-items-center justify-end">
+                                      <td className="sm:px-3 py-3 text-sm text-gray-400 grow space-x-2 inline-flex place-items-center justify-end">
                                         {
                                           option.info &&
                                             <Tooltip content={option.info} className="align-center" placement="right">
@@ -1380,7 +1382,7 @@ export default function Organizations() {
                                               toast(
                                                 <div className='inline-flex items-center'>
                                                   <ClipboardIcon className="h-8 w-8 sm:h-8 sm:w-8 text-gray-200 mr-5" aria-hidden="true" />
-                                                  <p>Copied {option.name} address of {organization.name}"</p>
+                                                  <p>Copied {option.name} address of {organization.name}</p>
                                                 </div>
                                                 , {
                                                 position: "bottom-center",
