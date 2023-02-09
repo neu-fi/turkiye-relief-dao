@@ -287,7 +287,7 @@ const organizations: {[index: string]:any} = [
     name: "Support To Life",
     description:
       "Support to Life is an independent humanitarian organization founded with the principle aim of helping disaster affected communities meet their basic needs and rights.",
-    logoUrl: "./icons/organizations/support-to-life.png",
+    logoUrl: "./icons/organizations/support-to-life.jpg",
     websiteUrl: "https://www.supporttolife.org/",
     twitterUrl: "https://twitter.com/Support2Life",
     popularity: 2,
@@ -452,9 +452,9 @@ const organizations: {[index: string]:any} = [
     ],
   },
   {
-    name: "Kizilay",
+    name: "Turkish Red Crescent (Kızılay)",
     description: "Kızılay is a Turkish humanitarian organization that provides disaster relief, organizes blood drives, and provides other services.",
-    logoUrl: "./icons/organizations/kizilay.png",
+    logoUrl: "./icons/organizations/kizilay.svg",
     websiteUrl: "https://www.kizilay.org.tr/",
     twitterUrl: "https://twitter.com/kizilay",
     popularity: 2,
@@ -587,9 +587,9 @@ const organizations: {[index: string]:any} = [
     name: "Nef Foundation",
     description:
       "Nef Foundation started working in 2015 under the umbrella of NEF to create a difference and awareness in people's lives; it touches on creating original, innovative, and permanent values ​​to develop social potential and pass on the understanding of social sensitivity to future generations. Dealing with people's problems and adding value to their lives requires taking action rather than showing directions.",
-    logoUrl: "./icons/organizations/nef.png",
-    websiteUrl: "https://www.nef.com.tr",
-    twitterUrl: "https://twitter.com/nef_style",
+    logoUrl: "./icons/organizations/nef.jpg",
+    websiteUrl: "https://nefvakfi.org/",
+    twitterUrl: "https://twitter.com/nefvakfi",
     popularity: 2,
     endorseMentUrls: ['https://www.nefvakfi.org/projeler.php?page=kentsel_vizyon#tab-two'],
     categories: ["turkish", "ngo"],
