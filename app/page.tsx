@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import DamageStats from './DamageStats';
 import DonationStats from './DonationStats';
 import Organizations from './Organizations';
@@ -21,13 +23,10 @@ export default function Home() {
               The international crypto forefront DAO helping the victims of earthquake disaster for aid & communication through legitimate organizations.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
-                href="#"
-                className="rounded-md bg-rose-700 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-rose-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"
-              >
+              <a href="#donate" className="rounded-md bg-rose-700 px-3.5 py-1.5 text-base font-semibold leading-7 text-white shadow-sm hover:bg-rose-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
                 Donate
               </a>
-              <a href="#" className="text-base font-semibold leading-7 text-white">
+              <a href="#help" className="text-base font-semibold leading-7 text-white">
                 Learn more <span aria-hidden="true">→</span>
               </a>
             </div>
@@ -35,10 +34,13 @@ export default function Home() {
         </div>
       </div>
     </div>
-
-    <DamageStats/>
+    <div id="help">
+      <DamageStats/>
+    </div>
     <DonationStats/>
-    <Organizations/>
+    <div id="donate">
+      <Organizations/>
+    </div>
     </>
   )
 }
