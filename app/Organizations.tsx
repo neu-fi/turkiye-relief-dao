@@ -299,22 +299,34 @@ export default function Organizations() {
   const [filters, setFilters] = useState(initialFilters);
   const cryptoFilter = filters[0].options[0].checked;
 
-  const checkboxChangeHandler = ({target}) => {
+  const checkboxChangeHandler = ({target}: any) => {
     const {checked, id} = target;
     setFilters(prev => {
       const idParts = id.split("-");
       const clickedCategory = prev.find(item => item.id.toString() === idParts[1]);
-      const clickedOption = clickedCategory.options.find(item => item.id.toString() === idParts[2]);
+      if (!clickedCategory) {
+        return [...prev];
+      }
+      const clickedOption = clickedCategory?.options.find(item => item.id.toString() === idParts[2]);
+      if (!clickedOption) {
+        return [...prev];
+      }
       clickedOption.checked = checked;
       return [...prev];
     });
   }
 
-  const changeSortHandler = ({target}) => {
+  const changeSortHandler = ({target}: any) => {
     setSortOptions(prev => {
       const currentOption = prev.find(item => item.current === true);
+      if (!currentOption) {
+        return [...prev];
+      }
       currentOption.current = false;
       const clickedOption = prev.find(item => item.name.toString() === target.innerText);
+      if (!clickedOption) {
+        return [...prev];
+      }
       clickedOption.current = true;
       return [...prev];
     });
