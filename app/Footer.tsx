@@ -6,7 +6,7 @@ const navigation = [
     },
     {
       name: 'GitHub',
-      href: 'https://github.com/neu-fi/turkey-relief-dao',
+      href: 'https://github.com/neu-fi/turkiye-relief-dao',
       icon: './icons/github.svg'
     },
     

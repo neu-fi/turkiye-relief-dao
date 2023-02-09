@@ -731,7 +731,7 @@ const organizations: {[index: string]:any} = [
     name: "Foundation For The Support of Women’s Work",
     description:
       "The Foundation for the Evaluation of Women's Work was established in 1986 to improve the economic situation and quality of life of women.",
-    logoUrl: "./icons/organizations/kedv.svg",
+    logoUrl: "./icons/organizations/kedv.png",
     websiteUrl: "https://www.kedv.org.tr/",
     twitterUrl: "https://twitter.com/KedvTurkiye/",
     popularity: 2,
@@ -1301,7 +1301,7 @@ export default function Organizations() {
                 
                     <div className="px-4 sm:px-6 lg:px-8">
                       <p className="mt-4 text-sm text-gray-700">
-                        Distinguished Turkish NFT artist Pak has built an NFT platform for raising funds for the relief effort. All donations are promised to be channelled to Ahbap.
+                        {organization.description}
                       </p>
                       <div className="mt-6 flex flex-col">
                         <div className="-mt-2 -mx-4 overflow-x-auto sm:mb-4 sm:-mx-6 lg:-mx-8 border-gray-200 border-t sm:border-none">
