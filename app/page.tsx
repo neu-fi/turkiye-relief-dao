@@ -1,91 +1,13 @@
+import Organizations from './Organizations';
+
+const metrics = [
+  { stat: '7.8 and 7.5 Mww ', emphasis: 'Magnitudes', rest: 'of the mainshock and the largest aftershock.' , source: 'https://en.wikipedia.org/wiki/2023_Turkey%E2%80%93Syria_earthquake'},
+  { stat: '11,700+', emphasis: 'Death toll', rest: 'from the latest official figures.' , source: 'https://www.nytimes.com/live/2023/02/08/world/turkey-syria-earthquake'},
+  { stat: '3,450+', emphasis: 'Collapsed buildings', rest: 'on people trapped in the ruble.' , source: 'https://www.nytimes.com/2023/02/05/world/europe/turkey-earthquake-rescue.html'},
+  { stat: '23 million', emphasis: 'people affected', rest: 'from the earthquakes.' , source: 'https://abcnews.go.com/International/live-updates/turkey-earthquake/?id=96913081#96947062'},
+]
+
 export default function Home() {
-  const metrics = [
-    { stat: '7.8 and 7.5 Mww ', emphasis: 'Magnitudes', rest: 'of the mainshock and the largest aftershock.' , source: 'https://en.wikipedia.org/wiki/2023_Turkey%E2%80%93Syria_earthquake'},
-    { stat: '11,700+', emphasis: 'Death toll', rest: 'from the latest official figures.' , source: 'https://www.nytimes.com/live/2023/02/08/world/turkey-syria-earthquake'},
-    { stat: '3,450+', emphasis: 'Collapsed buildings', rest: 'on people trapped in the ruble.' , source: 'https://www.nytimes.com/2023/02/05/world/europe/turkey-earthquake-rescue.html'},
-    { stat: '23 million', emphasis: 'people affected', rest: 'from the earthquakes.' , source: 'https://abcnews.go.com/International/live-updates/turkey-earthquake/?id=96913081#96947062'},
-  ]
-  
-  // All the cryptocurrency networks must be listed here
-  const networks = [
-    'Bitcoin',
-    'Ethereum',
-  ];
-
-  // All of the icons should be SVGs
-  // Click "raw" and copy the url from the list at https://github.com/spothq/cryptocurrency-icons/tree/master/svg/color
-  // All option types except "cryptocurrency" must have an icon in this map.
-  // All "cryptocurrency" types must have exact names in their respective maps.
-  const icons = {
-    cryptocurrencies: {
-      'Bitcoin': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/btc.svg',
-      'Ethereum': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/eth.svg',
-    },
-    nft: './icons/nft.svg',
-    bank: './icons/bank.svg',
-    btcturk: './icons/btcturk.svg',
-  };
-
-  // All entries must have the following: name, iconUrl, description, websiteUrl, endorsementUrls, options
-  // All options must have the following: type, name
-  // If an option has "cryptocurrency" type, it must include: address, sourceUrls
-  // If an option has another type, it must include: linkName, linkUrl
-  // Options could have the following: info, warning
-  const organizations = [
-    {
-      name: 'AFAD (Republic Of Turkey Ministry Of Interior Disaster And Emergency Management Presidency)',
-      iconUrl: './icons/organizations/afad.svg',
-      description: 'Disaster and Emergency Management Authority, an institution working to prevent disasters and minimize disaster-related damages, plan and coordinate post-disaster response, and promote cooperation among various government agencies.',
-      websiteUrl: 'https://en.afad.gov.tr/',
-      endorsementUrls: [],
-      options: [
-        {
-          type: 'cryptocurrency',
-          name: 'Bitcoin',
-          address: 'bc1q30uv6s9gwyzq2fd5hhc06v7xge3zzg3qa99vuv0w5dfmxgq8vnws97dpcl',
-          sourceUrls: ['https://donation.btcturk.com/', 'https://twitter.com/btcturkpro/status/1623344419976929282'],
-        },
-        {
-          type: 'cryptocurrency',
-          name: 'Ethereum',
-          address: '0x64A994CC850a56e87331d880A23A69b16dbFC8ea',
-          sourceUrls: ['https://donation.btcturk.com/', 'https://twitter.com/btcturkpro/status/1623344419976929282'],
-          warning: 'Only send ETH or USDT as this is an exchange wallet',
-        },
-        {
-          type: 'bank',
-          name: 'Bank accounts',
-          linkName: 'The list of AFAD bank accounts on their official website',
-          linkUrl: 'https://en.afad.gov.tr/earthquake-donation-accounts',
-        },
-        {
-          type: 'btcturk',
-          name: 'BtcTurk',
-          linkName: 'Instructions for donating Turkish Lira from BtcTurk',
-          linkUrl: 'https://pro.btcturk.com/deprem-bagis',
-          info: 'Matched 1:1 by BtcTurk',
-          warning: 'Only Turkish citizens can register to BtcTurk',
-        },
-      ],
-    },
-    {
-      name: 'Earthquake Türkiye 2023 by Murat Pak',
-      iconUrl: './icons/organizations/cause.svg',
-      description: 'Distinguished Turkish NFT artist Pak has built an NFT platform for raising funds for the relief effort. All donations are promised to be channelled to Ahbap.',
-      websiteUrl: 'https://cause.quest/',
-      endorsementUrls: ['https://twitter.com/beeple/status/1623107218567581697'],
-      options: [
-        {
-          type: 'nft',
-          name: 'Cause #1',
-          linkName: 'Mint Earthquake Türkiye 2023 NFTs',
-          linkUrl: 'https://cause.quest',
-          warning: 'Non-transferable',
-        },
-      ],
-    },
-  ];
-
   return (
     <>
     {/* Hero */}
@@ -138,9 +60,9 @@ export default function Home() {
       </div>
       <div className="mx-auto max-w-4xl px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
         <div className="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
-          <h2 className="text-base font-semibold text-red-400">The earthquakes</h2>
+          <h2 className="text-base font-semibold text-red-400">The Earthquakes</h2>
           <p className="mt-3 text-3xl font-bold tracking-tight text-white">
-            An ongoing international crisis
+            An International Emergency
           </p>
           <p className="mt-5 text-lg text-gray-300">
             On 6 February 2023, two violent earthquakes southest Turkey. The country declared emergency state and
@@ -165,6 +87,8 @@ export default function Home() {
         </div>
       </div>
     </div>
+
+    <Organizations/>
     </>
   )
 }
