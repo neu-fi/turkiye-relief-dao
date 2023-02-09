@@ -8,6 +8,7 @@ specifiers:
   '@types/node': 18.13.0
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
+  '@vercel/node-bridge': ^3.1.10
   '@vercel/og': ^0.1.0
   autoprefixer: ^10.4.13
   eslint: 8.33.0
@@ -30,6 +31,7 @@ dependencies:
   '@types/node': 18.13.0
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
+  '@vercel/node-bridge': 3.1.10
   '@vercel/og': 0.1.0
   eslint: 8.33.0
   eslint-config-next: 13.1.6_4vsywjlpuriuw3tl5oq6zy5a64
@@ -436,6 +438,10 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.51.0
       eslint-visitor-keys: 3.3.0
+    dev: false
+
+  /@vercel/node-bridge/3.1.10:
+    resolution: {integrity: sha512-0DQzF5pdyP+xd5f1Ss2fAO+9xIvzUhngRAPazwg4XHZE9iLkv2L+A1u3L8NYi4hoUlAAZQ5GF3txlm/oBn4tNw==}
     dev: false
 
   /@vercel/og/0.1.0:
