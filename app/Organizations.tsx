@@ -425,9 +425,6 @@ export default function Organizations() {
       alert("Assertion failed D " + option.type);
       return false;
     }
-    if (typeFilter.checked === false) {
-      return false
-    }
     if (option.type === "cryptocurrency") {
       var cryptocurrencyFilters = filters.find(item => item?.id.toString() === 'cryptocurrencies');
       if (cryptocurrencyFilters === undefined) {
@@ -440,6 +437,8 @@ export default function Organizations() {
         return false;
       }
       return cryptocurrencyFilter.checked;
+    } else {
+      return typeFilter.checked;
     }
   }
 
@@ -489,7 +488,7 @@ export default function Organizations() {
                     <h3 className="sr-only">Categories</h3>
 
                     {filters.map((section) => (
-                      (section.id != 'crypto' || cryptoFilter) ?
+                      (section.id != 'cryptocurrencies' || cryptoFilter) ?
                         <Disclosure as="div" key={section.id} className="border-t border-gray-200 px-4 py-6">
                           {({ open }) => (
                             <>
@@ -619,7 +618,7 @@ export default function Organizations() {
                 <h3 className="sr-only">Categories</h3>
 
                 {filters.map((section) => (
-                  (section.id != 'crypto' || cryptoFilter) ?
+                  (section.id != 'cryptocurrencies' || cryptoFilter) ?
                     <Disclosure as="div" key={section.id} className="border-b border-gray-200 py-6">
                       {({ open }) => (
                         <>
