@@ -682,7 +682,7 @@ const organizations: {[index: string]:any} = [
     name: "Foundation For The Support of Women’s Work",
     description:
       "The Foundation for the Evaluation of Women's Work was established in 1986 to improve the economic situation and quality of life of women.",
-    logoUrl: "./icons/organizations/kedv.svg",
+    logoUrl: "./icons/organizations/kedv.png",
     websiteUrl: "https://www.kedv.org.tr/",
     twitterUrl: "https://twitter.com/KedvTurkiye/",
     popularity: 2,
