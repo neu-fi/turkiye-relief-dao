@@ -39,10 +39,10 @@ const icons = {
   },
   bank: './icons/bank.svg',
   btcturk: './icons/btcturk.svg',
-  card: 'card.svg'
+  card: './icons/card.svg'
 };
 
-// All entries must have the following: name, description, websiteUrl, popularity, endorsementUrls, categories, options
+// All entries must have the following: name, description, websiteUrl, twitterUrl, popularity, endorsementUrls, categories, options
 // Categories must include:
 //   * One of: governmental, ngo, individual
 //   * One of: turkish, international
@@ -55,6 +55,7 @@ const organizations = [
     name: 'AFAD (Republic Of Turkey Ministry Of Interior Disaster And Emergency Management Presidency)',
     description: 'Disaster and Emergency Management Authority, an institution working to prevent disasters and minimize disaster-related damages, plan and coordinate post-disaster response, and promote cooperation among various government agencies.',
     websiteUrl: 'https://en.afad.gov.tr/',
+    twitterUrl: 'https://twitter.com/AFADTurkiye',
     popularity: 6,
     endorsementUrls: [],
     categories: ['governmental', 'turkish'],
@@ -92,6 +93,7 @@ const organizations = [
     name: 'Ahbap',
     description: 'A Turkey based non-profit organization established on the principles of solidarity and cooperation, founded by the Turkish musician and philanthropist, Haluk Levent.',
     websiteUrl: 'https://ahbap.org/',
+    twitterUrl: 'https://twitter.com/ahbap',
     popularity: 10,
     endorsementUrls: ['https://twitter.com/avalancheavax/status/1622975707528962049'],
     categories: ['ngo', 'turkish'],
@@ -126,6 +128,7 @@ const organizations = [
     name: 'NeedsMap',
     description: 'An online social platform cooperative based in Turkey, where individuals and organizations wishing to support those in need can connect',
     websiteUrl: 'https://www.ihtiyacharitasi.org/',
+    twitterUrl: 'https://twitter.com/ihtiyacharitasi',
     popularity: 3,
     endorsementUrls: ['https://twitter.com/iksv_istanbul/status/1622936410704560129'], // Turkish
     categories: ['ngo', 'turkish'],
@@ -191,6 +194,7 @@ const organizations = [
     name: 'Community Volunteers Foundation',
     description: 'The Community Volunteer Foundation is a Turkish organization that helps young people uncover their potential through education and project development, while also addressing their housing, scholarship, and cultural needs.',
     websiteUrl: 'https://www.tog.org.tr/',
+    twitterUrl: 'https://twitter.com/TOGVakfi',
     popularity: 4,
     endorsementUrls: ['https://www.tog.org.tr/destekcilerimiz/kurumsal-destekcilerimiz/'], // Turkish
     categories: ['ngo', 'turkish'],
@@ -227,6 +231,7 @@ const organizations = [
     name: 'Earthquake Türkiye 2023 by Murat Pak',
     description: 'Distinguished Turkish NFT artist Pak has built an NFT platform for raising funds for the relief effort. All donations are promised to be channelled to Ahbap.',
     websiteUrl: 'https://cause.quest/',
+    twitterUrl: 'https://twitter.com/muratpak',
     popularity: 2,
     endorsementUrls: ['https://twitter.com/beeple/status/1623107218567581697'],
     categories: ['individual', 'turkish'],
