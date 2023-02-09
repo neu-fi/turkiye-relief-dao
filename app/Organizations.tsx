@@ -6,9 +6,10 @@ import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid'
 import { ClipboardIcon } from '@heroicons/react/20/solid'
 import { LinkIcon, PhoneIcon } from '@heroicons/react/20/solid'
+import Link from 'next/link'
 
 // All the cryptocurrency networks must be listed here
-const networks = [
+const NETWORKS = [
   'Bitcoin',
   'Ethereum',
   'Avalanche',
@@ -20,11 +21,34 @@ const networks = [
   'Tron',
 ];
 
+type Network = typeof NETWORKS[number];
+
+const OPTION_TYPES = [
+  'cryptocurrency',
+  'bank',
+  'btcturk',
+  'card',
+  'nft',
+];
+
+type OptionType = typeof OPTION_TYPES[number];
+
+interface Option {
+  type: OptionType,
+  name: string,
+  address?: string,
+  sourceURLs?: string,
+  linkName?: string,
+  linkUrl?: string,
+  info?: string,
+  warning?: string,
+}
+
 // All of the icons should be SVGs
 // Click "raw" and copy the url from the list at https://github.com/spothq/cryptocurrency-icons/tree/master/svg/color
 // All option types except "cryptocurrency" and "nft" must have an icon in this map.
 // All "cryptocurrency" and "nft" types must have exact names in their respective maps.
-const icons = {
+const icons: {[index: string]:any} = {
   cryptocurrencies: {
     'Bitcoin': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/btc.svg',
     'Ethereum': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/eth.svg',
@@ -36,12 +60,10 @@ const icons = {
     'Polkadot': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/dot.svg',
     'Tron': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/trx.svg',
   },
-  nfts: {
-    'Cause #1': './icons/cause.svg',
-  },
   bank: './icons/bank.svg',
   btcturk: './icons/btcturk.svg',
-  card: './icons/card.svg'
+  card: './icons/card.svg',
+  nft: './icons/nft.svg',
 };
 
 // All entries must have the following: name, description, logoUrl, websiteUrl, twitterUrl, popularity, endorsementUrls, categories, options
@@ -78,7 +100,7 @@ const organizations = [
       },
       {
         type: 'bank',
-        name: 'Bank accounts',
+        name: 'Bank Accounts',
         linkName: 'The list of AFAD bank accounts on their official website',
         linkUrl: 'https://en.afad.gov.tr/earthquake-donation-accounts',
       },
@@ -122,7 +144,7 @@ const organizations = [
       },
       {
         type: 'bank',
-        name: 'Bank accounts',
+        name: 'Bank Accounts',
         linkName: 'The list of Ahbap bank accounts on their official website',
         linkUrl: 'https://ahbap.org/disasters-turkey',
       },
@@ -227,7 +249,7 @@ const organizations = [
       },
       {
         type: 'bank',
-        name: 'Bank accounts',
+        name: 'Bank Accounts',
         linkName: 'The list of bank accounts on the official website',
         linkUrl: 'https://www.tog.org.tr/bagisci-ol/#1630673115839-aeef1bfb-85a7',
       },
@@ -291,6 +313,7 @@ const initialFilters = [
   },
 ];
 
+
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
@@ -300,6 +323,9 @@ export default function Organizations() {
   const [sortOptions, setSortOptions] = useState(initialSortOptions);
   const [filters, setFilters] = useState(initialFilters);
   const cryptoFilter = filters[0].options[0].checked;
+  const optionToIconUrl = (option: Option ) => (option.type === 'cryptocurrency')
+                                             ? icons.cryptocurrencies[option.name]
+                                             : icons[option.type];
 
   const checkboxChangeHandler = ({target}: any) => {
     const {checked, id} = target;
@@ -491,10 +517,10 @@ export default function Organizations() {
                 onClick={() => setMobileFiltersOpen(true)}
               >
                 <span className="sr-only">Filters</span>
-                <FunnelIcon className="text-gray-400 group-hover:text-gray-500 h-5 w-5 mr-1" aria-hidden="true" />
                 <p className='text-sm font-medium'>
                   Filters
                 </p>
+                <FunnelIcon className="text-gray-400 group-hover:text-gray-500 h-5 w-5 ml-1" aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -586,22 +612,26 @@ export default function Organizations() {
                           </div>
                         </div>
                         <div className="mt-4 flex grow justify-center sm:justify-end">
-                          <button
-                            type="button"
-                            className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
-                          >
-                            <div className="-ml-1 mr-2 h-5 w-5 text-gray-400 fill-current" aria-hidden="true">
-                              <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Twitter</title><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
-                            </div>
-                            <span>Twitter</span>
-                          </button>
-                          <button
-                            type="button"
-                            className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
-                          >
-                            <LinkIcon className="-ml-1 mr-2 h-5 w-5 text-gray-400" aria-hidden="true" />
-                            <span>Website</span>
-                          </button>
+                          <Link href={organization.twitterUrl}>
+                            <button
+                              type="button"
+                              className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+                            >
+                              <div className="-ml-1 mr-2 h-5 w-5 text-gray-400 fill-current" aria-hidden="true">
+                                <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Twitter</title><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                              </div>
+                              <span>Twitter</span>
+                            </button>
+                          </Link>
+                          <Link href={organization.websiteUrl}>
+                            <button
+                              type="button"
+                              className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+                            >
+                              <LinkIcon className="-ml-1 mr-2 h-5 w-5 text-gray-400" aria-hidden="true" />
+                              <span>Website</span>
+                            </button>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -614,29 +644,29 @@ export default function Organizations() {
                         <div className="-mt-2 -mx-4 overflow-x-auto sm:mb-4 sm:-mx-6 lg:-mx-8 border-gray-200 border-t sm:border-none">
                           <div className="min-w-full align-middle sm:py-2 md:px-6 lg:px-8">
                             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                              <table className="table-fixed flex flex-col divide-y divide-gray-300">
+                              <table className="flex flex-col divide-y divide-gray-300">
                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                  {organizations[2].options.map((option) => (
-                                    <tr key={option.name} className="flex">
+                                  {organization.options.map((option: Option) => (
+                                    <tr key={option.name} className="flex justify-items-end  w-full">
                                       <td className="py-2 pl-3 pr-3 text-sm sm:pl-6 sm:py-5">
-                                        <div className="flex w-28 items-center">
+                                        <div className="flex w-36 items-center">
                                           <div className="h-6 w-6 flex-shrink-0">
-                                            <img className="h-6 w-6" src='./icons/organizations/cause.svg' alt="" />
+                                            <img className="h-6 w-6" src={optionToIconUrl(option)} alt="" />
                                           </div>
-                                          <div className="ml-3">
+                                          <div className="ml-2">
                                             <div className="font-medium text-gray-600">
                                               {option.name}
                                             </div>
                                           </div>
                                         </div>
                                       </td>
-                                      <td className="truncate px-3 py-3 sm:py-5 text-sm text-gray-500 ">
-                                          0xbe4cde5eeeed1f0a97a9457f6ef5b71eae108652
+                                      <td className="truncate py-3 sm:py-5 text-sm text-gray-500 ">
+                                        {option.type === 'cryptocurrency' ? option.address : option.linkName}
                                       </td>
-                                      <td className=" px-3 py-3 text-sm text-gray-500">
+                                      <td className="px-3 py-3 text-sm text-gray-500 grow ">
                                         <button
                                           type="button"
-                                          className="relative ml-3 inline-flex items-center rounded-md sm:border border-gray-300 bg-white sm:px-4 sm:py-2 font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+                                          className="relative ml-3 inline-flex items-center rounded-md sm:border border-gray-300 bg-white sm:px-4 sm:py-2 font-medium text-gray-700 shadow-sm hover:bg-gray-50 float-right"
                                         >
                                           <ClipboardIcon className="-ml-0.5 h-4 w-4 text-gray-400" aria-hidden="true" />
                                           <p className='hidden md:block ml-2'>Copy</p>
