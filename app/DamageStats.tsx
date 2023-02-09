@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 const metrics = [
   { stat: '7.8 and 7.5 Mww ', emphasis: 'Magnitudes', rest: 'of the mainshock and the largest aftershock.' , source: 'https://en.wikipedia.org/wiki/2023_Turkey%E2%80%93Syria_earthquake'},
   { stat: '11,700+', emphasis: 'Death toll', rest: 'from the latest official figures.' , source: 'https://www.nytimes.com/live/2023/02/08/world/turkey-syria-earthquake'},
@@ -40,12 +42,14 @@ export default function DamageStats() {
                 <span className="mt-1 block text-base text-gray-300">
                   <span className="font-medium text-white">{item.emphasis}</span> {item.rest}
                 </span>
-                <span className="inline-flex items-center rounded bg-red-100 px-2 py-0.5 text-xs font-medium text-red-900">
-                  Source
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3 ml-1">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                  </svg>
-                </span>
+                <Link href={item.source} passHref={true}>
+                  <span className="inline-flex items-center rounded bg-red-100 px-2 py-0.5 text-xs font-medium text-red-900">
+                    Source
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3 ml-1">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                    </svg>
+                  </span>
+                </Link>
               </p>
             ))}
           </div>
