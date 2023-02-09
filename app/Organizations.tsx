@@ -54,7 +54,7 @@ const icons = {
 //   * Options could have the following: info, warning
 const organizations = [
   {
-    name: 'AFAD (Republic Of Türkiye Ministry Of Interior Disaster And Emergency Management Presidency)',
+    name: 'AFAD',
     description: 'Disaster and Emergency Management Authority, an institution working to prevent disasters and minimize disaster-related damages, plan and coordinate post-disaster response, and promote cooperation among various government agencies.',
     logoUrl: './icons/organizations/afad.svg',
     websiteUrl: 'https://en.afad.gov.tr/',
@@ -131,7 +131,7 @@ const organizations = [
   {
     name: 'Needs Map (İhtiyaç Haritası)',
     description: 'An online social platform cooperative based in Türkiye, where individuals and organizations wishing to support those in need can connect',
-    logoUrl: './icons/organizations/needsmap.svg',
+    logoUrl: './icons/organizations/needsmap.png',
     websiteUrl: 'https://www.needsmap.coop/',
     twitterUrl: 'https://twitter.com/ihtiyacharitasi',
     popularity: 1,
@@ -288,18 +288,6 @@ const initialFilters = [
       { id: 'turkish', label: 'Turkish', checked: true },
       { id: 'international', label: 'International', checked: true },
     ],
-  },
-]
-
-const people = [
-  {
-    name: 'Lindsay Walton',
-    title: 'Front-end Developer',
-    department: 'Optimization',
-    email: 'lindsay.walton@example.com',
-    role: 'Member',
-    image:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
   },
 ];
 
@@ -570,22 +558,21 @@ export default function Organizations() {
 
               {/* Contents */}
               <div className="lg:col-span-3">
-
-                {/* Add organizations */}
-                <div className="bg-gray-50 sm:rounded-lg border-solid border-4 border-gray-100 shadow ring-1 ring-black ring-opacity-5">
+                {organizations.map((organization) => (
+                  <div className="bg-gray-50 mb-8 sm:rounded-lg border-solid border-4 border-gray-100 shadow ring-1 ring-black ring-opacity-5">
                     <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
                       <div className="-ml-4 -mt-4 flex flex-wrap items-center sm:flex-nowrap grow justify-center">
                         <div className="ml-4 mt-4">
                           <div className="flex items-center">
                             <div className="flex-shrink-0">
                               <img
-                                className="h-16 w-16"
-                                src="./icons/organizations/afad.svg"
+                                className="h-16 w-16 mix-blend-multiply"
+                                src={organization.logoUrl}
                               />
                             </div>
                             <div className="ml-4">
                               <h3 className="text-lg font-semibold ml-1 leading-6 text-gray-900">
-                                An Example
+                                {organization.name}
                               </h3>
                               <p>
                                 <span className="inline-flex items-center rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-medium text-red-800">
@@ -664,10 +651,8 @@ export default function Organizations() {
                         </div>
                       </div>
                     </div>
-
-                {/* /End replace */}
-              </div>
-
+                  </div>
+                ))}
               </div>
             </div>
           </section>
