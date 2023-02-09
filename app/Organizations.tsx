@@ -5,8 +5,11 @@ import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid'
 import { ClipboardIcon } from '@heroicons/react/20/solid'
-import { LinkIcon, PhoneIcon } from '@heroicons/react/20/solid'
+import { LinkIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 // All the cryptocurrency networks must be listed here
 const NETWORKS = [
@@ -691,7 +694,31 @@ export default function Organizations() {
                                       <td className="px-3 py-3 text-sm text-gray-500 grow ">
                                         <button
                                           type="button"
-                                          className="relative ml-3 inline-flex items-center rounded-md sm:border border-gray-300 bg-white sm:px-4 sm:py-2 font-medium text-gray-700 shadow-sm hover:bg-gray-50 float-right"
+                                          className={
+                                            classNames(
+                                              "relative ml-3 inline-flex items-center rounded-md sm:border border-gray-300 bg-white sm:px-4 sm:py-2 font-medium text-gray-700 shadow-sm hover:bg-gray-50 float-right",
+                                              option.address ? "block" : "hidden"
+                                            )
+                                          }
+                                          onClick={() => {
+                                            if (option.address) {
+                                              toast(
+                                                <div className='inline-flex items-center'>
+                                                  <ClipboardIcon className="h-8 w-8 text-gray-200 mr-5" aria-hidden="true" />
+                                                  <p>Copied {option.name} address of {organization.name}"</p>
+                                                </div>
+                                                , {
+                                                position: "bottom-center",
+                                                autoClose: 5000,
+                                                hideProgressBar: false,
+                                                closeOnClick: true,
+                                                pauseOnHover: true,
+                                                draggable: false,
+                                                theme: "dark",
+                                                });
+                                              navigator.clipboard.writeText(option.address);
+                                            }
+                                          }}
                                         >
                                           <ClipboardIcon className="-ml-0.5 h-4 w-4 text-gray-400" aria-hidden="true" />
                                           <p className='hidden md:block ml-2'>Copy</p>
@@ -713,6 +740,7 @@ export default function Organizations() {
           </section>
         </main>
       </div>
+      <ToastContainer pauseOnFocusLoss={false}/>
     </div>
   )
 }
