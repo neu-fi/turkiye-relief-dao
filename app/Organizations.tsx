@@ -12,17 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Tooltip } from 'flowbite-react'
 
 // All the cryptocurrency networks must be listed here
-const NETWORKS = [
-  'Bitcoin',
-  'Ethereum',
-  'Avalanche',
-  'Binance',
-  'Polygon',
-  'Solana',
-  'Cosmos',
-  'Polkadot',
-  'Tron',
-];
+const NETWORKS = ["Bitcoin", "Ethereum", "Avalanche", "Binance", "Polygon", "Solana", "Cosmos", "Polkadot", "Tron", "Mina", "Cardano", "VeChain", "Waves", "Tezos",];
 
 type Network = typeof NETWORKS[number];
 
@@ -85,6 +75,11 @@ const icons: {[index: string]:any} = {
     'Cosmos': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/atom.svg',
     'Polkadot': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/dot.svg',
     'Tron': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/trx.svg',
+    'Mina': "https://cryptologos.cc/logos/mina-mina-logo.svg",
+    'Cardano': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/ada.svg",
+    'VeChain': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/vet.svg",
+    'Waves': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/waves.svg",
+    'Tezos': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/xtz.svg",
   },
   bank: './icons/bank.svg',
   btcturk: './icons/btcturk.svg',
@@ -198,7 +193,6 @@ const organizations: {[index: string]:any} = [
         name: 'Bitcoin',
         address: '3PkihQfm6doGW41uZ5Q9GFNw6XpEK5g9Vk',
         sourceUrls: ['https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'], // Turkish
-        warning: 'Only send BTC as this is an exchange wallet',
       },
       {
         type: 'cryptocurrency',
@@ -233,7 +227,15 @@ const organizations: {[index: string]:any} = [
         name: 'Tron',
         address: 'TUAum5Q3GWZvzsS1yQaDdjkDAzp3HbvKTT',
         sourceUrls: ['https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'], // Turkish
-        warning: 'Only send TRX as this is an exchange wallet'
+        warning: 'Only send TRX as this is an exchange wallet',
+      },
+      {
+        type: 'cryptocurrency',
+        name: 'Mina',
+        address: 'B62qkRvhLCRoZikpAKicKnMmQ9vSX8FYq5owXn5P7yPbDHDigya7zsS',
+        sourceUrls: ['https://twitter.com/o1_labs/status/1623410090249183232', 'https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'], // Turkish
+        info: 'Matched 1:1 by BtcTurk',
+        warning: 'Only send Mina as this is an exchange wallet',
       },
       {
         type: 'card',
@@ -278,6 +280,519 @@ const organizations: {[index: string]:any} = [
         name: 'Bank Accounts',
         linkName: 'The list of bank accounts on the official website',
         linkUrl: 'https://www.tog.org.tr/bagisci-ol/#1630673115839-aeef1bfb-85a7',
+      },
+    ],
+  },
+  {
+    name: "Support To Life",
+    description:
+      "Support to Life is an independent humanitarian organization founded with the principle aim of helping disaster affected communities meet their basic needs and rights.",
+    logoUrl: "./icons/organizations/support-to-life.png",
+    websiteUrl: "https://www.supporttolife.org/",
+    twitterUrl: "https://twitter.com/Support2Life",
+    popularity: 2,
+    endorseMentUrls: [],
+    categories: ["turkish", "ngo"],
+    options: [
+      {
+        type: "cryptocurrency",
+        name: "Bitcoin",
+        address: "bc1qrc6ujsk7eeex44e4h2hqpxxvshrr8nqfzq4uqgcq309en99nvmjsxh50n7",
+        sourceUrls: ["https://donation.btcturk.com/"],
+      },
+      {
+        type: "cryptocurrency",
+        name: "Bitcoin",
+        address: "3KiXAfrSRH2yrcNGTy6TDrW4WyHdiRAeU5",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+      },
+      {
+        type: "cryptocurrency",
+        name: "Ethereum",
+        address: "0x17517d7e79543750983735B0Fe3Ec6aff8eFD55f",
+        sourceUrls: ["https://donation.btcturk.com/"],
+        warning: "Only send ETH or USDT as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Ethereum",
+        address: "0x9842453c14f3d0eda2073259a258ee2bdee827a8",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send ETH or USDT as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Solana",
+        address: "GgVMLWkTa2RCfyYAvuWvJKtK4br328hsM9ZTuvYTh39V",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send SOL as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Avalanche",
+        address: "X-avax19ct5xw2ft6zka0u6rapzce60j2pztt92dntz2z",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        info: "X-Chain adress",
+        warning: "Only send Avax as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Tron",
+        address: "TFw4MPc55BadD5uaGu2Fgs7P5r2YbJ7mWb",
+        sourceUrls: ["https://donation.btcturk.com/"], // Turkish
+        warning: "Only send TRX or USDT as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Tron",
+        address: "TD9BcpkuG5sqGHCn45WEkB3w9pbQrceHg7",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send TRX or USDT as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Polkadot",
+        address: "15fNaFrochwskFaaRkUf4rmqtRSSuhAk8AYvs1B64S5yET3S",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send DOT as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Cosmos",
+        address: "cosmos1dm68mx9jcsyqkyzp3up7gmnu3ku84v8gf6v75u",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send ATOM with MEMO: 927971",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Tezos",
+        address: "tz1hJamAyDpbFNF4puTBfmHAbhjY7z6S5DVj",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send XTZ as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Cardano",
+        address: "DdzFFzCqrht4CaZRfFTHiuqmfSM11SA2uXkQGq65JoszmS2qBEr5VAPmhzq7LqNdBCYgC9cXJdHgmgbfHRYU6ZQ6khAdAHzUT7B3YTV9",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send ADA as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Mina",
+        address: "B62qrkTWva5KF5y3gTA48niq5nB62K9rsxRt7un4NC53b2CC4r4Jvdd",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send Mina as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Waves",
+        address: "3PN2xHEUCzHR9bE2RQfBsQzwqgdbvqPRojV",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send Waves as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "VeChain",
+        address: "0x3660bde41fb6f596e57a24dc89354b0556b62549",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send VET as this is an exchange wallet",
+      },
+      {
+        type: "card",
+        name: "Credit Card",
+        linkName: "Option of Credit Card on their official website",
+        linkUrl: "https://www.supporttolife.org/donate/",
+      },
+      {
+        type: "bank",
+        name: "Bank Accounts",
+        linkName: "The list of bank accounts on the official website",
+        linkUrl: "https://www.supporttolife.org/support-us/donate-by-money-transfer/",
+      },
+    ],
+  },
+  {
+    name: "Basic Needs Association (TIDER)",
+    description:
+      "TIDER is a non-governmental organization which strives to serve as a solution for one of the planet’s biggest problems by reducing waste, on the one hand, while undertaking activities to ensure people’s access to basic needs in a fair and equal manner, on the other.",
+    logoUrl: "./icons/organizations/tider.png",
+    websiteUrl: "https://www.tider.org",
+    twitterUrl: "https://twitter.com/Tidersosyal",
+    popularity: 2,
+    endorseMentUrls: ['https://twitter.com/btcturkpro/status/1623198411263557635?s=20&t=XtLgxLwHQYPw_2M03jmf1g'],
+    categories: ["turkish", "ngo"],
+    options: [
+      {
+        type: "cryptocurrency",
+        name: "Bitcoin",
+        address: "bc1qv5h603jjzhahtlyvarnkxcldjh0r852q8hpzr2j0wf9eemt43kfsasz7p9",
+        sourceUrls: ["https://donation.btcturk.com/"],
+      },
+      {
+        type: "cryptocurrency",
+        name: "Ethereum",
+        address: "0xf4016873Cca7c516CE2e5659Ccbb55b2E7AC58c9",
+        sourceUrls: ["https://donation.btcturk.com/"],
+        warning: "Only send ETH or USDT as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Tron",
+        address: "TWQjebuyZD5o1HhJEuAUijbj152KQCzXrA",
+        sourceUrls: ["https://donation.btcturk.com/"], // Turkish
+        warning: "Only send TRX or USDT as this is an exchange wallet",
+      },
+      {
+        type: "card",
+        name: "Credit Card",
+        linkName: "Option of Credit Card on their official website",
+        linkUrl: "https://www.tider.org/eng/donate",
+      },
+    ],
+  },
+  {
+    name: "Kizilay",
+    description: "Kızılay is a Turkish humanitarian organization that provides disaster relief, organizes blood drives, and provides other services.",
+    logoUrl: "./icons/organizations/kizilay.png",
+    websiteUrl: "https://www.kizilay.org.tr/",
+    twitterUrl: "https://twitter.com/kizilay",
+    popularity: 2,
+    endorseMentUrls: ['https://twitter.com/anadoluajansi/status/1623621477017997314?s=20&t=-6BowcezBT_2LEnCLIYo4Q'], // Turkish
+    categories: ["turkish", "ngo"],
+    options: [
+      {
+        type: "cryptocurrency",
+        name: "Bitcoin",
+        address: "bc1qe5vk78kmzq3v9xry3c9w7u09g0q9fvhsvuvsq5t6lvzfzatsdygs2whz3u",
+        sourceUrls: ["https://donation.btcturk.com/"],
+      },
+      {
+        type: "cryptocurrency",
+        name: "Ethereum",
+        address: "0x1fc82b7a62c0414163A332693Ec66EC91f4cd1dE",
+        sourceUrls: ["https://donation.btcturk.com/"],
+        warning: "Only send ETH or USDT as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Tron",
+        address: "TWyAHQNttueddv5Hp9B1dAnBVrDNqBjrCo",
+        sourceUrls: ["https://donation.btcturk.com/"], // Turkish
+        warning: "Only send TRX or USDT as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Avalanche",
+        address: "0x1fc82b7a62c0414163A332693Ec66EC91f4cd1dE",
+        sourceUrls: ["https://www.kizilay.org.tr/donation-methods/crypto-donation-accountwallet-informations"],
+        warning: "Only send Avax, USDT or USDC as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Polkadot",
+        address: "14FzHs6ESUbBdynBXMd26VSF9yZV6SGX1nWfffBh9MWAfL2KPo",
+        sourceUrls: ["https://www.kizilay.org.tr/donation-methods/crypto-donation-accountwallet-informations"],
+        warning: "Only send DOT as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Cosmos",
+        address: "cosmos1xlp4k2yz6zhhqxlp0hwdfqlpsz9k9gru3ezese",
+        sourceUrls: ["https://www.kizilay.org.tr/donation-methods/crypto-donation-accountwallet-informations"],
+        warning: "Only send ATOM with MEMO: 6719295726938",
+      },
+      {
+        type: "card",
+        name: "Credit Card",
+        linkName: "Option of Credit Card on their official website",
+        linkUrl: "https://www.kizilay.org.tr/Bagis/BagisYap/43/general-donation",
+      },
+      {
+        type: "bank",
+        name: "Bank Accounts",
+        linkName: "The list of bank accounts on the official website",
+        linkUrl: "https://www.kizilay.org.tr/donation-methods/bank-account-numbers",
+      },
+    ],
+  },
+  {
+    name: "AKUT",
+    description:
+      "AKUT (Research & Rescue Association) is entirely a voluntary, non-governmental organization involved in searching, assisting and rescuing all who require aid within its authority and means, in mountain or other nature-related accidents, natural disasters and all other emergency conditions by means of trained, disciplined, high-standard personnel and equipment, passing on knowledge to society with no political affiliation.",
+    logoUrl: "./icons/organizations/akut.png",
+    websiteUrl: "https://www.akut.org.tr/",
+    twitterUrl: "https://twitter.com/akut_dernegi",
+    popularity: 2,
+    endorseMentUrls: ['https://www.akut.org.tr/destekci-listesi'],
+    categories: ["turkish", "ngo"],
+    options: [
+      {
+        type: "cryptocurrency",
+        name: "Bitcoin",
+        address: "bc1qd7lw5ntzme45ej2y3wetr8zzaqpe68fj9t3trtpurwh9g3qrs0as4lw6lg",
+        sourceUrls: ["https://donation.btcturk.com/"],
+      },
+      {
+        type: "cryptocurrency",
+        name: "Ethereum",
+        address: "0x3b816b03B9b6b46376D5423C62aFBb311ff9218F",
+        sourceUrls: ["https://donation.btcturk.com/"],
+        warning: "Only send ETH or USDT as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Tron",
+        address: "TGuzb2kjX9kNgCuay6qNpV49W8mawmeGBs",
+        sourceUrls: ["https://donation.btcturk.com/"], // Turkish
+        warning: "Only send USDT or TRX as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Avalanche",
+        address: "0x3b816b03B9b6b46376D5423C62aFBb311ff9218F",
+        sourceUrls: ["https://donation.btcturk.com/"],
+        warning: "Only send AVAX or USDT as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Avalanche",
+        address: "X-avax1u60cj9cugua39kfysng98ht4la20qs4ke8au20",
+        sourceUrls: ["https://donation.btcturk.com/"],
+        info: "X-Chain adress",
+        warning: "Only send AVAX as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Cosmos",
+        address: "cosmos1xlp4k2yz6zhhqxlp0hwdfqlpsz9k9gru3ezese",
+        sourceUrls: ["https://donation.btcturk.com/"],
+        warning: "Only send ATOM with MEMO: 6638455727116",
+      },
+      {
+        type: "card",
+        name: "Credit Card",
+        linkName: "Option of Credit Card on their official website",
+        linkUrl: "https://www.akut.org.tr/bagis-yap",
+      },
+      {
+        type: "bank",
+        name: "Bank Accounts",
+        linkName: "The list of bank accounts on the official website",
+        linkUrl: "https://www.akut.org.tr/en/donation",
+      },
+    ],
+  },
+  {
+    name: "Nef Foundation",
+    description:
+      "Nef Foundation started working in 2015 under the umbrella of NEF to create a difference and awareness in people's lives; it touches on creating original, innovative, and permanent values ​​to develop social potential and pass on the understanding of social sensitivity to future generations. Dealing with people's problems and adding value to their lives requires taking action rather than showing directions.",
+    logoUrl: "./icons/organizations/nef.png",
+    websiteUrl: "https://www.nef.com.tr",
+    twitterUrl: "https://twitter.com/nef_style",
+    popularity: 2,
+    endorseMentUrls: ['https://www.nefvakfi.org/projeler.php?page=kentsel_vizyon#tab-two'],
+    categories: ["turkish", "ngo"],
+    options: [
+      {
+        type: "cryptocurrency",
+        name: "Bitcoin",
+        address: "bc1q7vyykxcdfgjn2r4t839rzsn6wqxlh6shxvlhpkjaxxrtdvc77qqq62fwf0",
+        sourceUrls: ["https://donation.btcturk.com/"],
+      },
+      {
+        type: "cryptocurrency",
+        name: "Ethereum",
+        address: "0x25d1A1F25aF8340Ab45dB7f1686F5A225BF9e07E",
+        sourceUrls: ["https://donation.btcturk.com/"],
+        warning: "Only send ETH or USDT as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Tron",
+        address: "TUSnyKAjXnhPJw7fNM7MFBnTN63x2q2jvs",
+        sourceUrls: ["https://donation.btcturk.com/"], // Turkish
+        warning: "Only send TRX or USDT as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Avalanche",
+        address: "0x25d1A1F25aF8340Ab45dB7f1686F5A225BF9e07E",
+        sourceUrls: ["https://donation.btcturk.com/"],
+        warning: "Only send AVAX or USDT as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Avalanche",
+        address: "X-avax1w26qa49grznfed5sfg8gkydmzc85xaapkjsaux",
+        sourceUrls: ["https://donation.btcturk.com/"],
+        info: "X-Chain adress",
+        warning: "Only send AVAX as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Polkadot",
+        address: "13YAwQZ91CeENyBPE8iBRxRhGgefFznVWnUvNYYuhhrYEh35",
+        sourceUrls: ["https://donation.btcturk.com/"], // Turkish
+        warning: "Only send DOT as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Cosmos",
+        address: "cosmos1xlp4k2yz6zhhqxlp0hwdfqlpsz9k9gru3ezese",
+        sourceUrls: ["https://donation.btcturk.com/"],
+        warning: "Only send ATOM with MEMO: 2840455727144",
+      },
+    ],
+  },
+  {
+    name: "UNICEF in Turkiye",
+    description:
+      "UNICEF is committed to supporting the development of adolescents and to support them to form and express their opinions on issues that concern them.",
+    logoUrl: "./icons/organizations/unicef.svg",
+    websiteUrl: "https://www.unicef.org/turkiye/",
+    twitterUrl: "https://twitter.com/unicefturk",
+    popularity: 2,
+    endorseMentUrls: ['https://twitter.com/unicefturk/status/1623032942762110976'],
+    categories: ["international", "ngo"],
+    options: [
+      {
+        type: "cryptocurrency",
+        name: "Bitcoin",
+        address: "36h4o3mqLfm5xD6f92qEeXvxUbuYG1VnaT",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+      },
+      {
+        type: "cryptocurrency",
+        name: "Ethereum",
+        address: "0x93d9ef15f0b410abcbb599d2e6acc1afad97363f",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send ETH, USDC, USDT or TRYC as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Tron",
+        address: "TWdMUR43UnZ29NGowVMi6qK4NxussAi2RZ",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send TRX or USDT as this is an exchange wallet",
+      },
+    ],
+  },
+  {
+    name: "Foundation For The Support of Women’s Work",
+    description:
+      "The Foundation for the Evaluation of Women's Work was established in 1986 to improve the economic situation and quality of life of women.",
+    logoUrl: "./icons/organizations/kedv.svg",
+    websiteUrl: "https://www.kedv.org.tr/",
+    twitterUrl: "https://twitter.com/KedvTurkiye/",
+    popularity: 2,
+    endorseMentUrls: ['https://www.kedv.org.tr/basinda-kedv'], // Turkish
+    categories: ["turkish", "ngo"],
+    options: [
+      {
+        type: "cryptocurrency",
+        name: "Bitcoin",
+        address: "38gamXVGr7CqHKedeLu3fdTtmPzA2kgNtM",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+      },
+      {
+        type: "cryptocurrency",
+        name: "Ethereum",
+        address: "0x307efd869e7c6ce8308ff2f8b999e17b64f27b4c",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send ETH, USDC, USDT as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Avalanche",
+        address: "X-avax1uch76pculzajk7np64h23ckslwdfa4lrc80nct ",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        info: "X-Chain adress",
+        warning: "Only send AVAX as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Solana",
+        address: "56zuaUkveguQfwKYiaj1qHkBpPwcApo8YR9asG96xbEb",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send SOL as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Polkadot",
+        address: "13J8D6edr5mZcVkvJkmeQJPv1MqamYXugBUmH74g3jzeFJ4u",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send DOT as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Tron",
+        address: "TYofnJGV7jjVLff65x3147D5wenMcibQRN",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send TRX or USDT as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Cardano",
+        address: "DdzFFzCqrht2Fdp1rgYFX6NE6A3uVdwTFvPN15YLUcktzMfqPfXjZcGXbKRJBywFi2sheB5kpRTN2R497S6wVre1bD1QxHK475nuNusy",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send ADA as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "VeChain",
+        address: "0xfe059318c58b083b550bdb315e6927bf6e84b9b4",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send VET as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Waves",
+        address: "3PBQ5xjeDu7FvX2j8bR95LoC2t4dGRcxwLZ",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send WAVES as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Cosmos",
+        address: "cosmos1dm68mx9jcsyqkyzp3up7gmnu3ku84v8gf6v75u",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        warning: "Only send ATOM with MEMO: 816209",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Mina",
+        address: "B62qoDBa6AkhBM8FodMbWfbDJoDBvf2gqxEVHFJ3X6agqwuZ6q6yNxZ",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        info: "https://twitter.com/o1_labs/status/1623410090249183232",
+        warning: "Only send MINA as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Tezos",
+        address: "tz1bi4cYzyfS899XqTcR62wGJP8HwJ89JaA7",
+        sourceUrls: ["https://www.paribu.com/blog/en/news/about-our-disaster-support-plan-and-the-cryptocurrency-donation-system/"],
+        info: "https://twitter.com/o1_labs/status/1623410090249183232",
+        warning: "Only send XTZ as this is an exchange wallet",
+      },
+    ],
+  },
+  {
+    name: "Visualize Value",
+    description:
+      "Funds routed directly to Doctors Without Borders via The Giving Block for crisis relief in the wake of the 7.8 magnitude earthquake in Turkey and Syria.",
+    logoUrl: "./icons/organizations/humanity-check.png",
+    websiteUrl: "https://app.manifold.xyz/c/humanitycheck",
+    twitterUrl: "https://twitter.com/visualizevalue",
+    popularity: 2,
+    endorsementUrls: ["https://twitter.com/jackbutcher/status/1622696145741877277"],
+    categories: ["international", "individual"],
+    options: [
+      {
+        type: "nft",
+        name: "Humanity Check",
+        linkName: "Humanity Check NFTs",
+        linkUrl: "https://app.manifold.xyz/c/humanitycheck",
       },
     ],
   },
@@ -333,6 +848,11 @@ const initialFilters: Filter[]  = [
       { id: 'Cosmos', label: 'Cosmos', checked: true },
       { id: 'Polkadot', label: 'Polkadot', checked: true },
       { id: 'Tron', label: 'Tron', checked: true },
+      { id: 'Mina', label: 'Mina', checked: true },
+      { id: 'Cardano', label: 'Cardano', checked: true },
+      { id: 'VeChain', label: 'VeChain', checked: true },
+      { id: 'Waves', label: 'Waves', checked: true },
+      { id: 'Tezos', label: 'Tezos', checked: true },
     ],
   },
   {
@@ -440,7 +960,7 @@ export default function Organizations() {
       }
       var cryptocurrencyFilter = cryptocurrencyFilters.options.find(item => item.id === option.name);
       if (cryptocurrencyFilter === undefined) {
-        alert("Assertion failed F");
+        alert("Assertion failed F " + option.name);
         return false;
       }
       return cryptocurrencyFilter.checked;
