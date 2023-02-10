@@ -14,6 +14,7 @@ specifiers:
   flowbite: ^1.6.3
   flowbite-react: ^0.3.8
   next: 13.1.6
+  nextjs-google-analytics: ^2.3.0
   postcss: ^8.4.21
   react: 18.2.0
   react-dom: 18.2.0
@@ -34,6 +35,7 @@ dependencies:
   flowbite: 1.6.3
   flowbite-react: 0.3.8_sevcfbjsvg3uaqcloe6zpewtby
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
+  nextjs-google-analytics: 2.3.0_next@13.1.6+react@18.2.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-toastify: 9.1.1_biqbaboplfbrettd7655fr4n2y
@@ -1861,6 +1863,18 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
+    dev: false
+
+  /nextjs-google-analytics/2.3.0_next@13.1.6+react@18.2.0:
+    resolution: {integrity: sha512-MRL2/M01qxZtq+6m+J3ZBjNIQWGQnudsrH6VberIzPftrLR0jqV4Abvhr50v9xAVhloIdZpYxZbFYO3VXH1FMg==}
+    peerDependencies:
+      next: '>=11.0.0'
+      react: '>=17.0.0'
+    dependencies:
+      next: 13.1.6_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+    optionalDependencies:
+      fsevents: 2.3.2
     dev: false
 
   /node-releases/2.0.10:
