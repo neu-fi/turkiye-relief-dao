@@ -253,6 +253,12 @@ const organizations: {[index: string]:any} = [
         address: "0xc1460588cA2BcAEB28c80327413e91655505A784",
         sourceUrls: ["https://ankarelief.org"],
       },
+      {
+        type: "cryptocurrency",
+        name: "Polygon",
+        address: "0x6aAb7738A646ED1E355a838807b7B7F1B2e60bE4",
+        sourceUrls: ["https://ankarelief.org"],
+      },
     ],
   },
   {
