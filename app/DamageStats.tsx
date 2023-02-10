@@ -2,8 +2,8 @@ import Link from 'next/link'
 
 const metrics = [
   { stat: '7.8 and 7.5 Mww ', emphasis: 'Magnitudes', rest: 'of the mainshock and the largest aftershock.' , source: 'https://en.wikipedia.org/wiki/2023_Turkey%E2%80%93Syria_earthquake'},
-  { stat: '11,700+', emphasis: 'Death toll', rest: 'from the latest official figures.' , source: 'https://www.nytimes.com/live/2023/02/08/world/turkey-syria-earthquake'},
-  { stat: '3,450+', emphasis: 'Collapsed buildings', rest: 'on people trapped in the ruble.' , source: 'https://www.nytimes.com/2023/02/05/world/europe/turkey-earthquake-rescue.html'},
+  { stat: '19,300+', emphasis: 'Death toll', rest: 'from the latest official figures.' , source: 'https://www.nytimes.com/live/2023/02/08/world/turkey-syria-earthquake'},
+  { stat: '5,775+', emphasis: 'Collapsed buildings', rest: 'on people trapped in the ruble.' , source: 'https://www.nytimes.com/2023/02/05/world/europe/turkey-earthquake-rescue.html'},
   { stat: '23 million', emphasis: 'People affected', rest: 'from the earthquakes.' , source: 'https://abcnews.go.com/International/live-updates/turkey-earthquake/?id=96913081#96947062'},
 ]
 
