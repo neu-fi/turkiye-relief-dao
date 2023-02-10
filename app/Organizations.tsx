@@ -926,6 +926,25 @@ const initialFilters: Filter[]  = [
   },
 ];
 
+const explorers: {[index: string]: any } = {
+  'Bitcoin': 'https://www.blockchain.com/explorer/addresses/btc/',
+  'Ethereum': 'https://etherscan.io/address/',
+  'Avalanche': 'https://snowtrace.io/address/',
+  'Binance': 'https://bscscan.com/address/',
+  'Polygon': 'https://polygonscan.com/address/',
+  'Solana': 'https://solscan.io/account/',
+  'Cosmos': 'https://www.mintscan.io/cosmos/account/',
+  'Polkadot': 'https://explorer.polkascan.io/polkadot/account/',
+  'Tron': 'https://tronscan.org/#/address/',
+  'Mina': "https://minascan.io/mainnet/account/",
+  'Cardano': "https://cardanoscan.io/address/",
+  'VeChain': "https://explore.vechain.org/accounts//",
+  'Waves': "https://wavesexplorer.com/addresses/",
+  'Tezos': "https://tzstats.com/",
+  'Celo': "https://celoscan.io/address/",
+  'Gnosis': "https://gnosisscan.io/address/",
+}
+
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ')
 }
@@ -1335,6 +1354,14 @@ export default function Organizations() {
                                           ? <div>
                                               <p className="truncate">{option.address}</p>
                                               <div className='space-x-2 mt-0.5'>
+                                                <Link href={`${explorers[option.name]}${option.address}`} passHref={true}>
+                                                  <span className="inline-flex items-center rounded bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-900">
+                                                    <span className="truncate ">Explorer</span>
+                                                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3 ml-1">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                                      </svg>
+                                                    </span>
+                                                </Link>
                                                 {option.sourceUrls?.map((sourceUrl: string) => (
                                                   <Link href={sourceUrl} passHref={true}>
                                                     <span className="inline-flex items-center rounded bg-red-100 px-2 py-0.5 text-xs font-medium text-red-900">
