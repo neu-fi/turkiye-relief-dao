@@ -33,7 +33,7 @@ export default function DamageStats() {
           </p>
           <p className="mt-5 text-lg text-gray-300">
             On 6 February 2023, two violent earthquakes southest Turkey. The country declared emergency state and
-            asking for from the international community help.
+            asking for help from the international community.
           </p>
           <div className="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 sm:grid-cols-2">
             {metrics.map((item) => (
