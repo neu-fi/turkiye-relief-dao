@@ -1,11 +1,7 @@
 import Link from 'next/link'
 
-const stats = [
-  { name: 'Unique Addresses', stat: '2,812' },
-  { name: 'Contributions', stat: '9,803' },
-  { name: 'Total Donations', stat: '$4,988,421' },
-]
-  
+import data from '../config/donationStats'
+
 export default function DonationStats() {
   return (
     <div className="relative bg-red-900">
@@ -26,14 +22,12 @@ export default function DonationStats() {
       </div>
       <div className="mx-auto max-w-4xl px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
         <div className="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-2 xl:pb-24">
-          <h2 className="text-base font-semibold text-white">Asking for Help</h2>
+          <h2 className="text-base font-semibold text-white">{data.smallTitle}</h2>
           <p className="mt-3 text-3xl font-bold tracking-tight text-rose-200">
-            The International Response
+            {data.title}
           </p>
           <p className="mt-5 text-lg text-gray-200">
-            We've quickly formed our DAO to push for policy change on cryptocurrency donations, assist organizations
-            handle cryptocurrencies, and appeal to the global crypto community for support. Our efforts has started to
-            make impact. We're grateful for the primarily international donations channelled to the relief efforts.
+            {data.text}
           </p>
           <Link href="https://dune.com/davy42/turkiye-earthquake-donations" passHref={true}>
             <span className="inline-flex items-center rounded bg-red-100 px-2 py-0.5 text-xs font-medium text-red-900">
@@ -45,7 +39,7 @@ export default function DonationStats() {
           </Link>
           <div className="relative">
             <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-              {stats.map((item) => (
+              {data.statistics.map((item) => (
               <div key={item.name} className="overflow-hidden rounded-lg text-center bg-gray-200 py-5 shadow sm:py-6">
                 <dt className="truncate text-sm font-medium text-gray-500">{item.name}</dt>
                 <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{item.stat}</dd>
