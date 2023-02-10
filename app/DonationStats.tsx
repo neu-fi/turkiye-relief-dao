@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
 const stats = [
-  { name: 'Unique Addresses', stat: '2,239' },
-  { name: 'Contributions', stat: '8,946' },
-  { name: 'Total Donations', stat: '$4,709,513' },
+  { name: 'Unique Addresses', stat: '2,812' },
+  { name: 'Contributions', stat: '9,803' },
+  { name: 'Total Donations', stat: '$4,988,421' },
 ]
   
 export default function DonationStats() {
