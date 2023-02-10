@@ -932,11 +932,15 @@ const explorers: {[index: string]: any } = {
   'Gnosis': "https://gnosisscan.io/address/",
 }
 
-export {
+export type {
   Option,
+}
+
+export {
   categoryDetails,
   icons,
   organizations,
-  initialSortOptions, initialFilters,
-  explorers
+  initialSortOptions,
+  initialFilters,
+  explorers,
 }
