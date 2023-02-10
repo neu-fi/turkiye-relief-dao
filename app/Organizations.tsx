@@ -132,7 +132,7 @@ const organizations: {[index: string]:any} = [
       },
       {
         type: 'bank',
-        name: 'Bank Accounts',
+        name: 'Bank Wire',
         linkName: 'The list of Ahbap bank accounts on their official website',
         linkUrl: 'https://ahbap.org/disasters-turkey',
       },
@@ -206,7 +206,7 @@ const organizations: {[index: string]:any} = [
       },
       {
         type: 'card',
-        name: 'Credit Card',
+        name: 'Card',
         linkName: 'Option of Credit Card on their official website',
         linkUrl: 'https://fonzip.com/ihtiyacharitasi/onlineimece',
       },
@@ -287,13 +287,13 @@ const organizations: {[index: string]:any} = [
       },
       {
         type: 'card',
-        name: 'Credit Card',
+        name: 'Card',
         linkName: 'Option of Credit Card on their official website',
         linkUrl: 'https://www.tog.org.tr/bagisci-ol/#tek-seferlik-bagis',
       },
       {
         type: 'bank',
-        name: 'Bank Accounts',
+        name: 'Bank Wire',
         linkName: 'The list of bank accounts on the official website',
         linkUrl: 'https://www.tog.org.tr/bagisci-ol/#1630673115839-aeef1bfb-85a7',
       },
@@ -416,13 +416,13 @@ const organizations: {[index: string]:any} = [
       },
       {
         type: "card",
-        name: "Credit Card",
+        name: "Card",
         linkName: "Option of Credit Card on their official website",
         linkUrl: "https://www.supporttolife.org/donate/",
       },
       {
         type: "bank",
-        name: "Bank Accounts",
+        name: "Bank Wire",
         linkName: "The list of bank accounts on the official website",
         linkUrl: "https://www.supporttolife.org/support-us/donate-by-money-transfer/",
       },
@@ -453,7 +453,7 @@ const organizations: {[index: string]:any} = [
       },
       {
         type: 'bank',
-        name: 'Bank Accounts',
+        name: 'Bank Wire',
         linkName: 'The list of AFAD bank accounts on their official website',
         linkUrl: 'https://en.afad.gov.tr/earthquake-donation-accounts',
       },
@@ -500,7 +500,7 @@ const organizations: {[index: string]:any} = [
       },
       {
         type: "card",
-        name: "Credit Card",
+        name: "Card",
         linkName: "Option of Credit Card on their official website",
         linkUrl: "https://www.tider.org/eng/donate",
       },
@@ -559,13 +559,13 @@ const organizations: {[index: string]:any} = [
       },
       {
         type: "card",
-        name: "Credit Card",
+        name: "Card",
         linkName: "Option of Credit Card on their official website",
         linkUrl: "https://www.kizilay.org.tr/Bagis/BagisYap/43/general-donation",
       },
       {
         type: "bank",
-        name: "Bank Accounts",
+        name: "Bank Wire",
         linkName: "The list of bank accounts on the official website",
         linkUrl: "https://www.kizilay.org.tr/donation-methods/bank-account-numbers",
       },
@@ -626,13 +626,13 @@ const organizations: {[index: string]:any} = [
       },
       {
         type: "card",
-        name: "Credit Card",
+        name: "Card",
         linkName: "Option of Credit Card on their official website",
         linkUrl: "https://www.akut.org.tr/bagis-yap",
       },
       {
         type: "bank",
-        name: "Bank Accounts",
+        name: "Bank Wire",
         linkName: "The list of bank accounts on the official website",
         linkUrl: "https://www.akut.org.tr/en/donation",
       },
@@ -845,8 +845,8 @@ const organizations: {[index: string]:any} = [
     options: [
       {
         type: "nft",
-        name: "Humanity Check",
-        linkName: "Humanity Check NFTs",
+        name: "NFT",
+        linkName: "Mint Humanity Check NFTs",
         linkUrl: "https://app.manifold.xyz/c/humanitycheck",
       },
     ],
@@ -863,7 +863,7 @@ const organizations: {[index: string]:any} = [
     options: [
       {
         type: 'nft',
-        name: 'Cause #1',
+        name: 'NFT',
         linkName: 'Mint Earthquake Türkiye 2023 NFTs',
         linkUrl: 'https://cause.quest',
         warning: 'Non-transferable',
@@ -885,8 +885,8 @@ const initialFilters: Filter[]  = [
     options: [
       { id: 'cryptocurrency', label: 'Cryptocurrencies', checked: true },
       { id: 'nft', label: 'NFTs', checked: true },
-      { id: 'card', label: 'Credit Cards', checked: true },
-      { id: 'bank', label: 'Bank Transfers', checked: true },
+      { id: 'card', label: 'Card', checked: true },
+      { id: 'bank', label: 'Bank Wire', checked: true },
       { id: 'btcturk', label: 'Other', checked: true },
     ],
   },
@@ -1317,20 +1317,20 @@ export default function Organizations() {
                                 <tbody className="divide-y divide-gray-200 bg-white">
                                   {organization.options.map((option: Option) => (
                                     isOptionFiltered(option) &&
-                                    <tr key={option.name} className="flex justify-items-end w-full place-items-center">
-                                      <td className="py-2 pl-3 pr-3 text-sm sm:pl-6 sm:py-5">
-                                        <div className="flex w-36 items-center">
+                                    <tr key={option.name} className="flex justify-items-end w-full place-items-center py-2 sm:py-5">
+                                      <td className="text-sm px-2 sm:px-3">
+                                        <div className="flex sm:w-28 items-center">
                                           <div className="h-6 w-6 flex-shrink-0">
                                             <img className="h-6 w-6" src={optionToIconUrl(option)} alt="" />
                                           </div>
-                                          <div className="ml-2">
+                                          <div className="hidden sm:block ml-2">
                                             <div className="font-medium text-gray-600">
                                               {option.name}
                                             </div>
                                           </div>
                                         </div>
                                       </td>
-                                      <td className="truncate py-3 sm:py-5 text-sm text-gray-500 ">
+                                      <td className="truncate text-sm text-gray-500 ">
                                         {option.type === 'cryptocurrency'
                                           ? <div>
                                               <p className="truncate">{option.address}</p>
@@ -1352,7 +1352,7 @@ export default function Organizations() {
                                             :<p>{option.linkName}</p>
                                         }
                                       </td>
-                                      <td className="px-3 py-3 text-sm text-gray-400 grow space-x-2 inline-flex place-items-center justify-end">
+                                      <td className="px-2 sm:px-3 md:space-x-1 text-sm text-gray-400 grow inline-flex place-items-center justify-end">
                                         {
                                           option.info &&
                                             <Tooltip content={option.info} className="align-center" placement="right">
@@ -1377,7 +1377,7 @@ export default function Organizations() {
                                           type="button"
                                           className={
                                             classNames(
-                                              "relative l-5 inline-flex items-center rounded-md sm:border border-gray-300 bg-white sm:px-4 sm:py-2 font-medium text-gray-700 sm:shadow-sm hover:bg-gray-50 float-right",
+                                              "relative sm:ml-1 md:ml-2 l-5 inline-flex items-center rounded-md sm:border border-gray-300 bg-white sm:px-4 sm:py-2 font-medium text-gray-700 sm:shadow-sm hover:bg-gray-50 float-right",
                                               option.address ? "block" : "hidden"
                                             )
                                           }
