@@ -950,7 +950,7 @@ const explorers: {[index: string]: any } = {
   'Tezos': "https://tzstats.com/",
   'Celo': "https://celoscan.io/address/",
   'Gnosis': "https://gnosisscan.io/address/",
-  'Aptos': "https://explorer.aptoslabs.com/"
+  'Aptos': "https://explorer.aptoslabs.com/account/"
 }
 
 export type {
