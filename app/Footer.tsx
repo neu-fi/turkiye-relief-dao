@@ -2,18 +2,18 @@ const navigation = [
     {
       name: 'Twitter',
       href: 'https://twitter.com/TurkeyReliefDAO',
-      icon: './icons/twitter.svg'
+      icon: './icons/social/twitter.svg'
     },
     {
       name: 'GitHub',
       href: 'https://github.com/neu-fi/turkiye-relief-dao',
-      icon: './icons/github.svg'
+      icon: './icons/social/github.svg'
     },
     
     {
       name: 'Dune',
       href: 'https://dune.com/davy42/turkiye-earthquake-donations',
-      icon: './icons/dune.svg'
+      icon: './icons/social/dune.svg'
     },
   ]
   

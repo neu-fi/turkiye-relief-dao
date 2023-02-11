@@ -67,19 +67,19 @@ const icons: {[index: string]:any} = {
     'Cosmos': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/atom.svg',
     'Polkadot': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/dot.svg',
     'Tron': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/trx.svg',
-    'Mina': "https://cryptologos.cc/logos/mina-mina-logo.svg",
+    'Mina': "./icons/options/mina.jpg",
     'Cardano': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/ada.svg",
     'VeChain': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/vet.svg",
     'Waves': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/waves.svg",
     'Tezos': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/xtz.svg",
     'Celo': "https://cryptologos.cc/logos/celo-celo-logo.svg",
     'Gnosis': "https://cryptologos.cc/logos/gnosis-gno-gno-logo.svg",
-    'Aptos': "./icons/aptos.svg"
+    'Aptos': "./icons/options/aptos.svg"
   },
-  bank: './icons/bank.svg',
-  btcturk: './icons/btcturk.svg',
-  card: './icons/card.svg',
-  nft: './icons/nft.svg',
+  bank: './icons/options/bank.svg',
+  btcturk: './icons/options/btcturk.svg',
+  card: './icons/options/card.svg',
+  nft: './icons/options/nft.svg',
 };
 
 // All entries must have the following: name, description, logoUrl, websiteUrl, twitterUrl, popularity, endorsementUrls, categories, options
