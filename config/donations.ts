@@ -1,5 +1,5 @@
 // All the cryptocurrency networks must be listed here
-const NETWORKS = ["Bitcoin", "Ethereum", "Avalanche", "Binance", "Polygon", "Solana", "Cosmos", "Polkadot", "Tron", "Mina", "Cardano", "VeChain", "Waves", "Tezos", "Celo", "Gnosis"];
+const NETWORKS = ["Bitcoin", "Ethereum", "Avalanche", "Binance", "Polygon", "Solana", "Cosmos", "Polkadot", "Tron", "Mina", "Cardano", "VeChain", "Waves", "Tezos", "Celo", "Gnosis", "Aptos"];
 
 const OPTION_TYPES = [
   'cryptocurrency',
@@ -74,6 +74,7 @@ const icons: {[index: string]:any} = {
     'Tezos': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/xtz.svg",
     'Celo': "https://cryptologos.cc/logos/celo-celo-logo.svg",
     'Gnosis': "https://cryptologos.cc/logos/gnosis-gno-gno-logo.svg",
+    'Aptos': "./icons/aptos.svg"
   },
   bank: './icons/bank.svg',
   btcturk: './icons/btcturk.svg',
@@ -193,6 +194,12 @@ const organizations: {[index: string]:any} = [
         warning: 'Only send Mina as this is an exchange wallet',
       },
       {
+        type: 'cryptocurrency',
+        name: 'Aptos',
+        address: '0x9de5a9b2b213de4c4de3f110d78d0d4e8097c64dd6cc82a547e9859bdac91d47',
+        sourceUrls: ['https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'],
+      },
+      {
         type: 'card',
         name: 'Card',
         linkName: 'Option of Credit Card on their official website',
@@ -272,6 +279,12 @@ const organizations: {[index: string]:any} = [
         address: 'TCJ2qvKJsXE4XZD2VcyeppDWmZUGfLShMm',
         sourceUrls: ['https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'], // Turkish
         warning: 'Only send TRX as this is an exchange wallet'
+      },
+      {
+        type: 'cryptocurrency',
+        name: 'Aptos',
+        address: '0x2ac53451cc6ffa5f0e4237413d73e6c5ed522c6e1ebfc9692a995cfde259e292',
+        sourceUrls: ['https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'],
       },
       {
         type: 'card',
@@ -438,6 +451,12 @@ const organizations: {[index: string]:any} = [
         address: '0x64A994CC850a56e87331d880A23A69b16dbFC8ea',
         sourceUrls: ['https://donation.btcturk.com/', 'https://twitter.com/btcturkpro/status/1623344419976929282'],
         warning: 'Only send ETH or USDT as this is an exchange wallet',
+      },
+      {
+        type: 'cryptocurrency',
+        name: 'Aptos',
+        address: '0x6f2851b551dd92f1743ad85cdf904a09141231b184446edab9ad0d603d4c461b',
+        sourceUrls: ['https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'],
       },
       {
         type: 'bank',
@@ -897,6 +916,7 @@ const initialFilters: Filter[]  = [
       { id: 'Tezos', label: 'Tezos', checked: true },
       { id: 'Celo', label: 'Celo', checked: true },
       { id: 'Gnosis', label: 'Gnosis', checked: true },
+      { id: 'Aptos', label: 'Aptos', checked: true },
     ],
   },
   {
@@ -930,6 +950,7 @@ const explorers: {[index: string]: any } = {
   'Tezos': "https://tzstats.com/",
   'Celo': "https://celoscan.io/address/",
   'Gnosis': "https://gnosisscan.io/address/",
+  'Aptos': "https://explorer.aptoslabs.com/"
 }
 
 export type {
