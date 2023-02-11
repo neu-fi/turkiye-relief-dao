@@ -415,7 +415,7 @@ export default function Organizations() {
                                       <td className="text-sm px-2 sm:px-3">
                                         <div className="flex sm:w-28 items-center">
                                           <div className="h-6 w-6 flex-shrink-0">
-                                            <img className="h-6 w-6" src={optionToIconUrl(option)} alt="" />
+                                            <img className="h-6 w-6 rounded-full" src={optionToIconUrl(option)} alt="" />
                                           </div>
                                           <div className="hidden sm:block ml-2">
                                             <div className="font-medium text-gray-600">
