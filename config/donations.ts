@@ -74,7 +74,6 @@ const icons: {[index: string]:any} = {
     'Tezos': "./icons/options/xtz.svg",
     'Celo': "./icons/options/celo.svg",
     'Gnosis': "./icons/options/gnosis.svg",
-    'Aptos': "./icons/options/aptos.svg"
     'Aptos': "./icons/options/aptos.svg",
     'Optimism': "./icons/options/optimism.svg",
   },
