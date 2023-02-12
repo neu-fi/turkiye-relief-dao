@@ -173,7 +173,7 @@ export default function Organizations() {
                               <h3 className="-mx-2 -my-3 flow-root">
                                 <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
                                   <span className="font-medium text-gray-900">{section.name}</span>
-                                  <span className="ml-2 flex items-center">
+                                  <span className="flex items-center">
                                     {open ? (
                                       <MinusIcon className="h-5 w-5" aria-hidden="true" />
                                     ) : (
@@ -303,7 +303,7 @@ export default function Organizations() {
                           <h3 className="-my-3 flow-root">
                             <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
                               <span className="font-medium text-gray-900">{section.name}</span>
-                              <span className="ml-2 flex items-center">
+                              <span className="flex items-center">
                                 {open ? (
                                   <MinusIcon className="h-5 w-5 mr-1" aria-hidden="true" />
                                 ) : (
