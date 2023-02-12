@@ -1,9 +1,9 @@
-'use client'
+"use client"
 
-import { GoogleAnalytics } from "nextjs-google-analytics";
+import { GoogleAnalytics } from "nextjs-google-analytics"
 
-import './globals.css'
-import Footer from './Footer'
+import "./globals.css"
+import Footer from "./Footer"
 
 export default function RootLayout({
   children,
@@ -14,8 +14,10 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <head />
       <GoogleAnalytics trackPageViews />
-      <body>{children}</body>
-      <Footer/>
+      <body>
+        {children}
+        <Footer />
+      </body>
     </html>
   )
 }
