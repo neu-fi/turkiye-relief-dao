@@ -14,8 +14,10 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <head />
       <GoogleAnalytics trackPageViews />
-      <body>{children}</body>
-      <Footer/>
+      <body>
+        {children}
+        <Footer />
+      </body>
     </html>
   )
 }
