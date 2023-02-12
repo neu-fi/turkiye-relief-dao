@@ -22,7 +22,7 @@ export default function OrganizationCard({
 	return (
 		<div
 			data-type="organization"
-			className="bg-gray-50 mb-8 sm:rounded-lg border-solid border-4 border-gray-100 shadow ring-1 ring-black ring-opacity-5"
+			className="bg-gray-50 mb-8 rounded-lg border-solid border-4 border-gray-100 shadow ring-1 ring-black ring-opacity-5"
 		>
 			<div className={`${expanded ? "border-b border-gray-200" : ""} px-4 py-5 sm:px-6`}>
 				<div className="-mt-4 flex flex-wrap items-center sm:flex-nowrap grow justify-center">
