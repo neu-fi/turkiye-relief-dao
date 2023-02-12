@@ -5,8 +5,8 @@ export default {
   accept cryptocurrencies, and appeal to the global crypto community for support. Our efforts has started to
   make impact. We're grateful for the primarily international donations channelled to the relief efforts.`,
   statistics: [
-    { name: 'Unique Addresses', stat: '3,328' },
-    { name: 'Contributions', stat: '10,686' },
-    { name: 'Total Donations', stat: '$5,261,838' },
+    { name: 'Unique Addresses', stat: '3,437' },
+    { name: 'Contributions', stat: '10,852' },
+    { name: 'Total Donations', stat: '$5,362,055' },
   ],
 }
