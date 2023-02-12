@@ -43,7 +43,7 @@ const navigation = [
         xmlns="http://www.w3.org/2000/svg"
       >
         <g clipPath="url(#clip0_10813_12000)">
-          <circle cx="145" cy="145" r="145" fill="#333333" />
+          <circle cx="145" cy="145" r="145" fill="currentColor" />
           <mask
             id="mask0_10813_12000"
             maskUnits="userSpaceOnUse"
@@ -52,7 +52,7 @@ const navigation = [
             width="290"
             height="290"
           >
-            <circle cx="145" cy="145" r="145" fill="#333333" />
+            <circle cx="145" cy="145" r="145" fill="currentColor" />
           </mask>
           <g mask="url(#mask0_10813_12000)">
             <rect
@@ -61,13 +61,13 @@ const navigation = [
               width="543"
               height="193.907"
               transform="rotate(-17.9897 -176 88.7236)"
-              fill="#cccccc"
+              fill="currentColor"
             />
           </g>
         </g>
         <defs>
           <clipPath id="clip0_10813_12000">
-            <rect width="290" height="290" fill="white" />
+            <rect width="290" height="290" fill="currentColor" />
           </clipPath>
         </defs>
       </svg>
@@ -78,20 +78,20 @@ const navigation = [
 export default function Footer() {
   return (
     <footer className="bg-white">
-      <div className="mx-auto max-w-7xl py-12 px-6 md:flex md:items-center md:justify-between lg:px-8">
+      <div className="px-6 py-12 mx-auto max-w-7xl md:flex md:items-center md:justify-between lg:px-8">
         <div className="flex justify-center space-x-6 md:order-2">
           {navigation.map((item) => (
             <a
               key={item.name}
               href={item.href}
-              className="h-8 w-8 fill-current mix-blend-multiply hover:text-gray-500 text-gray-400"
+              className="w-8 h-8 text-gray-400 fill-current mix-blend-multiply hover:text-gray-500"
             >
               <span>{item.icon}</span>
             </a>
           ))}
         </div>
         <div className="mt-8 md:order-1 md:mt-0">
-          <p className="text-center leading-5 text-gray-500">
+          <p className="leading-5 text-center text-gray-500">
             &copy; Türkiye Relief DAO. Made in Türkiye with 😢
           </p>
         </div>
