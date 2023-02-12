@@ -38,11 +38,11 @@ const navigation = [
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="w-7 mt-0.5 mx-auto h-7"
+        className="w-7 mt-0.5 mx-auto h-7 "
         viewBox="0 0 290 290"
       >
         <g clip-path="url(#a)">
-          <circle cx="145" cy="145" r="145" className="hover:text-[#333]" />
+          <circle cx="145" cy="145" r="145" />
           <mask
             id="b"
             width="290"
@@ -51,7 +51,7 @@ const navigation = [
             y="0"
             maskUnits="userSpaceOnUse"
           >
-            <circle cx="145" cy="145" r="145" className="hover:text-[#333]" />
+            <circle cx="145" cy="145" r="145" />
           </mask>
           <g mask="url(#b)">
             <path
@@ -62,7 +62,7 @@ const navigation = [
         </g>
         <defs>
           <clipPath id="a">
-            <path fill="#fff" d="M0 0h290v290H0z" />
+            <path className="hover:text-[#fff]" d="M0 0h290v290H0z" />
           </clipPath>
         </defs>
       </svg>
