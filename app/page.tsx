@@ -2,8 +2,15 @@ import DamageStats from './DamageStats';
 import DonationStats from './DonationStats';
 import Donations from './Donations';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { organizations, NETWORKS } from '../config/donations';
 
 export default function Home() {
+  const orgCount = organizations.length;
+  const networkCount = NETWORKS.length;
+
+  const heroSubTitle = `Donate to one of ${orgCount} efforts using credit cards, bank
+  transfers, ${networkCount} blockchain networks, and more.`;
+
   return (
     <>
       {/* Hero */}
@@ -19,12 +26,14 @@ export default function Home() {
                 Türkiye Relief DAO
               </h1>
               <p className="mt-2 mb-10 text-lg leading-8 text-gray-300">
-                The international crypto forefront DAO helping the victims of earthquake disaster for aid & communication through legitimate organizations.
+                {heroSubTitle}
               </p>
-              <a href="#donate" className="rounded-md px-8 py-3 text-base font-semibold leading-7 text-white shadow-sm border border-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600">
+              <a
+                href="#donate"
+                className="rounded-md px-8 py-3 text-base font-semibold leading-7 text-white shadow-sm border border-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"
+              >
                 Donate
               </a>
-
             </div>
           </div>
         </div>
@@ -42,5 +51,5 @@ export default function Home() {
         <Donations />
       </div>
     </>
-  )
+  );
 }

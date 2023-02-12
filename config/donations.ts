@@ -964,4 +964,5 @@ export {
   initialSortOptions,
   initialFilters,
   explorers,
+  NETWORKS
 }
