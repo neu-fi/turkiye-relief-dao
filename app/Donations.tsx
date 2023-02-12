@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid'
@@ -19,6 +19,65 @@ export default function Organizations() {
   const [sortOptions, setSortOptions] = useState(initialSortOptions);
   const [filters, setFilters] = useState(initialFilters);
   const cryptoFilter = filters[0].options[0].checked;
+
+
+
+  const applyQueryToFilter = (id: string, newFilters: string[]) => {
+
+    setFilters(prev => prev.map((section) => {
+      if (section.id === id) {
+        section.options = section.options.map((option) => {
+          option.checked = newFilters.includes(option.id)
+          return option
+        })
+      }
+      return section
+    })
+    )
+  }
+
+
+  const applyQueryToFilters = () => {
+      const typesQueryMatch = document.location.href.match(/types=([^&#]*)/)
+      if (typesQueryMatch && typesQueryMatch?.length > 0) {
+        applyQueryToFilter("types", typesQueryMatch[1].split(","))
+      }
+
+      const cryptocurrenciesQueryMatch = document.location.href.match(/cryptocurrencies=([^&#]*)/)
+      if (cryptocurrenciesQueryMatch && cryptocurrenciesQueryMatch?.length > 0) {
+        applyQueryToFilter("cryptocurrencies", cryptocurrenciesQueryMatch[1].split(","))
+      }
+
+      const categoriesQueryMatch = document.location.href.match(/categories=([^&#]*)/)
+      if (categoriesQueryMatch && categoriesQueryMatch?.length > 0) {
+        applyQueryToFilter("categories", categoriesQueryMatch[1].split(","))
+      }
+  }
+
+
+
+  const applyFiltersToQuery = () : string => {
+    let location = `${document.location.protocol}//${document.location.host}${document.location.pathname}?filtered=true`
+
+    const generateQueryForFilter = (id: string) => {
+      if(filters.find(section => section.id === id)?.options.filter(option => option.checked === false).length as number !== 0  ) {
+        location += `&${id}=${filters
+          .find(section => section.id === id)?.options
+          .filter(option => option.checked)
+          .map(option => option.id).join(",")}`
+      } else {
+        location.replaceAll((new RegExp(`/${id}=([^&#]*)/`,"g")) , "")
+      }
+    }
+
+    generateQueryForFilter("types")
+    generateQueryForFilter("cryptocurrencies")
+    generateQueryForFilter("categories")
+
+    return location
+  }
+
+
 
   const checkboxChangeHandler = ({target}: any) => {
     const {checked, id} = target;
@@ -107,6 +166,18 @@ export default function Organizations() {
     }
   }
 
+
+  useEffect(() => {
+    applyQueryToFilters()
+    return () => {}
+  }, [])
+
+  useEffect(() => {
+    history.pushState({}, '', applyFiltersToQuery())
+    return () => {}
+  }, [filters])
+
+
   return (
     <div className="bg-white px-6 lg:px-8">
       <div>
@@ -160,7 +231,7 @@ export default function Organizations() {
                               <h3 className="-mx-2 -my-3 flow-root">
                                 <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
                                   <span className="font-medium text-gray-900">{section.name}</span>
-                                  <span className="ml-2 flex items-center">
+                                  <span className="flex items-center">
                                     {open ? (
                                       <MinusIcon className="h-5 w-5" aria-hidden="true" />
                                     ) : (
@@ -290,7 +361,7 @@ export default function Organizations() {
                           <h3 className="-my-3 flow-root">
                             <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
                               <span className="font-medium text-gray-900">{section.name}</span>
-                              <span className="ml-2 flex items-center">
+                              <span className="flex items-center">
                                 {open ? (
                                   <MinusIcon className="h-5 w-5 mr-1" aria-hidden="true" />
                                 ) : (
@@ -331,9 +402,8 @@ export default function Organizations() {
 
               {/* Contents */}
               <div className="lg:col-span-3">
-                {organizations.map((organization: any) => (
-                  isOrganizationFiltered(organization) &&
-                  <OrganizationCard organization={organization} isOptionFiltered={isOptionFiltered}  />
+                {organizations.map((organization: any, i: number) => (
+                  isOrganizationFiltered(organization) && <OrganizationCard organization={organization} isOptionFiltered={isOptionFiltered}  />
                 ))}
               </div>
             </div>
