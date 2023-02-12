@@ -409,9 +409,9 @@ export default function Organizations() {
                             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                               <table className="flex flex-col divide-y divide-gray-300">
                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                  {organization.options.map((option: Option) => (
+                                  {organization.options.map((option: Option, i: number) => (
                                     isOptionFiltered(option) &&
-                                    <tr key={option.name} className="flex justify-items-end w-full place-items-center py-2 sm:py-5">
+                                    <tr key={i} className="flex justify-items-end w-full place-items-center py-2 sm:py-5">
                                       <td className="text-sm px-2 sm:px-3">
                                         <div className="flex sm:w-28 items-center">
                                           <div className="h-6 w-6 flex-shrink-0">
