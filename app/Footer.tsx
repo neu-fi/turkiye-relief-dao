@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 const navigation = [
   {
     name: "Twitter",
@@ -35,37 +37,32 @@ const navigation = [
     href: "https://dune.com/davy42/turkiye-earthquake-donations",
     icon: (
       <svg
-        viewBox="0 0 290 290"
-        fill="currentColor"
-        className="w-7 mt-0.5 mx-auto h-7"
         xmlns="http://www.w3.org/2000/svg"
+        className="w-7 mt-0.5 mx-auto h-7"
+        viewBox="0 0 290 290"
       >
-        <g clipPath="url(#clip0_10813_12000)">
-          <circle cx="145" cy="145" r="145" fill="currentColor" />
+        <g clip-path="url(#a)">
+          <circle cx="145" cy="145" r="145" className="hover:text-[#333]" />
           <mask
-            id="mask0_10813_12000"
-            maskUnits="userSpaceOnUse"
-            x="0"
-            y="0"
+            id="b"
             width="290"
             height="290"
+            x="0"
+            y="0"
+            maskUnits="userSpaceOnUse"
           >
-            <circle cx="145" cy="145" r="145" fill="currentColor" />
+            <circle cx="145" cy="145" r="145" className="hover:text-[#333]" />
           </mask>
-          <g mask="url(#mask0_10813_12000)">
-            <rect
-              x="-176"
-              y="88.7236"
-              width="543"
-              height="193.907"
-              transform="rotate(-17.9897 -176 88.7236)"
-              fill="currentColor"
+          <g mask="url(#b)">
+            <path
+              fill="#ccc"
+              d="M-176 88.724 340.454-78.979l59.887 184.427-516.453 167.703z"
             />
           </g>
         </g>
         <defs>
-          <clipPath id="clip0_10813_12000">
-            <rect width="290" height="290" fill="currentColor" />
+          <clipPath id="a">
+            <path fill="#fff" d="M0 0h290v290H0z" />
           </clipPath>
         </defs>
       </svg>
