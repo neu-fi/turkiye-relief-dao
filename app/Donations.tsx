@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid'
@@ -32,6 +32,65 @@ export default function Organizations() {
   const optionToIconUrl = (option: Option ) => (option.type === 'cryptocurrency')
                                              ? icons.cryptocurrencies[option.name]
                                              : icons[option.type];
+
+
+
+  const applyQueryToFilter = (id: string, newFilters: string[]) => {
+
+    setFilters(prev => prev.map((section) => {
+      if (section.id === id) {
+        section.options = section.options.map((option) => {
+          option.checked = newFilters.includes(option.id)
+          return option
+        })
+      }
+      return section
+    })
+    )
+  }
+
+
+  const applyQueryToFilters = () => {
+      const typesQueryMatch = document.location.href.match(/types=([^&#]*)/)
+      if (typesQueryMatch && typesQueryMatch?.length > 0) {
+        applyQueryToFilter("types", typesQueryMatch[1].split(","))
+      }
+
+      const cryptocurrenciesQueryMatch = document.location.href.match(/cryptocurrencies=([^&#]*)/)
+      if (cryptocurrenciesQueryMatch && cryptocurrenciesQueryMatch?.length > 0) {
+        applyQueryToFilter("cryptocurrencies", cryptocurrenciesQueryMatch[1].split(","))
+      }
+
+      const categoriesQueryMatch = document.location.href.match(/categories=([^&#]*)/)
+      if (categoriesQueryMatch && categoriesQueryMatch?.length > 0) {
+        applyQueryToFilter("categories", categoriesQueryMatch[1].split(","))
+      }
+  }
+
+
+
+  const applyFiltersToQuery = () : string => {
+    let location = `${document.location.protocol}//${document.location.host}${document.location.pathname}?filtered=true`
+
+    const generateQueryForFilter = (id: string) => {
+      if(filters.find(section => section.id === id)?.options.filter(option => option.checked === false).length as number !== 0  ) {
+        location += `&${id}=${filters
+          .find(section => section.id === id)?.options
+          .filter(option => option.checked)
+          .map(option => option.id).join(",")}`
+      } else {
+        location.replaceAll((new RegExp(`/${id}=([^&#]*)/`,"g")) , "")
+      }
+    }
+
+    generateQueryForFilter("types")
+    generateQueryForFilter("cryptocurrencies")
+    generateQueryForFilter("categories")
+
+    return location
+  }
+
+
 
   const checkboxChangeHandler = ({target}: any) => {
     const {checked, id} = target;
@@ -120,6 +179,18 @@ export default function Organizations() {
     }
   }
 
+
+  useEffect(() => {
+    applyQueryToFilters()
+    return () => {}
+  }, [])
+
+  useEffect(() => {
+    history.pushState({}, '', applyFiltersToQuery())
+    return () => {}
+  }, [filters])
+
+
   return (
     <div className="bg-white px-6 lg:px-8">
       <div>
@@ -173,7 +244,7 @@ export default function Organizations() {
                               <h3 className="-mx-2 -my-3 flow-root">
                                 <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
                                   <span className="font-medium text-gray-900">{section.name}</span>
-                                  <span className="ml-2 flex items-center">
+                                  <span className="flex items-center">
                                     {open ? (
                                       <MinusIcon className="h-5 w-5" aria-hidden="true" />
                                     ) : (
@@ -303,7 +374,7 @@ export default function Organizations() {
                           <h3 className="-my-3 flow-root">
                             <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
                               <span className="font-medium text-gray-900">{section.name}</span>
-                              <span className="ml-2 flex items-center">
+                              <span className="flex items-center">
                                 {open ? (
                                   <MinusIcon className="h-5 w-5 mr-1" aria-hidden="true" />
                                 ) : (
@@ -344,9 +415,9 @@ export default function Organizations() {
 
               {/* Contents */}
               <div className="lg:col-span-3">
-                {organizations.map((organization: any) => (
+                {organizations.map((organization: any, i: number) => (
                   isOrganizationFiltered(organization) &&
-                  <div data-type="organization" className="bg-gray-50 mb-8 sm:rounded-lg border-solid border-4 border-gray-100 shadow ring-1 ring-black ring-opacity-5">
+                  <div key={i} data-type="organization" className="bg-gray-50 mb-8 sm:rounded-lg border-solid border-4 border-gray-100 shadow ring-1 ring-black ring-opacity-5">
                     <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
                       <div className="-ml-4 -mt-4 flex flex-wrap items-center sm:flex-nowrap grow justify-center">
                         <div className="ml-4 mt-4">
@@ -362,8 +433,8 @@ export default function Organizations() {
                                 {organization.name}
                               </h3>
                               <div className='space-x-2'>
-                                {organization.categories.map((category: any) => (
-                                  <span className={classNames(
+                                {organization.categories.map((category: any, i: number) => (
+                                  <span key={i} className={classNames(
                                     "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
                                     categoryDetails[category].classes
                                   )}>
@@ -409,9 +480,9 @@ export default function Organizations() {
                             <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                               <table className="flex flex-col divide-y divide-gray-300">
                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                  {organization.options.map((option: Option) => (
+                                  {organization.options.map((option: Option, i: number) => (
                                     isOptionFiltered(option) &&
-                                    <tr key={option.name} className="flex justify-items-end w-full place-items-center py-2 sm:py-5">
+                                    <tr key={i} className="flex justify-items-end w-full place-items-center py-2 sm:py-5">
                                       <td className="text-sm px-2 sm:px-3">
                                         <div className="flex sm:w-28 items-center">
                                           <div className="h-6 w-6 flex-shrink-0">
@@ -437,8 +508,8 @@ export default function Organizations() {
                                                       </svg>
                                                     </span>
                                                 </Link>
-                                                {option.sourceUrls?.map((sourceUrl: string) => (
-                                                  <Link href={sourceUrl} passHref={true}>
+                                                {option.sourceUrls?.map((sourceUrl: string, i: number) => (
+                                                  <Link key={i} href={sourceUrl} passHref={true}>
                                                     <span className="inline-flex items-center rounded bg-red-100 px-2 py-0.5 text-xs font-medium text-red-900">
                                                       Source
                                                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3 ml-1">
