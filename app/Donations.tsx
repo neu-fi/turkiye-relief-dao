@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid'
@@ -32,6 +32,65 @@ export default function Organizations() {
   const optionToIconUrl = (option: Option ) => (option.type === 'cryptocurrency')
                                              ? icons.cryptocurrencies[option.name]
                                              : icons[option.type];
+
+
+
+  const applyQueryToFilter = (id: string, newFilters: string[]) => {
+
+    setFilters(prev => prev.map((section) => {
+      if (section.id === id) {
+        section.options = section.options.map((option) => {
+          option.checked = newFilters.includes(option.id)
+          return option
+        })
+      }
+      return section
+    })
+    )
+  }
+
+
+  const applyQueryToFilters = () => {
+      const typesQueryMatch = document.location.href.match(/types=([^&#]*)/)
+      if (typesQueryMatch && typesQueryMatch?.length > 0) {
+        applyQueryToFilter("types", typesQueryMatch[1].split(","))
+      }
+
+      const cryptocurrenciesQueryMatch = document.location.href.match(/cryptocurrencies=([^&#]*)/)
+      if (cryptocurrenciesQueryMatch && cryptocurrenciesQueryMatch?.length > 0) {
+        applyQueryToFilter("cryptocurrencies", cryptocurrenciesQueryMatch[1].split(","))
+      }
+
+      const categoriesQueryMatch = document.location.href.match(/categories=([^&#]*)/)
+      if (categoriesQueryMatch && categoriesQueryMatch?.length > 0) {
+        applyQueryToFilter("categories", categoriesQueryMatch[1].split(","))
+      }
+  }
+
+
+
+  const applyFiltersToQuery = () : string => {
+    let location = `${document.location.protocol}//${document.location.host}${document.location.pathname}?filtered=true`
+
+    const generateQueryForFilter = (id: string) => {
+      if(filters.find(section => section.id === id)?.options.filter(option => option.checked === false).length as number !== 0  ) {
+        location += `&${id}=${filters
+          .find(section => section.id === id)?.options
+          .filter(option => option.checked)
+          .map(option => option.id).join(",")}`
+      } else {
+        location.replaceAll((new RegExp(`/${id}=([^&#]*)/`,"g")) , "")
+      }
+    }
+
+    generateQueryForFilter("types")
+    generateQueryForFilter("cryptocurrencies")
+    generateQueryForFilter("categories")
+
+    return location
+  }
+
+
 
   const checkboxChangeHandler = ({target}: any) => {
     const {checked, id} = target;
@@ -119,6 +178,18 @@ export default function Organizations() {
       return typeFilter.checked;
     }
   }
+
+
+  useEffect(() => {
+    applyQueryToFilters()
+    return () => {}
+  }, [])
+
+  useEffect(() => {
+    history.pushState({}, '', applyFiltersToQuery())
+    return () => {}
+  }, [filters])
+
 
   return (
     <div className="bg-white px-6 lg:px-8">
