@@ -236,30 +236,40 @@ export default function Organizations() {
                                 	</span>
                                 </Disclosure.Button>
                               </h3>
-                              <Disclosure.Panel className="pt-6">
-                                <div className="space-y-6">
-                                  {section.options.map((option) => (
-                                    <div key={option.id} className="flex items-center">
-                                      <input
-                                        id={`filter-${section.id}-${option.id}`}
-                                        name={`${section.id}[]`}
-                                        defaultValue={option.id}
-                                        type="checkbox"
-                                        defaultChecked={option.checked}
+															<Transition
+																show={open}
+																className="transition-all duration-500 overflow-hidden"
+																entered="overflow-auto"
+																enterFrom="transform scale-95 opacity-0 max-h-0"
+																enterTo="transform scale-100 opacity-100 max-h-[1000px]"
+																leaveFrom="transform scale-100 opacity-100 max-h-[1000px]"
+																leaveTo="transform scale-95 opacity-0 max-h-0"
+															>
+																<Disclosure.Panel className="pt-6">
+																	<div className="space-y-6">
+																		{section.options.map((option) => (
+																			<div key={option.id} className="flex items-center">
+																				<input
+																					id={`filter-${section.id}-${option.id}`}
+																					name={`${section.id}[]`}
+																					defaultValue={option.id}
+																					type="checkbox"
+																					defaultChecked={option.checked}
 
-                                        onChange={checkboxChangeHandler}
-                                        className="h-4 w-4 rounded border-gray-300 text-red-600"
-                                      />
-                                      <label
-                                        htmlFor={`filter-${section.id}-${option.id}`}
-                                        className="ml-3 min-w-0 flex-1 text-gray-500"
-                                      >
-                                        {option.label}
-                                      </label>
-                                    </div>
-                                  ))}
-                                </div>
-                              </Disclosure.Panel>
+																					onChange={checkboxChangeHandler}
+																					className="h-4 w-4 rounded border-gray-300 text-red-600"
+																				/>
+																				<label
+																					htmlFor={`filter-${section.id}-${option.id}`}
+																					className="ml-3 min-w-0 flex-1 text-gray-500"
+																				>
+																					{option.label}
+																				</label>
+																			</div>
+																		))}
+																	</div>
+																</Disclosure.Panel>
+															</Transition>
                             </>
                           )}
                         </Disclosure>
