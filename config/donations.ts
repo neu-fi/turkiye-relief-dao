@@ -1,5 +1,5 @@
 // All the cryptocurrency networks must be listed here
-const NETWORKS = ["Bitcoin", "Ethereum", "Avalanche", "Binance", "Polygon", "Solana", "Cosmos", "Polkadot", "Tron", "Mina", "Cardano", "VeChain", "Waves", "Tezos", "Celo", "Gnosis", "Aptos"];
+const NETWORKS = ["Bitcoin", "Ethereum", "Avalanche", "Binance", "Polygon", "Solana", "Cosmos", "Polkadot", "Tron", "Mina", "Cardano", "VeChain", "Waves", "Tezos", "Celo", "Gnosis", "Aptos", "Optimism"];
 
 const OPTION_TYPES = [
   'cryptocurrency',
@@ -58,23 +58,24 @@ const categoryDetails: {[index: string]:any} = {
 // All "cryptocurrency" and "nft" types must have exact names in their respective maps.
 const icons: {[index: string]:any} = {
   cryptocurrencies: {
-    'Bitcoin': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/btc.svg',
-    'Ethereum': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/eth.svg',
-    'Avalanche': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/avax.svg',
-    'Binance': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/bnb.svg',
-    'Polygon': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/matic.svg',
-    'Solana': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/sol.svg',
-    'Cosmos': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/atom.svg',
-    'Polkadot': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/dot.svg',
-    'Tron': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/trx.svg',
+    'Bitcoin': './icons/options/btc.svg',
+    'Ethereum': './icons/options/eth.svg',
+    'Avalanche': './icons/options/avax.svg',
+    'Binance': './icons/options/bnb.svg',
+    'Polygon': './icons/options/matic.svg',
+    'Solana': './icons/options/sol.svg',
+    'Cosmos': './icons/options/atom.svg',
+    'Polkadot': './icons/options/dot.svg',
+    'Tron': './icons/options/trx.svg',
     'Mina': "./icons/options/mina.jpg",
-    'Cardano': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/ada.svg",
-    'VeChain': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/vet.svg",
-    'Waves': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/waves.svg",
-    'Tezos': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/xtz.svg",
-    'Celo': "https://cryptologos.cc/logos/celo-celo-logo.svg",
-    'Gnosis': "https://cryptologos.cc/logos/gnosis-gno-gno-logo.svg",
-    'Aptos': "./icons/options/aptos.svg"
+    'Cardano': "./icons/options/ada.svg",
+    'VeChain': "./icons/options/vet.svg",
+    'Waves': "./icons/options/waves.svg",
+    'Tezos': "./icons/options/xtz.svg",
+    'Celo': "./icons/options/celo.svg",
+    'Gnosis': "./icons/options/gnosis.svg",
+    'Aptos': "./icons/options/aptos.svg",
+    'Optimism': "./icons/options/optimism.svg",
   },
   bank: './icons/options/bank.svg',
   btcturk: './icons/options/btcturk.svg',
@@ -254,6 +255,12 @@ const organizations: {[index: string]:any} = [
         address: "0x6aAb7738A646ED1E355a838807b7B7F1B2e60bE4",
         sourceUrls: ["https://ankarelief.org"],
       },
+      {
+        type: "cryptocurrency",
+        name: "Optimism",
+        address: "0xb88A1deaE6a5dA84B15BBD272E550bd9e87b8a5B",
+        sourceUrls: ["https://ankarelief.org"],
+      }
     ],
   },
   {
@@ -917,6 +924,8 @@ const initialFilters: Filter[]  = [
       { id: 'Celo', label: 'Celo', checked: true },
       { id: 'Gnosis', label: 'Gnosis', checked: true },
       { id: 'Aptos', label: 'Aptos', checked: true },
+      { id: 'Optimism', label: 'Optimism', checked: true },
+
     ],
   },
   {
@@ -950,7 +959,8 @@ const explorers: {[index: string]: any } = {
   'Tezos': "https://tzstats.com/",
   'Celo': "https://celoscan.io/address/",
   'Gnosis': "https://gnosisscan.io/address/",
-  'Aptos': "https://explorer.aptoslabs.com/account/"
+  'Aptos': "https://explorer.aptoslabs.com/account/",
+  'Optimism': "https://optimistic.etherscan.io/address/"
 }
 
 export type {
@@ -964,4 +974,5 @@ export {
   initialSortOptions,
   initialFilters,
   explorers,
+  NETWORKS
 }
