@@ -6,13 +6,20 @@ import { Tooltip } from "flowbite-react";
 import { LinkIcon, ClipboardIcon, PlusIcon, MinusIcon } from "@heroicons/react/20/solid";
 import { toast } from "react-toastify";
 import { classNames } from "./utils";
-import { Option, explorers, categoryDetails, icons } from "../config/donations";
+import { explorers, categoryDetails, icons } from "../config/donations";
 import { Transition } from "@headlessui/react";
+import type { Option, Organization } from './types'
+
+type OrganizationCardProps = {
+organization: Organization
+isOptionFiltered: (option: Option) => boolean
+}
+
 
 export default function OrganizationCard({
 	organization,
 	isOptionFiltered,
-}: any) {
+}: OrganizationCardProps) {
 
 	const [expanded, setExpanded] = useState(false);
 
