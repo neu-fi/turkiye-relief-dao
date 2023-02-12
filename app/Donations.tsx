@@ -344,9 +344,9 @@ export default function Organizations() {
 
               {/* Contents */}
               <div className="lg:col-span-3">
-                {organizations.map((organization: any) => (
+                {organizations.map((organization: any, i: number) => (
                   isOrganizationFiltered(organization) &&
-                  <div data-type="organization" className="bg-gray-50 mb-8 sm:rounded-lg border-solid border-4 border-gray-100 shadow ring-1 ring-black ring-opacity-5">
+                  <div key={i} data-type="organization" className="bg-gray-50 mb-8 sm:rounded-lg border-solid border-4 border-gray-100 shadow ring-1 ring-black ring-opacity-5">
                     <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
                       <div className="-ml-4 -mt-4 flex flex-wrap items-center sm:flex-nowrap grow justify-center">
                         <div className="ml-4 mt-4">
@@ -362,8 +362,8 @@ export default function Organizations() {
                                 {organization.name}
                               </h3>
                               <div className='space-x-2'>
-                                {organization.categories.map((category: any) => (
-                                  <span className={classNames(
+                                {organization.categories.map((category: any, i: number) => (
+                                  <span key={i} className={classNames(
                                     "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
                                     categoryDetails[category].classes
                                   )}>
@@ -437,8 +437,8 @@ export default function Organizations() {
                                                       </svg>
                                                     </span>
                                                 </Link>
-                                                {option.sourceUrls?.map((sourceUrl: string) => (
-                                                  <Link href={sourceUrl} passHref={true}>
+                                                {option.sourceUrls?.map((sourceUrl: string, i: number) => (
+                                                  <Link key={i} href={sourceUrl} passHref={true}>
                                                     <span className="inline-flex items-center rounded bg-red-100 px-2 py-0.5 text-xs font-medium text-red-900">
                                                       Source
                                                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3 ml-1">
