@@ -351,7 +351,7 @@ export default function Organizations() {
 
                 {filters.map((section) => (
                   (section.id != 'cryptocurrencies' || cryptoFilter) ?
-                    <Disclosure as="div" key={section.id} className="border-b border-gray-200 py-6">
+                    <Disclosure defaultOpen={section.id === "types"} as="div" key={section.id} className="border-b border-gray-200 py-6">
                       {({ open }) => (
                         <>
                           <h3 className="-my-3 flow-root">
@@ -362,6 +362,16 @@ export default function Organizations() {
                               </span>
                             </Disclosure.Button>
                           </h3>
+													
+													<Transition
+																show={open}
+																className="transition-all duration-500 overflow-hidden"
+																entered="overflow-auto"
+																enterFrom="transform scale-95 opacity-0 max-h-0"
+																enterTo="transform scale-100 opacity-100 max-h-[1000px]"
+																leaveFrom="transform scale-100 opacity-100 max-h-[1000px]"
+																leaveTo="transform scale-95 opacity-0 max-h-0"
+															>
                           <Disclosure.Panel className="pt-6">
                             <div className="space-y-4">
                               {section.options.map((option) => (
@@ -385,6 +395,7 @@ export default function Organizations() {
                               ))}
                             </div>
                           </Disclosure.Panel>
+													</Transition>
                         </>
                       )}
                     </Disclosure>
