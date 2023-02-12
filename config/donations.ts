@@ -1,31 +1,10 @@
+import type { Network, Filter, Organization } from '../app/types'
+
 // All the cryptocurrency networks must be listed here
-const NETWORKS = ["Bitcoin", "Ethereum", "Avalanche", "Binance", "Polygon", "Solana", "Cosmos", "Polkadot", "Tron", "Mina", "Cardano", "VeChain", "Waves", "Tezos", "Celo", "Gnosis", "Aptos", "Optimism"];
+const NETWORKS: Network[] = ["Bitcoin", "Ethereum", "Avalanche", "Binance", "Polygon", "Solana", "Cosmos", "Polkadot", "Tron", "Mina", "Cardano", "VeChain", "Waves", "Tezos", "Celo", "Gnosis", "Aptos", "Optimism"];
 
-const OPTION_TYPES = [
-  'cryptocurrency',
-  'bank',
-  'btcturk',
-  'card',
-  'nft',
-];
 
-type Network = typeof NETWORKS[number];
-type OptionType = typeof OPTION_TYPES[number];
-type FilterOption = {id:string,label:string,checked:boolean};
-type Filter = {id:string,name:string,options:FilterOption[]};
-
-interface Option {
-  type: OptionType,
-  name: string,
-  address?: string,
-  sourceUrls?: string[],
-  linkName?: string,
-  linkUrl?: string,
-  info?: string,
-  warning?: string,
-}
-
-const categoryDetails: {[index: string]:any} = {
+const categoryDetails: Record<string, { name: string; classes: string }> = {
   governmental: {
     name: 'Governmental',
     classes: 'bg-gray-100 text-gray-800',
@@ -56,7 +35,7 @@ const categoryDetails: {[index: string]:any} = {
 // Click "raw" and copy the url from the list at https://github.com/spothq/cryptocurrency-icons/tree/master/svg/color
 // All option types except "cryptocurrency" and "nft" must have an icon in this map.
 // All "cryptocurrency" and "nft" types must have exact names in their respective maps.
-const icons: {[index: string]:any} = {
+const icons: Record<string, any>  = {
   cryptocurrencies: {
     'Bitcoin': './icons/options/btc.svg',
     'Ethereum': './icons/options/eth.svg',
@@ -91,7 +70,7 @@ const icons: {[index: string]:any} = {
 //   * If an option has "cryptocurrency" type, it must include: address, sourceUrls
 //   * If an option has another type, it must include: linkName, linkUrl
 //   * Options could have the following: info, warning
-const organizations: {[index: string]:any} = [
+const organizations: Organization[] = [
   {
     name: 'Ahbap',
     description: 'A Turkey based non-profit organization established on the principles of solidarity and cooperation, founded by the Turkish musician and philanthropist, Haluk Levent.',
@@ -216,7 +195,7 @@ const organizations: {[index: string]:any} = [
     websiteUrl: "https://ankarelief.org",
     twitterUrl: "https://twitter.com/ankarelief",
     popularity: 5,
-    endorseMentUrls: [],
+    endorsementUrls: [],
     categories: ["international", "dao"],
     options: [
       {
@@ -315,7 +294,7 @@ const organizations: {[index: string]:any} = [
     websiteUrl: "https://www.supporttolife.org/",
     twitterUrl: "https://twitter.com/Support2Life",
     popularity: 2,
-    endorseMentUrls: [],
+    endorsementUrls: [],
     categories: ["turkish", "ngo"],
     options: [
       {
@@ -489,7 +468,7 @@ const organizations: {[index: string]:any} = [
     websiteUrl: "https://www.tider.org",
     twitterUrl: "https://twitter.com/Tidersosyal",
     popularity: 2,
-    endorseMentUrls: ['https://twitter.com/btcturkpro/status/1623198411263557635?s=20&t=XtLgxLwHQYPw_2M03jmf1g'],
+    endorsementUrls: ['https://twitter.com/btcturkpro/status/1623198411263557635?s=20&t=XtLgxLwHQYPw_2M03jmf1g'],
     categories: ["turkish", "ngo"],
     options: [
       {
@@ -527,7 +506,7 @@ const organizations: {[index: string]:any} = [
     websiteUrl: "https://www.kizilay.org.tr/",
     twitterUrl: "https://twitter.com/kizilay",
     popularity: 2,
-    endorseMentUrls: ['https://twitter.com/anadoluajansi/status/1623621477017997314?s=20&t=-6BowcezBT_2LEnCLIYo4Q'], // Turkish
+    endorsementUrls: ['https://twitter.com/anadoluajansi/status/1623621477017997314?s=20&t=-6BowcezBT_2LEnCLIYo4Q'], // Turkish
     categories: ["turkish", "ngo"],
     options: [
       {
@@ -593,7 +572,7 @@ const organizations: {[index: string]:any} = [
     websiteUrl: "https://www.akut.org.tr/",
     twitterUrl: "https://twitter.com/akut_dernegi",
     popularity: 2,
-    endorseMentUrls: ['https://www.akut.org.tr/destekci-listesi'],
+    endorsementUrls: ['https://www.akut.org.tr/destekci-listesi'],
     categories: ["turkish", "ngo"],
     options: [
       {
@@ -660,7 +639,7 @@ const organizations: {[index: string]:any} = [
     websiteUrl: "https://nefvakfi.org/",
     twitterUrl: "https://twitter.com/nefvakfi",
     popularity: 2,
-    endorseMentUrls: ['https://www.nefvakfi.org/projeler.php?page=kentsel_vizyon#tab-two'],
+    endorsementUrls: ['https://www.nefvakfi.org/projeler.php?page=kentsel_vizyon#tab-two'],
     categories: ["turkish", "ngo"],
     options: [
       {
@@ -722,7 +701,7 @@ const organizations: {[index: string]:any} = [
     websiteUrl: "https://www.unicef.org/turkiye/",
     twitterUrl: "https://twitter.com/unicefturk",
     popularity: 2,
-    endorseMentUrls: ['https://twitter.com/unicefturk/status/1623032942762110976'],
+    endorsementUrls: ['https://twitter.com/unicefturk/status/1623032942762110976'],
     categories: ["international", "ngo"],
     options: [
       {
@@ -755,7 +734,7 @@ const organizations: {[index: string]:any} = [
     websiteUrl: "https://www.kedv.org.tr/",
     twitterUrl: "https://twitter.com/KedvTurkiye/",
     popularity: 2,
-    endorseMentUrls: ['https://www.kedv.org.tr/basinda-kedv'], // Turkish
+    endorsementUrls: ['https://www.kedv.org.tr/basinda-kedv'], // Turkish
     categories: ["turkish", "ngo"],
     options: [
       {
@@ -942,7 +921,7 @@ const initialFilters: Filter[]  = [
   },
 ];
 
-const explorers: {[index: string]: any } = {
+const explorers: Record<string,string> = {
   'Bitcoin': 'https://www.blockchain.com/explorer/addresses/btc/',
   'Ethereum': 'https://etherscan.io/address/',
   'Avalanche': 'https://snowtrace.io/address/',
@@ -961,10 +940,6 @@ const explorers: {[index: string]: any } = {
   'Gnosis': "https://gnosisscan.io/address/",
   'Aptos': "https://explorer.aptoslabs.com/account/",
   'Optimism': "https://optimistic.etherscan.io/address/"
-}
-
-export type {
-  Option,
 }
 
 export {

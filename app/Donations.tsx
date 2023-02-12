@@ -13,6 +13,7 @@ import {
 } from '../config/donations';
 import { classNames } from './utils';
 import OrganizationCard from './OrganizationCard'
+import type { Organization } from './types'
 
 export default function Organizations() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
@@ -178,6 +179,10 @@ export default function Organizations() {
   }, [filters])
 
 
+  const filteredOrganizations: Organization[] = organizations.filter((org) =>
+    isOrganizationFiltered(org)
+  )
+
   return (
     <div className="bg-white px-3 lg:px-8 md:px-6">
       <div>
@@ -268,6 +273,12 @@ export default function Organizations() {
                   </form>
                 </Dialog.Panel>
               </Transition.Child>
+              {(filteredOrganizations.length !== organizations.length) && (
+                  <p className='text-gray-400 mb-6 text-center'>
+                    Displaying {filteredOrganizations.length} of{' '}
+                    {organizations.length} options
+                  </p>
+                )}
             </div>
           </Dialog>
         </Transition.Root>
@@ -390,13 +401,24 @@ export default function Organizations() {
                     </Disclosure>
                   : <></>
                 ))}
+                 {(filteredOrganizations.length !== organizations.length) && (
+                  <p className='text-gray-400 text-center mt-4'>
+                    Displaying {filteredOrganizations.length} of{' '}
+                    {organizations.length} options
+                  </p>
+                )}
               </form>
 
               {/* Contents */}
               <div className="lg:col-span-3">
-                {organizations.map((organization: any, i: number) => (
-                  isOrganizationFiltered(organization) && <OrganizationCard organization={organization} isOptionFiltered={isOptionFiltered}  />
-                ))}
+                {filteredOrganizations.map(
+                  (organization: Organization, i: number) => (
+                    <OrganizationCard
+                      organization={organization}
+                      isOptionFiltered={isOptionFiltered}
+                    />
+                  )
+                )}
               </div>
             </div>
           </section>
