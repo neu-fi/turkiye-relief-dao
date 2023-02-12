@@ -129,10 +129,10 @@ export default function OrganizationCard({
 								<table className="flex flex-col divide-y divide-gray-300">
 									<tbody className="divide-y divide-gray-200 bg-white">
 										{organization.options.map(
-											(option: Option) =>
+											(option: Option, index: number) =>
 												isOptionFiltered(option) && (
 													<tr
-														key={option.name}
+														key={index}
 														className="flex justify-items-end w-full place-items-center py-2 sm:py-5"
 													>
 														<td className="text-sm px-2 sm:px-3">
