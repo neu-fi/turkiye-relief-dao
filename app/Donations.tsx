@@ -3,7 +3,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { FunnelIcon, MinusIcon, PlusIcon } from '@heroicons/react/20/solid'
+import { ChevronDownIcon, FunnelIcon } from '@heroicons/react/20/solid'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
@@ -231,13 +231,9 @@ export default function Organizations() {
                               <h3 className="-mx-2 -my-3 flow-root">
                                 <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
                                   <span className="font-medium text-gray-900">{section.name}</span>
-                                  <span className="flex items-center">
-                                    {open ? (
-                                      <MinusIcon className="h-5 w-5" aria-hidden="true" />
-                                    ) : (
-                                      <PlusIcon className="h-5 w-5" aria-hidden="true" />
-                                    )}
-                                  </span>
+                              		<span className={`${open ? 'rotate-180' : ''} flex items-center transition-all duration-300`}>
+                                    <ChevronDownIcon className="h-5 w-5" />
+                                	</span>
                                 </Disclosure.Button>
                               </h3>
                               <Disclosure.Panel className="pt-6">
@@ -361,12 +357,8 @@ export default function Organizations() {
                           <h3 className="-my-3 flow-root">
                             <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
                               <span className="font-medium text-gray-900">{section.name}</span>
-                              <span className="flex items-center">
-                                {open ? (
-                                  <MinusIcon className="h-5 w-5 mr-1" aria-hidden="true" />
-                                ) : (
-                                  <PlusIcon className="h-5 w-5" aria-hidden="true" />
-                                )}
+                              <span className={`${open ? 'rotate-180' : ''} flex items-center transition-all duration-300`}>
+																<ChevronDownIcon className="h-5 w-5" />
                               </span>
                             </Disclosure.Button>
                           </h3>
