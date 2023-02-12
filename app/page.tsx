@@ -1,15 +1,15 @@
-import DamageStats from './DamageStats';
-import DonationStats from './DonationStats';
-import Donations from './Donations';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import { organizations, NETWORKS } from '../config/donations';
+import DamageStats from './DamageStats'
+import DonationStats from './DonationStats'
+import Donations from './Donations'
+import { ChevronDownIcon } from '@heroicons/react/24/outline'
+import { organizations, NETWORKS } from '../config/donations'
 
 export default function Home() {
-  const orgCount = organizations.length;
-  const networkCount = NETWORKS.length;
+  const orgCount = organizations.length
+  const networkCount = NETWORKS.length
 
   const heroSubTitle = `Donate to one of ${orgCount} efforts using credit cards, bank
-  transfers, ${networkCount} blockchain networks, and more.`;
+  transfers, ${networkCount} blockchain networks, and more.`
 
   return (
     <>
@@ -39,7 +39,8 @@ export default function Home() {
         </div>
         <div className="absolute bottom-4">
           <a href="#help" className="text-lg leading-7 text-white flex">
-            Learn more <ChevronDownIcon className="mt-1 ml-2 h-6 w-6" aria-hidden="true" />
+            Learn more{' '}
+            <ChevronDownIcon className="mt-1 ml-2 h-6 w-6" aria-hidden="true" />
           </a>
         </div>
       </div>
@@ -51,5 +52,5 @@ export default function Home() {
         <Donations />
       </div>
     </>
-  );
+  )
 }
