@@ -17,7 +17,6 @@ export type Network =
   | 'Gnosis'
   | 'Aptos'
   | 'Optimism'
-  | 'Arbitrum'
 
 export type OptionType = 'cryptocurrency' | 'bank' | 'btcturk' | 'card' | 'nft'
 
