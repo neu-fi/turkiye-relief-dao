@@ -32,7 +32,7 @@ export default function OrganizationCard({
 					<ClipboardIcon className="h-8 w-8 sm:h-8 sm:w-8 text-gray-200 mr-5" aria-hidden="true" />
 					<p>
 						Copied {option.name} address of{" "}
-						{organization.name}"
+						{organization.name} to clipboard
 					</p>
 				</div>,
 				{
