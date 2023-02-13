@@ -2,6 +2,7 @@
 
 import { Transition } from "@headlessui/react";
 import { ClipboardIcon, LinkIcon } from "@heroicons/react/20/solid";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { Tooltip } from "flowbite-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -15,7 +16,6 @@ type OrganizationCardProps = {
   isOptionFiltered: (option: Option) => boolean;
 };
 
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
 export default function OrganizationCard({
   organization,
