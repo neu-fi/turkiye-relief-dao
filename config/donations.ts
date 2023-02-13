@@ -1,31 +1,10 @@
+import type { Network, Filter, Organization } from '../app/types'
+
 // All the cryptocurrency networks must be listed here
-const NETWORKS = ["Bitcoin", "Ethereum", "Avalanche", "Binance", "Polygon", "Solana", "Cosmos", "Polkadot", "Tron", "Mina", "Cardano", "VeChain", "Waves", "Tezos", "Celo", "Gnosis"];
+const NETWORKS: Network[] = ["Bitcoin", "Ethereum", "Avalanche", "Binance", "Polygon", "Solana", "Cosmos", "Polkadot", "Tron", "Mina", "Cardano", "VeChain", "Waves", "Tezos", "Celo", "Gnosis", "Aptos", "Optimism"];
 
-const OPTION_TYPES = [
-  'cryptocurrency',
-  'bank',
-  'btcturk',
-  'card',
-  'nft',
-];
 
-type Network = typeof NETWORKS[number];
-type OptionType = typeof OPTION_TYPES[number];
-type FilterOption = {id:string,label:string,checked:boolean};
-type Filter = {id:string,name:string,options:FilterOption[]};
-
-interface Option {
-  type: OptionType,
-  name: string,
-  address?: string,
-  sourceUrls?: string[],
-  linkName?: string,
-  linkUrl?: string,
-  info?: string,
-  warning?: string,
-}
-
-const categoryDetails: {[index: string]:any} = {
+const categoryDetails: Record<string, { name: string; classes: string }> = {
   governmental: {
     name: 'Governmental',
     classes: 'bg-gray-100 text-gray-800',
@@ -56,29 +35,31 @@ const categoryDetails: {[index: string]:any} = {
 // Click "raw" and copy the url from the list at https://github.com/spothq/cryptocurrency-icons/tree/master/svg/color
 // All option types except "cryptocurrency" and "nft" must have an icon in this map.
 // All "cryptocurrency" and "nft" types must have exact names in their respective maps.
-const icons: {[index: string]:any} = {
+const icons: Record<string, any>  = {
   cryptocurrencies: {
-    'Bitcoin': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/btc.svg',
-    'Ethereum': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/eth.svg',
-    'Avalanche': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/avax.svg',
-    'Binance': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/bnb.svg',
-    'Polygon': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/matic.svg',
-    'Solana': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/sol.svg',
-    'Cosmos': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/atom.svg',
-    'Polkadot': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/dot.svg',
-    'Tron': 'https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/trx.svg',
-    'Mina': "https://cryptologos.cc/logos/mina-mina-logo.svg",
-    'Cardano': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/ada.svg",
-    'VeChain': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/vet.svg",
-    'Waves': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/waves.svg",
-    'Tezos': "https://raw.githubusercontent.com/spothq/cryptocurrency-icons/master/svg/color/xtz.svg",
-    'Celo': "https://cryptologos.cc/logos/celo-celo-logo.svg",
-    'Gnosis': "https://cryptologos.cc/logos/gnosis-gno-gno-logo.svg",
+    'Bitcoin': './icons/options/btc.svg',
+    'Ethereum': './icons/options/eth.svg',
+    'Avalanche': './icons/options/avax.svg',
+    'Binance': './icons/options/bnb.svg',
+    'Polygon': './icons/options/matic.svg',
+    'Solana': './icons/options/sol.svg',
+    'Cosmos': './icons/options/atom.svg',
+    'Polkadot': './icons/options/dot.svg',
+    'Tron': './icons/options/trx.svg',
+    'Mina': "./icons/options/mina.jpg",
+    'Cardano': "./icons/options/ada.svg",
+    'VeChain': "./icons/options/vet.svg",
+    'Waves': "./icons/options/waves.svg",
+    'Tezos': "./icons/options/xtz.svg",
+    'Celo': "./icons/options/celo.svg",
+    'Gnosis': "./icons/options/gnosis.svg",
+    'Aptos': "./icons/options/aptos.svg",
+    'Optimism': "./icons/options/optimism.svg",
   },
-  bank: './icons/bank.svg',
-  btcturk: './icons/btcturk.svg',
-  card: './icons/card.svg',
-  nft: './icons/nft.svg',
+  bank: './icons/options/bank.svg',
+  btcturk: './icons/options/btcturk.svg',
+  card: './icons/options/card.svg',
+  nft: './icons/options/nft.svg',
 };
 
 // All entries must have the following: name, description, logoUrl, websiteUrl, twitterUrl, popularity, endorsementUrls, categories, options
@@ -89,7 +70,7 @@ const icons: {[index: string]:any} = {
 //   * If an option has "cryptocurrency" type, it must include: address, sourceUrls
 //   * If an option has another type, it must include: linkName, linkUrl
 //   * Options could have the following: info, warning
-const organizations: {[index: string]:any} = [
+const organizations: Organization[] = [
   {
     name: 'Ahbap',
     description: 'A Turkey based non-profit organization established on the principles of solidarity and cooperation, founded by the Turkish musician and philanthropist, Haluk Levent.',
@@ -193,6 +174,12 @@ const organizations: {[index: string]:any} = [
         warning: 'Only send Mina as this is an exchange wallet',
       },
       {
+        type: 'cryptocurrency',
+        name: 'Aptos',
+        address: '0x9de5a9b2b213de4c4de3f110d78d0d4e8097c64dd6cc82a547e9859bdac91d47',
+        sourceUrls: ['https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'],
+      },
+      {
         type: 'card',
         name: 'Card',
         linkName: 'Option of Credit Card on their official website',
@@ -208,7 +195,7 @@ const organizations: {[index: string]:any} = [
     websiteUrl: "https://ankarelief.org",
     twitterUrl: "https://twitter.com/ankarelief",
     popularity: 5,
-    endorseMentUrls: [],
+    endorsementUrls: [],
     categories: ["international", "dao"],
     options: [
       {
@@ -247,6 +234,12 @@ const organizations: {[index: string]:any} = [
         address: "0x6aAb7738A646ED1E355a838807b7B7F1B2e60bE4",
         sourceUrls: ["https://ankarelief.org"],
       },
+      {
+        type: "cryptocurrency",
+        name: "Optimism",
+        address: "0xb88A1deaE6a5dA84B15BBD272E550bd9e87b8a5B",
+        sourceUrls: ["https://ankarelief.org"],
+      }
     ],
   },
   {
@@ -274,6 +267,12 @@ const organizations: {[index: string]:any} = [
         warning: 'Only send TRX as this is an exchange wallet'
       },
       {
+        type: 'cryptocurrency',
+        name: 'Aptos',
+        address: '0x2ac53451cc6ffa5f0e4237413d73e6c5ed522c6e1ebfc9692a995cfde259e292',
+        sourceUrls: ['https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'],
+      },
+      {
         type: 'card',
         name: 'Card',
         linkName: 'Option of Credit Card on their official website',
@@ -295,7 +294,7 @@ const organizations: {[index: string]:any} = [
     websiteUrl: "https://www.supporttolife.org/",
     twitterUrl: "https://twitter.com/Support2Life",
     popularity: 2,
-    endorseMentUrls: [],
+    endorsementUrls: [],
     categories: ["turkish", "ngo"],
     options: [
       {
@@ -440,6 +439,12 @@ const organizations: {[index: string]:any} = [
         warning: 'Only send ETH or USDT as this is an exchange wallet',
       },
       {
+        type: 'cryptocurrency',
+        name: 'Aptos',
+        address: '0x6f2851b551dd92f1743ad85cdf904a09141231b184446edab9ad0d603d4c461b',
+        sourceUrls: ['https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'],
+      },
+      {
         type: 'bank',
         name: 'Bank Wire',
         linkName: 'The list of AFAD bank accounts on their official website',
@@ -463,7 +468,7 @@ const organizations: {[index: string]:any} = [
     websiteUrl: "https://www.tider.org",
     twitterUrl: "https://twitter.com/Tidersosyal",
     popularity: 2,
-    endorseMentUrls: ['https://twitter.com/btcturkpro/status/1623198411263557635?s=20&t=XtLgxLwHQYPw_2M03jmf1g'],
+    endorsementUrls: ['https://twitter.com/btcturkpro/status/1623198411263557635?s=20&t=XtLgxLwHQYPw_2M03jmf1g'],
     categories: ["turkish", "ngo"],
     options: [
       {
@@ -501,7 +506,7 @@ const organizations: {[index: string]:any} = [
     websiteUrl: "https://www.kizilay.org.tr/",
     twitterUrl: "https://twitter.com/kizilay",
     popularity: 2,
-    endorseMentUrls: ['https://twitter.com/anadoluajansi/status/1623621477017997314?s=20&t=-6BowcezBT_2LEnCLIYo4Q'], // Turkish
+    endorsementUrls: ['https://twitter.com/anadoluajansi/status/1623621477017997314?s=20&t=-6BowcezBT_2LEnCLIYo4Q'], // Turkish
     categories: ["turkish", "ngo"],
     options: [
       {
@@ -567,7 +572,7 @@ const organizations: {[index: string]:any} = [
     websiteUrl: "https://www.akut.org.tr/",
     twitterUrl: "https://twitter.com/akut_dernegi",
     popularity: 2,
-    endorseMentUrls: ['https://www.akut.org.tr/destekci-listesi'],
+    endorsementUrls: ['https://www.akut.org.tr/destekci-listesi'],
     categories: ["turkish", "ngo"],
     options: [
       {
@@ -634,7 +639,7 @@ const organizations: {[index: string]:any} = [
     websiteUrl: "https://nefvakfi.org/",
     twitterUrl: "https://twitter.com/nefvakfi",
     popularity: 2,
-    endorseMentUrls: ['https://www.nefvakfi.org/projeler.php?page=kentsel_vizyon#tab-two'],
+    endorsementUrls: ['https://www.nefvakfi.org/projeler.php?page=kentsel_vizyon#tab-two'],
     categories: ["turkish", "ngo"],
     options: [
       {
@@ -696,7 +701,7 @@ const organizations: {[index: string]:any} = [
     websiteUrl: "https://www.unicef.org/turkiye/",
     twitterUrl: "https://twitter.com/unicefturk",
     popularity: 2,
-    endorseMentUrls: ['https://twitter.com/unicefturk/status/1623032942762110976'],
+    endorsementUrls: ['https://twitter.com/unicefturk/status/1623032942762110976'],
     categories: ["international", "ngo"],
     options: [
       {
@@ -729,7 +734,7 @@ const organizations: {[index: string]:any} = [
     websiteUrl: "https://www.kedv.org.tr/",
     twitterUrl: "https://twitter.com/KedvTurkiye/",
     popularity: 2,
-    endorseMentUrls: ['https://www.kedv.org.tr/basinda-kedv'], // Turkish
+    endorsementUrls: ['https://www.kedv.org.tr/basinda-kedv'], // Turkish
     categories: ["turkish", "ngo"],
     options: [
       {
@@ -897,6 +902,9 @@ const initialFilters: Filter[]  = [
       { id: 'Tezos', label: 'Tezos', checked: true },
       { id: 'Celo', label: 'Celo', checked: true },
       { id: 'Gnosis', label: 'Gnosis', checked: true },
+      { id: 'Aptos', label: 'Aptos', checked: true },
+      { id: 'Optimism', label: 'Optimism', checked: true },
+
     ],
   },
   {
@@ -913,7 +921,7 @@ const initialFilters: Filter[]  = [
   },
 ];
 
-const explorers: {[index: string]: any } = {
+const explorers: Record<string,string> = {
   'Bitcoin': 'https://www.blockchain.com/explorer/addresses/btc/',
   'Ethereum': 'https://etherscan.io/address/',
   'Avalanche': 'https://snowtrace.io/address/',
@@ -930,10 +938,8 @@ const explorers: {[index: string]: any } = {
   'Tezos': "https://tzstats.com/",
   'Celo': "https://celoscan.io/address/",
   'Gnosis': "https://gnosisscan.io/address/",
-}
-
-export type {
-  Option,
+  'Aptos': "https://explorer.aptoslabs.com/account/",
+  'Optimism': "https://optimistic.etherscan.io/address/"
 }
 
 export {
@@ -943,4 +949,5 @@ export {
   initialSortOptions,
   initialFilters,
   explorers,
+  NETWORKS
 }
