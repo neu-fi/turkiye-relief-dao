@@ -20,6 +20,8 @@ export type Network =
 
 export type OptionType = 'cryptocurrency' | 'bank' | 'btcturk' | 'card' | 'nft'
 
+export type SortOption = 'Suggested' | 'Most Popular'
+
 export type FilterOption = { id: string; label: string; checked: boolean }
 
 export type Filter = { id: string; name: string; options: FilterOption[] }
@@ -41,7 +43,7 @@ export interface Organization {
   logoUrl?: string
   websiteUrl: string
   twitterUrl: string
-  popularity?: number
+  popularity: number
   endorsementUrls?: string[]
   categories: string[]
   options: Option[]
