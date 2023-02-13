@@ -1,7 +1,7 @@
 import type { Network, Filter, Organization } from '../app/types'
 
 // All the cryptocurrency networks must be listed here
-const NETWORKS: Network[] = ["Bitcoin", "Ethereum", "Avalanche", "Binance", "Polygon", "Solana", "Cosmos", "Polkadot", "Tron", "Mina", "Cardano", "VeChain", "Waves", "Tezos", "Celo", "Gnosis", "Aptos", "Optimism"];
+const NETWORKS: Network[] = ["Bitcoin", "Ethereum", "Avalanche", "Binance", "Polygon", "Solana", "Cosmos", "Polkadot", "Tron", "Mina", "Cardano", "VeChain", "Waves", "Tezos", "Celo", "Gnosis", "Aptos", "Optimism", "Arbitrum",];
 
 
 const categoryDetails: Record<string, { name: string; classes: string }> = {
