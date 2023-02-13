@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format:check": "pnpx prettier --check .",
-    "format:fix": "pnpx prettier --write .",
+    "format:check": "pnpm exec prettier --check .",
+    "format:fix": "pnpm exec prettier --write .",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -40,6 +40,6 @@
     "tailwindcss": "^3.2.6"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,css,md}": "pnpx prettier --write ."
+    "*.{ts,tsx,js,css,md}": "pnpm exec prettier --write ."
   }
 }
