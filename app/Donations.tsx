@@ -337,6 +337,54 @@ export default function Organizations() {
                       createFilterElement(section, "px-4")
                     )}
                   </form>
+                  {filters !== initialFilters ? (
+                    <div className="flex flex-col items-center gap-1">
+                      <button
+                        id="reset"
+                        type="button"
+                        onClick={() => {
+                          resetFilter()
+                        }}
+                        className="relative inline-flex items-center gap-2 px-4 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
+                      >
+                        <span className="">Reset Filter</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          toast(
+                            <div className="inline-flex items-center">
+                              <ClipboardIcon
+                                className="w-8 h-8 mr-5 text-gray-200 sm:h-8 sm:w-8"
+                                aria-hidden="true"
+                              />
+                              <p>Copied URL of the filter settings</p>
+                            </div>,
+                            {
+                              position: "bottom-center",
+                              autoClose: 5000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: false,
+                              theme: "dark",
+                            }
+                          )
+                          navigator.clipboard.writeText(window.location.href)
+                        }}
+                        className="relative inline-flex items-center gap-2 px-4 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
+                      >
+                        <ClipboardIcon
+                          className="-ml-0.5 h-6 w-6 sm:h-4 sm:w-4 text-gray-400"
+                          aria-hidden="true"
+                        />
+
+                        <span className="">Copy URL for this filter</span>
+                      </button>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
                   {filteredOrganizations.length !== organizations.length && (
                     <p className="mt-4 text-center text-gray-400">
                       Displaying {filteredOrganizations.length} of{" "}
@@ -432,6 +480,54 @@ export default function Organizations() {
                 <h3 className="sr-only">Categories</h3>
 
                 {filters.map((section) => createFilterElement(section))}
+                {filters !== initialFilters ? (
+                  <div className="flex flex-col items-center gap-1">
+                    <button
+                      id="reset"
+                      type="button"
+                      onClick={() => {
+                        resetFilter()
+                      }}
+                      className="relative inline-flex items-center gap-2 px-4 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
+                    >
+                      <span className="">Reset Filter</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        toast(
+                          <div className="inline-flex items-center">
+                            <ClipboardIcon
+                              className="w-8 h-8 mr-5 text-gray-200 sm:h-8 sm:w-8"
+                              aria-hidden="true"
+                            />
+                            <p>Copied URL of the filter settings</p>
+                          </div>,
+                          {
+                            position: "bottom-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: false,
+                            theme: "dark",
+                          }
+                        )
+                        navigator.clipboard.writeText(window.location.href)
+                      }}
+                      className="relative inline-flex items-center gap-2 px-4 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
+                    >
+                      <ClipboardIcon
+                        className="-ml-0.5 h-6 w-6 sm:h-4 sm:w-4 text-gray-400"
+                        aria-hidden="true"
+                      />
+
+                      <span className="">Copy URL for this filter</span>
+                    </button>
+                  </div>
+                ) : (
+                  <></>
+                )}
                 {filteredOrganizations.length !== organizations.length && (
                   <p className="mt-4 text-center text-gray-400">
                     Displaying {filteredOrganizations.length} of{" "}
