@@ -18,7 +18,7 @@ export type Network =
   | 'Aptos'
   | 'Optimism'
 
-export type OptionType = 'cryptocurrency' | 'bank' | 'btcturk' | 'card' | 'nft'
+export type OptionType = 'cryptocurrency' | 'bank' | 'btcturk' | 'card' | 'nft' | 'giveth'
 
 export type FilterOption = { id: string; label: string; checked: boolean }
 
