@@ -74,10 +74,8 @@ export default function Organizations() {
   }
 
   const checkboxChangeHandler = ({target}: any) => {
-    console.log("Clicked", target);
     const {checked, id} = target;
     setFilters(prev => {
-      console.log(prev);
       const idParts = id.split("-");
       const clickedCategory = prev.find(item => item.id.toString() === idParts[1]);
       if (!clickedCategory) {
