@@ -1,6 +1,6 @@
-import Link from 'next/link'
+import Link from "next/link";
 
-import data from '../config/damageStats'
+import data from "../config/damageStats";
 
 export default function DamageStats() {
   return (
@@ -22,21 +22,41 @@ export default function DamageStats() {
       </div>
       <div className="mx-auto max-w-4xl px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
         <div className="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
-          <h2 className="text-base font-semibold text-white">{data.smallTitle}</h2>
-          <p className="mt-3 text-3xl font-bold tracking-tight text-rose-200">{data.title}</p>
+          <h2 className="text-base font-semibold text-white">
+            {data.smallTitle}
+          </h2>
+          <p className="mt-3 text-3xl font-bold tracking-tight text-rose-200">
+            {data.title}
+          </p>
           <p className="mt-5 text-lg text-gray-300">{data.text}</p>
           <div className="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 sm:grid-cols-2">
             {data.metrics.map((item) => (
               <p key={item.emphasis}>
-                <span className="block text-2xl font-bold text-white">{item.stat}</span>
+                <span className="block text-2xl font-bold text-white">
+                  {item.stat}
+                </span>
                 <span className="mt-1 block text-base text-gray-300">
-                  <span className="font-medium text-white">{item.emphasis}</span> {item.rest}
+                  <span className="font-medium text-white">
+                    {item.emphasis}
+                  </span>{" "}
+                  {item.rest}
                 </span>
                 <Link href={item.source} passHref={true}>
                   <span className="inline-flex items-center rounded bg-red-100 px-2 py-0.5 text-xs font-medium text-red-900">
                     Source
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3 h-3 ml-1">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-3 h-3 ml-1"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+                      />
                     </svg>
                   </span>
                 </Link>
@@ -46,5 +66,5 @@ export default function DamageStats() {
         </div>
       </div>
     </div>
-  )
+  );
 }

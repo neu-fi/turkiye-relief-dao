@@ -16,7 +16,6 @@ type OrganizationCardProps = {
   isOptionFiltered: (option: Option) => boolean;
 };
 
-
 export default function OrganizationCard({
   organization,
   isOptionFiltered,
@@ -62,7 +61,7 @@ export default function OrganizationCard({
             <img
               className="h-16 w-16 mix-blend-multiply"
               src={organization.logoUrl}
-							alt={`${organization.name} logo`}
+              alt={`${organization.name} logo`}
             />
           </div>
           <div className="ml-4">
@@ -72,7 +71,7 @@ export default function OrganizationCard({
             <div className="space-x-2">
               {organization.categories.map((category: string) => (
                 <span
-									key={categoryDetails[category].name}
+                  key={categoryDetails[category].name}
                   className={classNames(
                     "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
                     categoryDetails[category].classes

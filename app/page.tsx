@@ -1,8 +1,8 @@
-import DamageStats from './DamageStats';
-import DonationStats from './DonationStats';
-import Donations from './Donations';
-import { ChevronDownIcon } from '@heroicons/react/24/outline';
-import { organizations, NETWORKS } from '../config/donations';
+import DamageStats from "./DamageStats";
+import DonationStats from "./DonationStats";
+import Donations from "./Donations";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { organizations, NETWORKS } from "../config/donations";
 
 export default function Home() {
   const orgCount = organizations.length;
@@ -39,7 +39,8 @@ export default function Home() {
         </div>
         <div className="absolute bottom-4">
           <a href="#help" className="text-lg leading-7 text-white flex">
-            Learn more <ChevronDownIcon className="mt-1 ml-2 h-6 w-6" aria-hidden="true" />
+            Learn more{" "}
+            <ChevronDownIcon className="mt-1 ml-2 h-6 w-6" aria-hidden="true" />
           </a>
         </div>
       </div>
