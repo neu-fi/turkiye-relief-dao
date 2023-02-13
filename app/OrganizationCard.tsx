@@ -47,12 +47,13 @@ export default function OrganizationCard({
 									{organization.name}
 								</h3>
 								<div className="space-x-2">
-									{organization.categories.map((category: any) => (
+									{organization.categories.map((category: any, index: number) => (
 										<span
 											className={classNames(
 												"inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
 												categoryDetails[category].classes
 											)}
+											key={index}
 										>
 											{categoryDetails[category].name}
 										</span>
@@ -183,8 +184,8 @@ export default function OrganizationCard({
 																			</span>
 																		</Link>
 																		{option.sourceUrls?.map(
-																			(sourceUrl: string) => (
-																				<Link href={sourceUrl} passHref={true}>
+																			(sourceUrl: string, index: number) => (
+																				<Link href={sourceUrl} passHref={true} key={index}>
 																					<span className="inline-flex items-center rounded bg-red-100 px-2 py-0.5 text-xs font-medium text-red-900">
 																						Source
 																						<svg
