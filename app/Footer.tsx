@@ -41,7 +41,7 @@ const navigation = [
         className="w-7 mt-0.5 mx-auto h-7 "
         viewBox="0 0 290 290"
       >
-        <g clip-path="url(#a)">
+        <g clipPath="url(#a)">
           <circle cx="145" cy="145" r="145" />
           <mask
             id="b"
