@@ -280,10 +280,10 @@ export default function Organizations() {
                     ))}
                   </form>
 									{(filteredOrganizations.length !== organizations.length) && (
-										<p className='text-gray-400 mb-6 text-center'>
-											Displaying {filteredOrganizations.length} of{' '}
-											{organizations.length} options
-										</p>
+											<p className='text-gray-400 mt-4 text-center'>
+													Displaying {filteredOrganizations.length} of{' '}
+													{organizations.length} options
+											</p>
 									)}
                 </Dialog.Panel>
               </Transition.Child>
