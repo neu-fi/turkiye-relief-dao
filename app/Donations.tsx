@@ -191,6 +191,71 @@ export default function Organizations() {
     }
   }
 
+  const createFilterElement = (section: any, className?: string) => {
+    return section.id != "cryptocurrencies" || cryptoFilter ? (
+      <Disclosure
+        defaultOpen={section.id === "types"}
+        as="div"
+        key={section.id}
+        className={`border-b border-gray-200 py-6 ${className}`}
+      >
+        {({ open }) => (
+          <>
+            <h3 className="flow-root -my-3">
+              <Disclosure.Button className="flex items-center justify-between w-full py-3 text-sm text-gray-400 bg-white hover:text-gray-500">
+                <span className="font-medium text-gray-900">
+                  {section.name}
+                </span>
+                <span
+                  className={`${
+                    open ? "rotate-180" : ""
+                  } flex items-center transition-all duration-300`}
+                >
+                  <ChevronDownIcon className="w-5 h-5" />
+                </span>
+              </Disclosure.Button>
+            </h3>
+
+            <Transition
+              show={open}
+              className="overflow-hidden transition-all duration-500"
+              entered="overflow-auto"
+              enterFrom="transform scale-95 opacity-0 max-h-0"
+              enterTo="transform scale-100 opacity-100 max-h-[1000px]"
+              leaveFrom="transform scale-100 opacity-100 max-h-[1000px]"
+              leaveTo="transform scale-95 opacity-0 max-h-0"
+            >
+              <Disclosure.Panel className="p-2 pt-6">
+                <div className="space-y-4">
+                  {section.options.map((option: any) => (
+                    <div key={option.id} className="flex items-center">
+                      <input
+                        id={`filter-${section.id}-${option.id}`}
+                        name={`${section.id}[]`}
+                        defaultValue={option.id}
+                        type="checkbox"
+                        defaultChecked={option.checked}
+                        onChange={checkboxChangeHandler}
+                        className="w-4 h-4 text-red-600 border-gray-300 rounded"
+                      />
+                      <label
+                        htmlFor={`filter-${section.id}-${option.id}`}
+                        className="ml-3 text-sm text-gray-600"
+                      >
+                        {option.label}
+                      </label>
+                    </div>
+                  ))}
+                </div>
+              </Disclosure.Panel>
+            </Transition>
+          </>
+        )}
+      </Disclosure>
+    ) : (
+      <></>
+    )
+  }
   const resetFilter = () => {
     setFilters((prev) =>
       prev.map((section) => {
@@ -269,132 +334,17 @@ export default function Organizations() {
                     <h3 className="sr-only">Categories</h3>
 
                     {filters.map((section) =>
-                      section.id != "cryptocurrencies" || cryptoFilter ? (
-                        <Disclosure
-                          as="div"
-                          key={section.id}
-                          className="px-4 py-6 border-t border-gray-200"
-                        >
-                          {({ open }) => (
-                            <>
-                              <h3 className="flow-root -mx-2 -my-3">
-                                <Disclosure.Button className="flex items-center justify-between w-full px-2 py-3 text-gray-400 bg-white hover:text-gray-500">
-                                  <span className="font-medium text-gray-900">
-                                    {section.name}
-                                  </span>
-                                  <span
-                                    className={`${
-                                      open ? "rotate-180" : ""
-                                    } flex items-center transition-all duration-300`}
-                                  >
-                                    <ChevronDownIcon className="w-5 h-5" />
-                                  </span>
-                                </Disclosure.Button>
-                              </h3>
-                              <Transition
-                                show={open}
-                                className="overflow-hidden transition-all duration-500"
-                                entered="overflow-auto"
-                                enterFrom="transform scale-95 opacity-0 max-h-0"
-                                enterTo="transform scale-100 opacity-100 max-h-[1000px]"
-                                leaveFrom="transform scale-100 opacity-100 max-h-[1000px]"
-                                leaveTo="transform scale-95 opacity-0 max-h-0"
-                              >
-                                <Disclosure.Panel className="pt-6">
-                                  <div className="space-y-6">
-                                    {section.options.map((option) => (
-                                      <div
-                                        key={option.id}
-                                        className="flex items-center"
-                                      >
-                                        <input
-                                          id={`filter-${section.id}-${option.id}`}
-                                          name={`${section.id}[]`}
-                                          defaultValue={option.id}
-                                          type="checkbox"
-                                          checked={option.checked}
-                                          defaultChecked={option.checked}
-                                          onChange={checkboxChangeHandler}
-                                          className="w-4 h-4 text-red-600 border-gray-300 rounded"
-                                        />
-                                        <label
-                                          htmlFor={`filter-${section.id}-${option.id}`}
-                                          className="flex-1 min-w-0 ml-3 text-gray-500"
-                                        >
-                                          {option.label}
-                                        </label>
-                                      </div>
-                                    ))}
-                                  </div>
-                                </Disclosure.Panel>
-                              </Transition>
-                            </>
-                          )}
-                        </Disclosure>
-                      ) : (
-                        <></>
-                      )
+                      createFilterElement(section, "px-4")
                     )}
-
-                    {/* <Link href={window.location.href}> */}
-                    {filters !== initialFilters ? (
-                      <div className="flex flex-col items-center gap-1">
-                        <button
-                          id="reset"
-                          type="button"
-                          onClick={() => {
-                            resetFilter()
-                          }}
-                          className="relative inline-flex items-center gap-2 px-4 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
-                        >
-                          <span className="">Reset Filter</span>
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            toast(
-                              <div className="inline-flex items-center">
-                                <ClipboardIcon
-                                  className="w-8 h-8 mr-5 text-gray-200 sm:h-8 sm:w-8"
-                                  aria-hidden="true"
-                                />
-                                <p>Copied URL of the filter settings</p>
-                              </div>,
-                              {
-                                position: "bottom-center",
-                                autoClose: 5000,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: false,
-                                theme: "dark",
-                              }
-                            )
-                            navigator.clipboard.writeText(window.location.href)
-                          }}
-                          className="relative inline-flex items-center gap-2 px-4 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
-                        >
-                          <ClipboardIcon
-                            className="-ml-0.5 h-6 w-6 sm:h-4 sm:w-4 text-gray-400"
-                            aria-hidden="true"
-                          />
-
-                          <span className="">Copy URL for this filter</span>
-                        </button>
-                      </div>
-                    ) : (
-                      <></>
-                    )}
-                    {/* </Link> */}
                   </form>
+                  {filteredOrganizations.length !== organizations.length && (
+                    <p className="mt-4 text-center text-gray-400">
+                      Displaying {filteredOrganizations.length} of{" "}
+                      {organizations.length} options
+                    </p>
+                  )}
                 </Dialog.Panel>
               </Transition.Child>
-              {filteredOrganizations.length !== organizations.length && (
-                <p className="mb-6 text-center text-gray-400">
-                  Displaying {filteredOrganizations.length} of{" "}
-                  {organizations.length} options
-                </p>
-              )}
             </div>
           </Dialog>
         </Transition.Root>
@@ -481,125 +431,7 @@ export default function Organizations() {
               <form className="hidden lg:block">
                 <h3 className="sr-only">Categories</h3>
 
-                {filters.map((section) =>
-                  section.id != "cryptocurrencies" || cryptoFilter ? (
-                    <Disclosure
-                      defaultOpen={section.id === "types"}
-                      as="div"
-                      key={section.id}
-                      className="py-6 border-b border-gray-200"
-                    >
-                      {({ open }) => (
-                        <>
-                          <h3 className="flow-root -my-3">
-                            <Disclosure.Button className="flex items-center justify-between w-full py-3 text-sm text-gray-400 bg-white hover:text-gray-500">
-                              <span className="font-medium text-gray-900">
-                                {section.name}
-                              </span>
-                              <span
-                                className={`${
-                                  open ? "rotate-180" : ""
-                                } flex items-center transition-all duration-300`}
-                              >
-                                <ChevronDownIcon className="w-5 h-5" />
-                              </span>
-                            </Disclosure.Button>
-                          </h3>
-
-                          <Transition
-                            show={open}
-                            className="overflow-hidden transition-all duration-500"
-                            entered="overflow-auto"
-                            enterFrom="transform scale-95 opacity-0 max-h-0"
-                            enterTo="transform scale-100 opacity-100 max-h-[1000px]"
-                            leaveFrom="transform scale-100 opacity-100 max-h-[1000px]"
-                            leaveTo="transform scale-95 opacity-0 max-h-0"
-                          >
-                            <Disclosure.Panel className="pt-6">
-                              <div className="space-y-4">
-                                {section.options.map((option) => (
-                                  <div
-                                    key={option.id}
-                                    className="flex items-center"
-                                  >
-                                    <input
-                                      id={`filter-${section.id}-${option.id}`}
-                                      name={`${section.id}[]`}
-                                      defaultValue={option.id}
-                                      type="checkbox"
-                                      checked={option.checked}
-                                      defaultChecked={option.checked}
-                                      onChange={checkboxChangeHandler}
-                                      className="w-4 h-4 text-red-600 border-gray-300 rounded"
-                                    />
-                                    <label
-                                      htmlFor={`filter-${section.id}-${option.id}`}
-                                      className="ml-3 text-sm text-gray-600"
-                                    >
-                                      {option.label}
-                                    </label>
-                                  </div>
-                                ))}
-                              </div>
-                            </Disclosure.Panel>
-                          </Transition>
-                        </>
-                      )}
-                    </Disclosure>
-                  ) : (
-                    <></>
-                  )
-                )}
-                {filters !== initialFilters ? (
-                  <div className="flex flex-col items-center gap-1">
-                    <button
-                      id="reset"
-                      type="button"
-                      onClick={() => {
-                        resetFilter()
-                      }}
-                      className="relative inline-flex items-center gap-2 px-4 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
-                    >
-                      <span className="">Reset Filter</span>
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => {
-                        toast(
-                          <div className="inline-flex items-center">
-                            <ClipboardIcon
-                              className="w-8 h-8 mr-5 text-gray-200 sm:h-8 sm:w-8"
-                              aria-hidden="true"
-                            />
-                            <p>Copied URL of the filter settings</p>
-                          </div>,
-                          {
-                            position: "bottom-center",
-                            autoClose: 5000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: false,
-                            theme: "dark",
-                          }
-                        )
-                        navigator.clipboard.writeText(window.location.href)
-                      }}
-                      className="relative inline-flex items-center gap-2 px-4 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
-                    >
-                      <ClipboardIcon
-                        className="-ml-0.5 h-6 w-6 sm:h-4 sm:w-4 text-gray-400"
-                        aria-hidden="true"
-                      />
-
-                      <span className="">Copy URL for this filter</span>
-                    </button>
-                  </div>
-                ) : (
-                  <></>
-                )}
-
+                {filters.map((section) => createFilterElement(section))}
                 {filteredOrganizations.length !== organizations.length && (
                   <p className="mt-4 text-center text-gray-400">
                     Displaying {filteredOrganizations.length} of{" "}
