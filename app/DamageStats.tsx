@@ -1,11 +1,6 @@
 import Link from 'next/link'
 
-const metrics = [
-  { stat: '7.8 and 7.5 Mww ', emphasis: 'Magnitudes', rest: 'of the mainshock and the largest aftershock.' , source: 'https://en.wikipedia.org/wiki/2023_Turkey%E2%80%93Syria_earthquake'},
-  { stat: '17,674', emphasis: 'Death toll', rest: 'from the latest official figures.' , source: 'https://www.nytimes.com/live/2023/02/09/world/turkey-syria-earthquake#little-aid-is-reaching-syria-the-un-says'},
-  { stat: '12,000', emphasis: 'Collapsed', rest: 'or seriously damaged buildings.' , source: 'https://www.washingtonpost.com/world/death-toll-rises-rescues-dwindle-in-earthquake-aftermath/2023/02/10/280d13ba-a905-11ed-b2a3-edb05ee0e313_story.html'},
-  { stat: '23 million', emphasis: 'People affected', rest: 'from the earthquakes.' , source: 'https://abcnews.go.com/International/live-updates/turkey-earthquake/?id=96913081#96947062'},
-]
+import data from '../config/damageStats'
 
 export default function DamageStats() {
   return (
@@ -27,16 +22,11 @@ export default function DamageStats() {
       </div>
       <div className="mx-auto max-w-4xl px-6 lg:max-w-7xl lg:px-8 xl:grid xl:grid-flow-col-dense xl:grid-cols-2 xl:gap-x-8">
         <div className="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
-          <h2 className="text-base font-semibold text-white">The Earthquakes</h2>
-          <p className="mt-3 text-3xl font-bold tracking-tight text-rose-200">
-            An International Emergency
-          </p>
-          <p className="mt-5 text-lg text-gray-300">
-            On 6 February 2023, two violent earthquakes southest Turkey. The country declared emergency state and
-            asking for help from the international community.
-          </p>
+          <h2 className="text-base font-semibold text-white">{data.smallTitle}</h2>
+          <p className="mt-3 text-3xl font-bold tracking-tight text-rose-200">{data.title}</p>
+          <p className="mt-5 text-lg text-gray-300">{data.text}</p>
           <div className="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 sm:grid-cols-2">
-            {metrics.map((item) => (
+            {data.metrics.map((item) => (
               <p key={item.emphasis}>
                 <span className="block text-2xl font-bold text-white">{item.stat}</span>
                 <span className="mt-1 block text-base text-gray-300">
