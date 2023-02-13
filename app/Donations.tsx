@@ -234,6 +234,7 @@ export default function Organizations() {
                         name={`${section.id}[]`}
                         defaultValue={option.id}
                         type="checkbox"
+                        checked={option.checked}
                         defaultChecked={option.checked}
                         onChange={checkboxChangeHandler}
                         className="w-4 h-4 text-red-600 border-gray-300 rounded"
