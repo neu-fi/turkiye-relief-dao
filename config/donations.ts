@@ -1,4 +1,4 @@
-import type { Network, Filter, Organization } from '../app/types'
+import type { Network, Filter, Organization, SortOption } from '../app/types'
 
 // All the cryptocurrency networks must be listed here
 const NETWORKS: Network[] = ["Bitcoin", "Ethereum", "Avalanche", "Binance", "Polygon", "Solana", "Cosmos", "Polkadot", "Tron", "Mina", "Cardano", "VeChain", "Waves", "Tezos", "Celo", "Gnosis", "Aptos", "Optimism", "Arbitrum"];
@@ -1020,10 +1020,7 @@ const organizations: Organization[] = [
   },
 ];
 
-const initialSortOptions = [
-  { name: 'Suggested', current: true },
-  { name: 'Most Popular', current: false },
-];
+const sortOptions: SortOption[] = ['Suggested', 'Most Popular']
 
 const initialFilters: Filter[]  = [
   {
@@ -1102,7 +1099,7 @@ export {
   categoryDetails,
   icons,
   organizations,
-  initialSortOptions,
+  sortOptions,
   initialFilters,
   explorers,
   NETWORKS

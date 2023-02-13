@@ -8,17 +8,22 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
   organizations,
-  initialSortOptions,
+  sortOptions,
   initialFilters,
 } from '../config/donations';
 import { classNames } from './utils';
 import OrganizationCard from './OrganizationCard'
-import type { Organization } from './types'
+import type { Organization, SortOption } from './types'
 
 export default function Organizations() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const [sortOptions, setSortOptions] = useState(initialSortOptions);
-  const [filters, setFilters] = useState(initialFilters);
+
+  // `suggested` as default
+  const [selectedSortOption, setSelectedSortOption] = useState<SortOption>(
+    sortOptions[0]
+  )
+
+  const [filters, setFilters] = useState(initialFilters)
   const cryptoFilter = filters[0].options[0].checked;
 
   const applyQueryToFilter = (id: string, newFilters: string[]) => {
@@ -90,21 +95,6 @@ export default function Organizations() {
     });
   }
 
-  const changeSortHandler = ({target}: any) => {
-    setSortOptions(prev => {
-      const currentOption = prev.find(item => item.current === true);
-      if (!currentOption) {
-        return [...prev];
-      }
-      currentOption.current = false;
-      const clickedOption = prev.find(item => item.name.toString() === target.innerText);
-      if (!clickedOption) {
-        return [...prev];
-      }
-      clickedOption.current = true;
-      return [...prev];
-    });
-  }
 
   const isOrganizationFiltered = (organization: any) => {
     const categoryFilters = filters.find(item => item?.id.toString() === 'categories');
@@ -170,11 +160,11 @@ export default function Organizations() {
 									<Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
 										<span className="font-medium text-gray-900">{section.name}</span>
 										<span className={`${open ? 'rotate-180' : ''} flex items-center transition-all duration-300`}>
-											<ChevronDownIcon className="h-5 w-5" />
-										</span>
+											<ChevronDownIcon className="h-5 w-5" />										
+                    </span>
 									</Disclosure.Button>
 								</h3>
-								
+
 								<Transition
 											show={open}
 											className="transition-all duration-500 overflow-hidden"
@@ -183,24 +173,24 @@ export default function Organizations() {
 											enterTo="transform scale-100 opacity-100 max-h-[1000px]"
 											leaveFrom="transform scale-100 opacity-100 max-h-[1000px]"
 											leaveTo="transform scale-95 opacity-0 max-h-0"
-										>
+                >
 								<Disclosure.Panel className="pt-6 p-2">
 									<div className="space-y-4">
-										{section.options.map((option: any) => (
+                  {section.options.map((option: any) => (
 											<div key={option.id} className="flex items-center">
 												<input
 													id={`filter-${section.id}-${option.id}`}
 													name={`${section.id}[]`}
 													defaultValue={option.id}
 													type="checkbox"
-													defaultChecked={option.checked}
+                          defaultChecked={option.checked}
 													onChange={checkboxChangeHandler}
 													className="h-4 w-4 rounded border-gray-300 text-red-600"
-												/>
-												<label
-													htmlFor={`filter-${section.id}-${option.id}`}
+                          />
+                          <label
+                            htmlFor={`filter-${section.id}-${option.id}`}
 													className="ml-3 text-sm text-gray-600"
-												>
+                          >
 													{option.label}
 												</label>
 											</div>
@@ -212,8 +202,8 @@ export default function Organizations() {
 						)}
 					</Disclosure>
 				: <></>
-		)
-	}
+        )
+      }
 
   useEffect(() => {
     applyQueryToFilters()
@@ -225,10 +215,15 @@ export default function Organizations() {
     return () => {}
   }, [filters])
 
-
   const filteredOrganizations: Organization[] = organizations.filter((org) =>
     isOrganizationFiltered(org)
   )
+
+  const sortedOrganizations =
+    selectedSortOption === 'Suggested'
+      ? filteredOrganizations
+      : // we don't want to mutate the origital list as it is suggested.
+        [...filteredOrganizations].sort((a, b) => b.popularity - a.popularity)
 
   return (
     <div className="bg-white px-3 lg:px-8 md:px-6">
@@ -279,12 +274,12 @@ export default function Organizations() {
                       createFilterElement(section, 'px-4')
                     ))}
                   </form>
-									{(filteredOrganizations.length !== organizations.length) && (
-											<p className='text-gray-400 mt-4 text-center'>
-													Displaying {filteredOrganizations.length} of{' '}
-													{organizations.length} options
-											</p>
-									)}
+                  {sortedOrganizations.length !== organizations.length && (
+                    <p className='text-gray-400 mt-4 text-center'>
+                      Displaying {filteredOrganizations.length} of{' '}
+                      {organizations.length} options
+                    </p>
+                  )}
                 </Dialog.Panel>
               </Transition.Child>
             </div>
@@ -302,7 +297,7 @@ export default function Organizations() {
 
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
-                {/* <div>
+                <div>
                   <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
                     Sort
                     <ChevronDownIcon
@@ -310,7 +305,7 @@ export default function Organizations() {
                       aria-hidden="true"
                     />
                   </Menu.Button>
-                </div> */}
+                </div>
 
                 <Transition
                   as={Fragment}
@@ -323,18 +318,20 @@ export default function Organizations() {
                 >
                   <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="py-1">
-                      {sortOptions.map((option) => (
-                        <Menu.Item key={option.name}>
+                      {sortOptions.map((sortOption) => (
+                        <Menu.Item key={sortOption}>
                           {({ active }) => (
                             <a
-                              onClick={changeSortHandler}
+                              onClick={() => setSelectedSortOption(sortOption)}
                               className={classNames(
-                                option.current ? 'font-medium text-gray-900 cursor-default' : 'text-gray-500 cursor-pointer',
+                                sortOption === selectedSortOption
+                                  ? "font-medium text-gray-900 cursor-default"
+                                  : "text-gray-500 cursor-pointer",
                                 active ? 'bg-gray-100' : '',
                                 'block px-4 py-2 text-sm'
                               )}
                             >
-                              {option.name}
+                              {sortOption}
                             </a>
                           )}
                         </Menu.Item>
@@ -368,12 +365,10 @@ export default function Organizations() {
               <form className="hidden lg:block">
                 <h3 className="sr-only">Categories</h3>
 
-                {filters.map((section) => (
-                  createFilterElement(section)
-                ))}
-                 {(filteredOrganizations.length !== organizations.length) && (
+                {filters.map((section) => createFilterElement(section))}
+                {sortedOrganizations.length !== organizations.length && (
                   <p className='text-gray-400 text-center mt-4'>
-                    Displaying {filteredOrganizations.length} of{' '}
+                    Displaying {sortedOrganizations.length} of{' '}
                     {organizations.length} options
                   </p>
                 )}
@@ -381,7 +376,7 @@ export default function Organizations() {
 
               {/* Contents */}
               <div className="lg:col-span-3">
-                {filteredOrganizations.map(
+                {sortedOrganizations.map(
                   (organization: Organization, i: number) => (
                     <OrganizationCard
                       organization={organization}
