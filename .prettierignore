@@ -1,0 +1,22 @@
+build
+coverage
+
+# Dist files
+node_modules/
+dist/
+.next/
+.vscode/
+
+# Markdown
+README.md
+LICENSE.md
+
+# Configuration files
+*.config.js
+tsconfig.json
+eslintrc.json
+
+# Node & NPM
+package.json
+package-lock.json
+pnpm-lock.yaml
