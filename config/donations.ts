@@ -1,7 +1,7 @@
 import type { Network, Filter, Organization } from '../app/types'
 
 // All the cryptocurrency networks must be listed here
-const NETWORKS: Network[] = ["Bitcoin", "Ethereum", "Avalanche", "Binance", "Polygon", "Solana", "Cosmos", "Polkadot", "Tron", "Mina", "Cardano", "VeChain", "Waves", "Tezos", "Celo", "Gnosis", "Aptos", "Optimism"];
+const NETWORKS: Network[] = ["Bitcoin", "Ethereum", "Avalanche", "Binance", "Polygon", "Solana", "Cosmos", "Polkadot", "Tron", "Mina", "Cardano", "VeChain", "Waves", "Tezos", "Celo", "Gnosis", "Aptos", "Optimism", "Arbitrum"];
 
 
 const categoryDetails: Record<string, { name: string; classes: string }> = {
@@ -55,6 +55,7 @@ const icons: Record<string, any>  = {
     'Gnosis': "./icons/options/gnosis.svg",
     'Aptos': "./icons/options/aptos.svg",
     'Optimism': "./icons/options/optimism.svg",
+    'Arbitrum': "./icons/options/arbitrum.svg",
   },
   bank: './icons/options/bank.svg',
   btcturk: './icons/options/btcturk.svg',
@@ -83,6 +84,19 @@ const organizations: Organization[] = [
     options: [
       {
         type: 'cryptocurrency',
+        name: 'Bitcoin',
+        address: 'bc1q0qk6088ysn5d3573wqky37xtlhaw3lta8eaqdslgz4840lrtefssxsp0p5',
+        sourceUrls: ["https://donation.btcturk.com/"],
+      },
+      {
+        type: 'cryptocurrency',
+        name: 'Ethereum',
+        address: '0x05F4510501B11388c71d657044b7Bf52e2637FaC',
+        sourceUrls: ['https://donation.btcturk.com/'],
+        warning: 'Only send ETH or USDT as this is an exchange wallet',
+      },
+      {
+        type: 'cryptocurrency',
         name: 'Ethereum',
         address: '0xe1935271D1993434A1a59fE08f24891Dc5F398Cd',
         sourceUrls: ['https://twitter.com/ahbap/status/1622963311514996739'],
@@ -95,9 +109,52 @@ const organizations: Organization[] = [
       },
       {
         type: 'cryptocurrency',
+        name: 'Avalanche',
+        address: '0x05F4510501B11388c71d657044b7Bf52e2637FaC',
+        sourceUrls: ["https://donation.btcturk.com/"],
+        warning: 'Only send AVAX or USDT as this is an exchange wallet',
+      },
+
+      {
+        type: 'cryptocurrency',
         name: 'Binance',
         address: '0xB67705398fEd380a1CE02e77095fed64f8aCe463',
         sourceUrls: ['https://twitter.com/ahbap/status/1622963311514996739'],
+      },
+      {
+        type: 'cryptocurrency',
+        name: 'Arbitrum',
+        address: '0x8888759373137b84e9f0ef13ecb13e321c251ee3',
+        sourceUrls: ['https://twitter.com/ConnextNetwork/status/1624413515611009024'],
+        info: 'Bridged through a trustless and audited contract',
+      },
+      {
+        type: 'cryptocurrency',
+        name: 'Optimism',
+        address: '0x8888759373137b84e9f0ef13ecb13e321c251ee3',
+        sourceUrls: ['https://twitter.com/ConnextNetwork/status/1624413515611009024'],
+        info: 'Bridged through a trustless and audited contract',
+      },
+      {
+        type: 'cryptocurrency',
+        name: 'Tron',
+        address: 'TYgthAAfSjkEb8FUsQRJXsf7xoFyAZVmQN',
+        sourceUrls: ["https://donation.btcturk.com/"],
+        warning: 'Only send USDT as this is an exchange wallet',
+      },
+      {
+        type: 'cryptocurrency',
+        name: 'Polkadot',
+        address: '153N7YvYpv9KgViCUSRm1j2MXEgcqX24tk7jno6V1oqudHhQ',
+        sourceUrls: ["https://donation.btcturk.com/"],
+        warning: 'Only send DOT as this is an exchange wallet'
+      },
+      {
+        type: 'cryptocurrency',
+        name: 'Cosmos',
+        address: 'cosmos1xlp4k2yz6zhhqxlp0hwdfqlpsz9k9gru3ezese',
+        sourceUrls: ["https://donation.btcturk.com/"],
+        warning: 'Only send ATOM with MEMO: 1142115728209',
       },
       {
         type: 'bank',
@@ -119,6 +176,18 @@ const organizations: Organization[] = [
     options: [
       {
         type: 'cryptocurrency',
+        name: 'Bitcoin',
+        address: '3PkihQfm6doGW41uZ5Q9GFNw6XpEK5g9Vk',
+        sourceUrls: ['https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'], // Turkish
+      },
+      {
+        type: 'cryptocurrency',
+        name: 'Bitcoin',
+        address: 'bc1q8f498j7ph7n2gumfzlxg9tjg8hx3gu94vhwe95zh8dw047dk52pqmus3dl',
+        sourceUrls: ['https://donation.btcturk.com/'],
+      },
+      {
+        type: 'cryptocurrency',
         name: 'Ethereum',
         address: '0xbe4cde5eeeed1f0a97a9457f6ef5b71eae108652',
         sourceUrls: ['https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'], // Turkish
@@ -126,9 +195,25 @@ const organizations: Organization[] = [
       },
       {
         type: 'cryptocurrency',
-        name: 'Bitcoin',
-        address: '3PkihQfm6doGW41uZ5Q9GFNw6XpEK5g9Vk',
-        sourceUrls: ['https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'], // Turkish
+        name: 'Ethereum',
+        address: '0x68e0150f1C36751b8edb9310Dbc9eDEb72FF9194',
+        sourceUrls: ['https://donation.btcturk.com/'],
+        warning: 'Only send ETH or USDT as this is an exchange wallet',
+      },
+      {
+        type: 'cryptocurrency',
+        name: 'Avalanche',
+        address: '0x68e0150f1C36751b8edb9310Dbc9eDEb72FF9194',
+        sourceUrls: ['https://donation.btcturk.com/'],
+        warning: 'Only send AVAX or USDT as this is an exchange wallet',
+      },
+      {
+        type: "cryptocurrency",
+        name: "Avalanche",
+        address: "X-avax19gqcmy3l5rynsp5xcnndzpgstcpmvshwqmasj6",
+        sourceUrls: ['https://donation.btcturk.com/'],
+        info: "X-Chain adress",
+        warning: "Only send Avax as this is an exchange wallet",
       },
       {
         type: 'cryptocurrency',
@@ -160,10 +245,24 @@ const organizations: Organization[] = [
       },
       {
         type: 'cryptocurrency',
+        name: 'Polkadot',
+        address: '14kfH529He4hRJHda7n1ZAes3mMtiKu7Ua4RV4qR1D6ytCkg',
+        sourceUrls: ['https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'], // Turkish
+        warning: 'Only send DOT as this is an exchange wallet'
+      },
+      {
+        type: 'cryptocurrency',
         name: 'Tron',
         address: 'TUAum5Q3GWZvzsS1yQaDdjkDAzp3HbvKTT',
         sourceUrls: ['https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'], // Turkish
         warning: 'Only send TRX as this is an exchange wallet',
+      },
+      {
+        type: 'cryptocurrency',
+        name: 'Tron',
+        address: 'TEP5etbKtdZdQZJn4tnYMK6faL6K4TPtQ3',
+        sourceUrls: ['https://donation.btcturk.com/'],
+        warning: 'Only send USDT as this is an exchange wallet',
       },
       {
         type: 'cryptocurrency',
@@ -172,12 +271,6 @@ const organizations: Organization[] = [
         sourceUrls: ['https://twitter.com/o1_labs/status/1623410090249183232', 'https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'], // Turkish
         info: 'Matched 1:1 by BtcTurk',
         warning: 'Only send Mina as this is an exchange wallet',
-      },
-      {
-        type: 'cryptocurrency',
-        name: 'Aptos',
-        address: '0x9de5a9b2b213de4c4de3f110d78d0d4e8097c64dd6cc82a547e9859bdac91d47',
-        sourceUrls: ['https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'],
       },
       {
         type: 'card',
@@ -234,12 +327,6 @@ const organizations: Organization[] = [
         address: "0x6aAb7738A646ED1E355a838807b7B7F1B2e60bE4",
         sourceUrls: ["https://ankarelief.org"],
       },
-      {
-        type: "cryptocurrency",
-        name: "Optimism",
-        address: "0xb88A1deaE6a5dA84B15BBD272E550bd9e87b8a5B",
-        sourceUrls: ["https://ankarelief.org"],
-      }
     ],
   },
   {
@@ -254,6 +341,12 @@ const organizations: Organization[] = [
     options: [
       {
         type: 'cryptocurrency',
+        name: 'Bitcoin',
+        address: 'bc1qs55dek82kzej5grqf73sd03hhpyyjdjf4zshnljwukuf72q6uekqhwznrg',
+        sourceUrls: ['https://donation.btcturk.com/'],
+      },
+      {
+        type: 'cryptocurrency',
         name: 'Ethereum',
         address: '0x9b40f98ccc326beaa0bfb94cfa8bfc6383a267e5',
         sourceUrls: ['https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'], // Turkish
@@ -261,10 +354,24 @@ const organizations: Organization[] = [
       },
       {
         type: 'cryptocurrency',
+        name: 'Ethereum',
+        address: '0x321C6e791Aa2Ebb6fc09C2035EA7BcC4c5eaaf8B',
+        sourceUrls: ['https://donation.btcturk.com/'],
+        warning: 'Only send ETH or USDT as this is an exchange wallet',
+      },
+      {
+        type: 'cryptocurrency',
         name: 'Tron',
         address: 'TCJ2qvKJsXE4XZD2VcyeppDWmZUGfLShMm',
         sourceUrls: ['https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'], // Turkish
         warning: 'Only send TRX as this is an exchange wallet'
+      },
+      {
+        type: 'cryptocurrency',
+        name: 'Tron',
+        address: 'TVTAdysqTQTpw36mLbUeaHM1zUkuuByXKZ',
+        sourceUrls: ['https://donation.btcturk.com/'],
+        warning: 'Only send USDT as this is an exchange wallet'
       },
       {
         type: 'cryptocurrency',
@@ -440,6 +547,35 @@ const organizations: Organization[] = [
       },
       {
         type: 'cryptocurrency',
+        name: 'Avalanche',
+        address: '0x64A994CC850a56e87331d880A23A69b16dbFC8ea',
+        sourceUrls: ['https://donation.btcturk.com/'],
+        warning: 'Only send AVAX or USDT as this is an exchange wallet',
+      },
+      {
+        type: "cryptocurrency",
+        name: "Avalanche",
+        address: "X-avax10vy5l9ze8e40vfdtpvg8rd6rnzunxqy5j58ugw",
+        sourceUrls: ["https://donation.btcturk.com/"],
+        info: "X-Chain adress",
+        warning: "Only send Avax as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Tron",
+        address: "TTLfZCo1hnsiviBns2ZsWig1dHWJsG5ct8",
+        sourceUrls: ["https://donation.btcturk.com/"],
+        warning: "Only send USDT as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Cosmos",
+        address: "cosmos1xlp4k2yz6zhhqxlp0hwdfqlpsz9k9gru3ezese",
+        sourceUrls: ["https://donation.btcturk.com/"],
+        warning: "Only send ATOM with MEMO: 6905415726807",
+      },
+      {
+        type: 'cryptocurrency',
         name: 'Aptos',
         address: '0x6f2851b551dd92f1743ad85cdf904a09141231b184446edab9ad0d603d4c461b',
         sourceUrls: ['https://www.paribu.com/blog/haberler/afet-destek-planimiz-ve-kripto-para-ile-bagis-organizasyonu-hakkinda/'],
@@ -535,6 +671,14 @@ const organizations: Organization[] = [
         address: "0x1fc82b7a62c0414163A332693Ec66EC91f4cd1dE",
         sourceUrls: ["https://www.kizilay.org.tr/donation-methods/crypto-donation-accountwallet-informations"],
         warning: "Only send Avax, USDT or USDC as this is an exchange wallet",
+      },
+      {
+        type: "cryptocurrency",
+        name: "Avalanche",
+        address: "X-avax1a4w3ld27ga4flznmkt5hpvm4karc0njfl85lws",
+        sourceUrls: ["https://donation.btcturk.com/"],
+        info: "X-Chain adress",
+        warning: "Only send AVAX as this is an exchange wallet",
       },
       {
         type: "cryptocurrency",
@@ -904,7 +1048,7 @@ const initialFilters: Filter[]  = [
       { id: 'Gnosis', label: 'Gnosis', checked: true },
       { id: 'Aptos', label: 'Aptos', checked: true },
       { id: 'Optimism', label: 'Optimism', checked: true },
-
+      { id: 'Arbitrum', label: 'Arbitrum', checked: true },
     ],
   },
   {
@@ -939,7 +1083,8 @@ const explorers: Record<string,string> = {
   'Celo': "https://celoscan.io/address/",
   'Gnosis': "https://gnosisscan.io/address/",
   'Aptos': "https://explorer.aptoslabs.com/account/",
-  'Optimism': "https://optimistic.etherscan.io/address/"
+  'Optimism': "https://optimistic.etherscan.io/address/",
+  'Arbitrum': "https://arbiscan.io/address/",
 }
 
 export {
