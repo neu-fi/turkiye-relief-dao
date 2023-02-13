@@ -104,20 +104,6 @@ export default function OrganizationCard({
 		)
 	}
 	
-	const createHeader = () => {
-		const headerContent = createHeaderContent();
-		const headerLinks = createHeaderLinks();
-
-		return (
-			<div className={`${expanded ? "border-b border-gray-200" : ""} px-4 py-5 sm:px-6`}>
-				<div className="-mt-4 flex flex-wrap items-center sm:flex-nowrap grow justify-center">
-					{headerContent}
-					{headerLinks}
-				</div>
-			</div>
-		)
-	}
-
 	const createOptionDesc = (option: any) => {
 		return (
 			<td className="text-sm px-2 sm:px-3">
@@ -263,7 +249,7 @@ export default function OrganizationCard({
 		)
 	}
 
-	const createBody = () => {
+	function Body() {
 		return (
 			<div className="px-4 sm:px-6 lg:px-8">
 				<p className="mt-4 text-sm text-gray-700">
@@ -286,12 +272,23 @@ export default function OrganizationCard({
 		);
 	}
 
-	const header = createHeader();
-	const body = createBody();
+	function Header() {
+		const headerContent = createHeaderContent();
+		const headerLinks = createHeaderLinks();
+
+		return (
+			<div className={`${expanded ? "border-b border-gray-200" : ""} px-4 py-5 sm:px-6`}>
+				<div className="-mt-4 flex flex-wrap items-center sm:flex-nowrap grow justify-center">
+					{headerContent}
+					{headerLinks}
+				</div>
+			</div>
+		)
+	}
 	
 	return (
 		<div data-type="organization" className="bg-gray-50 mb-8 rounded-lg border-solid border-4 border-gray-100 shadow ring-1 ring-black ring-opacity-5">
-			{header}
+			<Header />
 			<Transition
 				show={expanded}
 				className="transition-all duration-500 overflow-hidden"
@@ -300,7 +297,7 @@ export default function OrganizationCard({
 				enterTo="transform scale-100 opacity-100 max-h-[10000px]"
 				leaveFrom="transform scale-100 opacity-100 max-h-[10000px]"
 				leaveTo="transform scale-95 opacity-0 max-h-0">
-				{body}
+				<Body />
 			</Transition>
 		</div>
 	);
