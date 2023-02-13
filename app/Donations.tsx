@@ -21,8 +21,6 @@ export default function Organizations() {
   const [filters, setFilters] = useState(initialFilters);
   const cryptoFilter = filters[0].options[0].checked;
 
-
-
   const applyQueryToFilter = (id: string, newFilters: string[]) => {
 
     setFilters(prev => prev.map((section) => {
@@ -36,7 +34,6 @@ export default function Organizations() {
     })
     )
   }
-
 
   const applyQueryToFilters = () => {
       const typesQueryMatch = document.location.href.match(/types=([^&#]*)/)
@@ -54,8 +51,6 @@ export default function Organizations() {
         applyQueryToFilter("categories", categoriesQueryMatch[1].split(","))
       }
   }
-
-
 
   const applyFiltersToQuery = () : string => {
     let location = `${document.location.protocol}//${document.location.host}${document.location.pathname}?filtered=true`
@@ -77,8 +72,6 @@ export default function Organizations() {
 
     return location
   }
-
-
 
   const checkboxChangeHandler = ({target}: any) => {
     const {checked, id} = target;
@@ -167,6 +160,60 @@ export default function Organizations() {
     }
   }
 
+	const createFilterElement = (section: any, className?: string) => {
+		return (
+				(section.id != 'cryptocurrencies' || cryptoFilter) ?
+					<Disclosure defaultOpen={section.id === "types"} as="div" key={section.id} className={`border-b border-gray-200 py-6 ${className}`}>
+						{({ open }) => (
+							<>
+								<h3 className="-my-3 flow-root">
+									<Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
+										<span className="font-medium text-gray-900">{section.name}</span>
+										<span className={`${open ? 'rotate-180' : ''} flex items-center transition-all duration-300`}>
+											<ChevronDownIcon className="h-5 w-5" />
+										</span>
+									</Disclosure.Button>
+								</h3>
+								
+								<Transition
+											show={open}
+											className="transition-all duration-500 overflow-hidden"
+											entered="overflow-auto"
+											enterFrom="transform scale-95 opacity-0 max-h-0"
+											enterTo="transform scale-100 opacity-100 max-h-[1000px]"
+											leaveFrom="transform scale-100 opacity-100 max-h-[1000px]"
+											leaveTo="transform scale-95 opacity-0 max-h-0"
+										>
+								<Disclosure.Panel className="pt-6 p-2">
+									<div className="space-y-4">
+										{section.options.map((option: any) => (
+											<div key={option.id} className="flex items-center">
+												<input
+													id={`filter-${section.id}-${option.id}`}
+													name={`${section.id}[]`}
+													defaultValue={option.id}
+													type="checkbox"
+													defaultChecked={option.checked}
+													onChange={checkboxChangeHandler}
+													className="h-4 w-4 rounded border-gray-300 text-red-600"
+												/>
+												<label
+													htmlFor={`filter-${section.id}-${option.id}`}
+													className="ml-3 text-sm text-gray-600"
+												>
+													{option.label}
+												</label>
+											</div>
+										))}
+									</div>
+								</Disclosure.Panel>
+								</Transition>
+							</>
+						)}
+					</Disclosure>
+				: <></>
+		)
+	}
 
   useEffect(() => {
     applyQueryToFilters()
@@ -229,66 +276,17 @@ export default function Organizations() {
                     <h3 className="sr-only">Categories</h3>
 
                     {filters.map((section) => (
-                      (section.id != 'cryptocurrencies' || cryptoFilter) ?
-                        <Disclosure as="div" key={section.id} className="border-t border-gray-200 px-4 py-6">
-                          {({ open }) => (
-                            <>
-                              <h3 className="-mx-2 -my-3 flow-root">
-                                <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
-                                  <span className="font-medium text-gray-900">{section.name}</span>
-                              		<span className={`${open ? 'rotate-180' : ''} flex items-center transition-all duration-300`}>
-                                    <ChevronDownIcon className="h-5 w-5" />
-                                	</span>
-                                </Disclosure.Button>
-                              </h3>
-															<Transition
-																show={open}
-																className="transition-all duration-500 overflow-hidden"
-																entered="overflow-auto"
-																enterFrom="transform scale-95 opacity-0 max-h-0"
-																enterTo="transform scale-100 opacity-100 max-h-[1000px]"
-																leaveFrom="transform scale-100 opacity-100 max-h-[1000px]"
-																leaveTo="transform scale-95 opacity-0 max-h-0"
-															>
-																<Disclosure.Panel className="pt-6">
-																	<div className="space-y-6">
-																		{section.options.map((option) => (
-																			<div key={option.id} className="flex items-center">
-																				<input
-																					id={`filter-${section.id}-${option.id}`}
-																					name={`${section.id}[]`}
-																					defaultValue={option.id}
-																					type="checkbox"
-																					defaultChecked={option.checked}
-
-																					onChange={checkboxChangeHandler}
-																					className="h-4 w-4 rounded border-gray-300 text-red-600"
-																				/>
-																				<label
-																					htmlFor={`filter-${section.id}-${option.id}`}
-																					className="ml-3 min-w-0 flex-1 text-gray-500"
-																				>
-																					{option.label}
-																				</label>
-																			</div>
-																		))}
-																	</div>
-																</Disclosure.Panel>
-															</Transition>
-                            </>
-                          )}
-                        </Disclosure>
-                      : <></>
+                      createFilterElement(section, 'px-4')
                     ))}
                   </form>
+									{(filteredOrganizations.length !== organizations.length) && (
+											<p className='text-gray-400 mt-4 text-center'>
+													Displaying {filteredOrganizations.length} of{' '}
+													{organizations.length} options
+											</p>
+									)}
                 </Dialog.Panel>
               </Transition.Child>
-              {(filteredOrganizations.length !== organizations.length) && (
-                  <p className='text-gray-400 mb-6 text-center'>
-                    Displaying {filteredOrganizations.length} of{' '}
-                    {organizations.length} options
-                  </p>
-                )}
             </div>
           </Dialog>
         </Transition.Root>
@@ -371,56 +369,7 @@ export default function Organizations() {
                 <h3 className="sr-only">Categories</h3>
 
                 {filters.map((section) => (
-                  (section.id != 'cryptocurrencies' || cryptoFilter) ?
-                    <Disclosure defaultOpen={section.id === "types"} as="div" key={section.id} className="border-b border-gray-200 py-6">
-                      {({ open }) => (
-                        <>
-                          <h3 className="-my-3 flow-root">
-                            <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
-                              <span className="font-medium text-gray-900">{section.name}</span>
-                              <span className={`${open ? 'rotate-180' : ''} flex items-center transition-all duration-300`}>
-																<ChevronDownIcon className="h-5 w-5" />
-                              </span>
-                            </Disclosure.Button>
-                          </h3>
-													
-													<Transition
-																show={open}
-																className="transition-all duration-500 overflow-hidden"
-																entered="overflow-auto"
-																enterFrom="transform scale-95 opacity-0 max-h-0"
-																enterTo="transform scale-100 opacity-100 max-h-[1000px]"
-																leaveFrom="transform scale-100 opacity-100 max-h-[1000px]"
-																leaveTo="transform scale-95 opacity-0 max-h-0"
-															>
-                          <Disclosure.Panel className="pt-6">
-                            <div className="space-y-4">
-                              {section.options.map((option) => (
-                                <div key={option.id} className="flex items-center">
-                                  <input
-                                    id={`filter-${section.id}-${option.id}`}
-                                    name={`${section.id}[]`}
-                                    defaultValue={option.id}
-                                    type="checkbox"
-                                    defaultChecked={option.checked}
-                                    onChange={checkboxChangeHandler}
-                                    className="h-4 w-4 rounded border-gray-300 text-red-600"
-                                  />
-                                  <label
-                                    htmlFor={`filter-${section.id}-${option.id}`}
-                                    className="ml-3 text-sm text-gray-600"
-                                  >
-                                    {option.label}
-                                  </label>
-                                </div>
-                              ))}
-                            </div>
-                          </Disclosure.Panel>
-													</Transition>
-                        </>
-                      )}
-                    </Disclosure>
-                  : <></>
+                  createFilterElement(section)
                 ))}
                  {(filteredOrganizations.length !== organizations.length) && (
                   <p className='text-gray-400 text-center mt-4'>
