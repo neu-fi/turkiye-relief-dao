@@ -22,7 +22,7 @@ import type { Organization, SortOption } from "./types";
 
 export default function Organizations() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-
+  const [canReset, setCanReset] = useState(false)
   // `suggested` as default
   const [selectedSortOption, setSelectedSortOption] = useState<SortOption>(
     sortOptions[0]
@@ -264,6 +264,13 @@ export default function Organizations() {
 
   useEffect(() => {
     history.pushState({}, "", applyFiltersToQuery());
+
+    const isChecked = filters.some(category => {
+      return category.options.some(option => {
+        return !option.checked;
+      });
+    });
+    setCanReset(isChecked)
     return () => {};
   }, [filters]);
 
@@ -332,7 +339,7 @@ export default function Organizations() {
                       createFilterElement(section, "px-4")
                     )}
                   </form>
-                  {filters !== initialFilters ? (
+                  {canReset ? (
                     <div className="flex flex-row items-center justify-center gap-4 ">
                       <button
                         id="reset"
@@ -483,7 +490,7 @@ export default function Organizations() {
                 <h3 className="sr-only">Categories</h3>
 
                 {filters.map((section) => createFilterElement(section))}
-                {filters !== initialFilters ? (
+                {canReset ? (
                   <div className="flex flex-col items-center justify-around gap-2 xl:gap-4 xl:flex-row ">
                     <button
                       id="reset"
