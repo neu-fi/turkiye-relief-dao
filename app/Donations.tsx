@@ -14,7 +14,7 @@ import {
 } from "../config/donations";
 import { classNames } from "./utils";
 import OrganizationCard from "./OrganizationCard";
-import type { Organization, SortOption } from "./types";
+import type { Network, Organization, SortOption } from "./types";
 import { Option } from "./types";
 
 export default function Organizations() {
@@ -261,8 +261,8 @@ export default function Organizations() {
   const sortByNetwork = (a: Option, b: Option) => {
     if (a.type === "cryptocurrency" && b.type === "cryptocurrency") {
       return (
-        NETWORKS.findIndex((network) => network === a.name) -
-        NETWORKS.findIndex((network) => network === b.name)
+        NETWORKS.findIndex((network: Network) => network === a.name) -
+        NETWORKS.findIndex((network: Network) => network === b.name)
       );
     } else {
       return 0;
