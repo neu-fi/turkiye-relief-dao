@@ -236,9 +236,7 @@ export default function Organizations() {
           </>
         )}
       </Disclosure>
-    ) : (
-      <></>
-    );
+    ) : null;
   };
 
   useEffect(() => {
@@ -422,10 +420,11 @@ export default function Organizations() {
               {/* Contents */}
               <div className="lg:col-span-3">
                 {sortedOrganizations.map(
-                  (organization: Organization, i: number) => (
+                  (organization: Organization, index: number) => (
                     <OrganizationCard
                       organization={organization}
                       isOptionFiltered={isOptionFiltered}
+                      key={index}
                     />
                   )
                 )}
