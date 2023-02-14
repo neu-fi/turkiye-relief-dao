@@ -1,0 +1,31 @@
+@keyframes rotate360 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loader {
+    width: 100%;
+    height: 30vh;
+    background: #FFFFFF;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-spinner {
+    animation: rotate360 1s linear infinite;
+    transform: translateZ(0);
+    border-top: 2px solid #FFFFFF;
+    border-right: 2px solid #FFFFFF;
+    border-bottom: 2px solid #FFFFFF;
+    border-left: 4px solid #111827;
+    background: #FFFFFF;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
