@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import { Fragment, useEffect, useState } from "react"
-import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react"
+import { Fragment, useEffect, useState } from "react";
+import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
   ChevronDownIcon,
   ClipboardIcon,
   FunnelIcon,
   TrashIcon,
-} from "@heroicons/react/20/solid"
-import { toast,ToastContainer } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
+} from "@heroicons/react/20/solid";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   organizations,
   sortOptions,
@@ -22,7 +22,7 @@ import type { Organization, SortOption } from "./types";
 
 export default function Organizations() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-  const [canReset, setCanReset] = useState(false)
+  const [canReset, setCanReset] = useState(false);
   // `suggested` as default
   const [selectedSortOption, setSelectedSortOption] = useState<SortOption>(
     sortOptions[0]
@@ -103,13 +103,13 @@ export default function Organizations() {
         (item) => item.id.toString() === idParts[1]
       );
       if (!clickedCategory) {
-        return [...prev]
+        return [...prev];
       }
       const clickedOption = clickedCategory?.options.find(
         (item) => item.id.toString() === idParts[2]
       );
       if (!clickedOption) {
-        return [...prev]
+        return [...prev];
       }
       clickedOption.checked = checked;
       return [...prev];
@@ -121,25 +121,25 @@ export default function Organizations() {
       (item) => item?.id.toString() === "categories"
     );
     if (categoryFilters === undefined) {
-      alert("Assertion failed A")
-      return false
+      alert("Assertion failed A");
+      return false;
     }
     for (var category of organization.categories) {
       var categoryFilterOption = categoryFilters.options.find(
         (item) => item.id === category
       );
       if (categoryFilterOption === undefined) {
-        alert("Assertion failed B")
-        return false
+        alert("Assertion failed B");
+        return false;
       }
       if (categoryFilterOption.checked === false) {
-        return false
+        return false;
       }
     }
     // Look for a filtered option
     for (var option of organization.options) {
       if (isOptionFiltered(option)) {
-        return true
+        return true;
       }
     }
     // The organization doesn't have any filtered options
@@ -149,34 +149,34 @@ export default function Organizations() {
   const isOptionFiltered = (option: any) => {
     const typeFilters = filters.find((item) => item?.id.toString() === "types");
     if (typeFilters === undefined) {
-      alert("Assertion failed C")
-      return false
+      alert("Assertion failed C");
+      return false;
     }
     var typeFilter = typeFilters.options.find(
       (item) => item.id === option.type
     );
     if (typeFilter === undefined) {
-      alert("Assertion failed D " + option.type)
-      return false
+      alert("Assertion failed D " + option.type);
+      return false;
     }
     if (option.type === "cryptocurrency" && typeFilter.checked) {
       var cryptocurrencyFilters = filters.find(
         (item) => item?.id.toString() === "cryptocurrencies"
       );
       if (cryptocurrencyFilters === undefined) {
-        alert("Assertion failed E")
-        return false
+        alert("Assertion failed E");
+        return false;
       }
       var cryptocurrencyFilter = cryptocurrencyFilters.options.find(
         (item) => item.id === option.name
       );
       if (cryptocurrencyFilter === undefined) {
-        alert("Assertion failed F " + option.name)
-        return false
+        alert("Assertion failed F " + option.name);
+        return false;
       }
-      return cryptocurrencyFilter.checked
+      return cryptocurrencyFilter.checked;
     } else {
-      return typeFilter.checked
+      return typeFilter.checked;
     }
   };
 
@@ -243,19 +243,19 @@ export default function Organizations() {
       </Disclosure>
     ) : (
       <></>
-    )
-  }
+    );
+  };
   const resetFilter = () => {
     setFilters((prev) =>
       prev.map((section) => {
         section.options = section.options.map((option) => {
-          option.checked = true
-          return option
-        })
-        return section
+          option.checked = true;
+          return option;
+        });
+        return section;
       })
-    )
-  }
+    );
+  };
 
   useEffect(() => {
     applyQueryToFilters();
@@ -265,12 +265,12 @@ export default function Organizations() {
   useEffect(() => {
     history.pushState({}, "", applyFiltersToQuery());
 
-    const isChecked = filters.some(category => {
-      return category.options.some(option => {
+    const isChecked = filters.some((category) => {
+      return category.options.some((option) => {
         return !option.checked;
       });
     });
-    setCanReset(isChecked)
+    setCanReset(isChecked);
     return () => {};
   }, [filters]);
 
@@ -345,7 +345,7 @@ export default function Organizations() {
                         id="reset"
                         type="button"
                         onClick={() => {
-                          resetFilter()
+                          resetFilter();
                         }}
                         className="relative inline-flex items-center gap-2 px-2 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
                       >
@@ -377,8 +377,8 @@ export default function Organizations() {
                               draggable: false,
                               theme: "dark",
                             }
-                          )
-                          navigator.clipboard.writeText(window.location.href)
+                          );
+                          navigator.clipboard.writeText(window.location.href);
                         }}
                         className="relative inline-flex items-center gap-1 px-2 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
                       >
@@ -496,7 +496,7 @@ export default function Organizations() {
                       id="reset"
                       type="button"
                       onClick={() => {
-                        resetFilter()
+                        resetFilter();
                       }}
                       className="relative inline-flex items-center gap-1 px-2 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm min-w-fit hover:bg-gray-50"
                     >
@@ -528,8 +528,8 @@ export default function Organizations() {
                             draggable: false,
                             theme: "dark",
                           }
-                        )
-                        navigator.clipboard.writeText(window.location.href)
+                        );
+                        navigator.clipboard.writeText(window.location.href);
                       }}
                       className="flex items-center gap-1 px-3 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm min-w-fit hover:bg-gray-50"
                     >

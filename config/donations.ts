@@ -1157,6 +1157,31 @@ const organizations: Organization[] = [
     ],
   },
   {
+    name: "Hold My Hand",
+    description:
+      "Donation drop with 30 artists for earthquake victims in Turkey. All mint payments are channelled directly to Ahbap's ERC20 address via smart contract.",
+    logoUrl: "./icons/organizations/hold-my-hand.svg",
+    websiteUrl: "https://forturkey.art",
+    twitterUrl: "https://twitter.com/houseofmat_/",
+    popularity: 2,
+    endorsementUrls: [
+      "https://twitter.com/houseofmat_/status/1623837198863720452",
+    ],
+    categories: ["turkish", "individual"],
+    options: [
+      {
+        type: "nft",
+        name: "NFT",
+        linkName: "Mint Hold My Hand NFTs",
+        linkUrl: "https://forturkey.art",
+        sourceUrls: [
+          "https://twitter.com/houseofmat_/status/1623837198863720452?s=20",
+          "https://etherscan.io/address/0xe631fbfd5141c0fb1c6c0fbcfb2c19f8073bc6ba#code",
+        ],
+      },
+    ],
+  },
+  {
     name: "Earthquake Türkiye 2023 by Murat Pak",
     description:
       "Distinguished Turkish NFT artist Pak has built an NFT platform for raising funds for the relief effort. All donations are promised to be channelled to Ahbap.",
