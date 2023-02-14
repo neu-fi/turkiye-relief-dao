@@ -10,10 +10,12 @@ import {
   organizations,
   sortOptions,
   initialFilters,
+  NETWORKS,
 } from "../config/donations";
 import { classNames } from "./utils";
 import OrganizationCard from "./OrganizationCard";
 import type { Organization, SortOption } from "./types";
+import { Option } from "./types";
 
 export default function Organizations() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
@@ -242,20 +244,45 @@ export default function Organizations() {
   useEffect(() => {
     applyQueryToFilters();
     return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     history.pushState({}, "", applyFiltersToQuery());
     return () => {};
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters]);
 
   const filteredOrganizations: Organization[] = organizations.filter((org) =>
     isOrganizationFiltered(org)
   );
 
+  // Sort options by network
+  const sortByNetwork = (a: Option, b: Option) => {
+    if (a.type === "cryptocurrency" && b.type === "cryptocurrency") {
+      return (
+        NETWORKS.findIndex((network) => network === a.name) -
+        NETWORKS.findIndex((network) => network === b.name)
+      );
+    } else {
+      return 0;
+    }
+  };
+
+  // Option mutator
+  function sortCryptocurrenciesByNetworks(
+    organizations: Organization[]
+  ): Organization[] {
+    return [...organizations].map((organization: Organization) => {
+      organization.options.sort((a: Option, b: Option) => sortByNetwork(a, b));
+      return organization;
+    });
+  }
+
   const sortedOrganizations =
     selectedSortOption === "Suggested"
-      ? filteredOrganizations
+      ? // sort the options by network of the copy of the original list
+        sortCryptocurrenciesByNetworks(filteredOrganizations)
       : // we don't want to mutate the origital list as it is suggested.
         [...filteredOrganizations].sort((a, b) => b.popularity - a.popularity);
 
