@@ -7,6 +7,7 @@ import {
   ChevronDownIcon,
   FunnelIcon,
   ClipboardIcon,
+  TrashIcon,
 } from "@heroicons/react/20/solid"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
@@ -190,7 +191,6 @@ export default function Organizations() {
       return typeFilter.checked
     }
   }
-
   const createFilterElement = (section: any, className?: string) => {
     return section.id != "cryptocurrencies" || cryptoFilter ? (
       <Disclosure
@@ -338,16 +338,22 @@ export default function Organizations() {
                     )}
                   </form>
                   {filters !== initialFilters ? (
-                    <div className="flex flex-col items-center gap-1">
+                    <div className="flex flex-row items-center justify-center gap-4 ">
                       <button
                         id="reset"
                         type="button"
                         onClick={() => {
                           resetFilter()
                         }}
-                        className="relative inline-flex items-center gap-2 px-4 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
+                        className="relative inline-flex items-center gap-2 px-2 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
                       >
-                        <span className="">Reset Filter</span>
+                        <TrashIcon
+                          className="-ml-0.5 w-4 h-4 md:h-6 md:w-6  text-gray-400"
+                          aria-hidden="true"
+                        />
+                        <span className="text-sm tracking-tight">
+                          Reset Filter
+                        </span>
                       </button>
                       <button
                         type="button"
@@ -355,10 +361,10 @@ export default function Organizations() {
                           toast(
                             <div className="inline-flex items-center">
                               <ClipboardIcon
-                                className="w-8 h-8 mr-5 text-gray-200 sm:h-8 sm:w-8"
+                                className="w-8 h-8 mr-5 text-gray-200 "
                                 aria-hidden="true"
                               />
-                              <p>Copied URL of the filter settings</p>
+                              <p>Copied the URL for the current filter</p>
                             </div>,
                             {
                               position: "bottom-center",
@@ -372,14 +378,16 @@ export default function Organizations() {
                           )
                           navigator.clipboard.writeText(window.location.href)
                         }}
-                        className="relative inline-flex items-center gap-2 px-4 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
+                        className="relative inline-flex items-center gap-1 px-2 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
                       >
                         <ClipboardIcon
-                          className="-ml-0.5 h-6 w-6 sm:h-4 sm:w-4 text-gray-400"
+                          className="-ml-0.5 md:h-6 md:w-6 h-4 w-4 text-gray-400"
                           aria-hidden="true"
                         />
 
-                        <span className="">Copy URL for this filter</span>
+                        <span className="text-sm tracking-tight">
+                          Share This Filter
+                        </span>
                       </button>
                     </div>
                   ) : (
@@ -481,16 +489,22 @@ export default function Organizations() {
 
                 {filters.map((section) => createFilterElement(section))}
                 {filters !== initialFilters ? (
-                  <div className="flex flex-col items-center gap-1">
+                  <div className="flex flex-col items-center justify-around gap-2 xl:gap-4 xl:flex-row ">
                     <button
                       id="reset"
                       type="button"
                       onClick={() => {
                         resetFilter()
                       }}
-                      className="relative inline-flex items-center gap-2 px-4 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
+                      className="relative inline-flex items-center gap-1 px-2 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm min-w-fit hover:bg-gray-50"
                     >
-                      <span className="">Reset Filter</span>
+                      <TrashIcon
+                        className=" -ml-0.5 mt-0.5 h-4 w-4 lg:h-6 lg:w-6  text-gray-400"
+                        aria-hidden="true"
+                      />
+                      <span className="text-sm tracking-tight">
+                        Reset Filter
+                      </span>
                     </button>
                     <button
                       type="button"
@@ -498,10 +512,10 @@ export default function Organizations() {
                         toast(
                           <div className="inline-flex items-center">
                             <ClipboardIcon
-                              className="w-8 h-8 mr-5 text-gray-200 sm:h-8 sm:w-8"
+                              className="w-8 h-8 mr-5 text-gray-200 "
                               aria-hidden="true"
                             />
-                            <p>Copied URL of the filter settings</p>
+                            <p>Copied the URL for the current filter</p>
                           </div>,
                           {
                             position: "bottom-center",
@@ -515,14 +529,16 @@ export default function Organizations() {
                         )
                         navigator.clipboard.writeText(window.location.href)
                       }}
-                      className="relative inline-flex items-center gap-2 px-4 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
+                      className="flex items-center gap-1 px-3 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm min-w-fit hover:bg-gray-50"
                     >
                       <ClipboardIcon
-                        className="-ml-0.5 h-6 w-6 sm:h-4 sm:w-4 text-gray-400"
+                        className="-ml-0.5 mt-0.5 sm:w-4 sm:h-4 lg:w-6 lg:h-6 text-gray-400"
                         aria-hidden="true"
                       />
 
-                      <span className="">Copy URL for this filter</span>
+                      <span className="text-sm tracking-tight ">
+                        Share This Filter
+                      </span>
                     </button>
                   </div>
                 ) : (
