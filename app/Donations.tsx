@@ -1,11 +1,16 @@
-"use client";
+"use client"
 
-import { Fragment, useEffect, useState } from "react";
-import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
+import { Fragment, useEffect, useState } from "react"
+import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react"
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import { ChevronDownIcon, FunnelIcon } from "@heroicons/react/20/solid";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import {
+  ChevronDownIcon,
+  ClipboardIcon,
+  FunnelIcon,
+  TrashIcon,
+} from "@heroicons/react/20/solid"
+import { toast,ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 import {
   organizations,
   sortOptions,
@@ -18,7 +23,7 @@ import Loader from "./Loader/Loader";
 
 export default function Organizations() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
-
+  const [canReset, setCanReset] = useState(false)
   // `suggested` as default
   const [selectedSortOption, setSelectedSortOption] = useState<SortOption>(
     sortOptions[0]
@@ -113,13 +118,13 @@ export default function Organizations() {
         (item) => item.id.toString() === idParts[1]
       );
       if (!clickedCategory) {
-        return [...prev];
+        return [...prev]
       }
       const clickedOption = clickedCategory?.options.find(
         (item) => item.id.toString() === idParts[2]
       );
       if (!clickedOption) {
-        return [...prev];
+        return [...prev]
       }
       clickedOption.checked = checked;
       localStorage.setItem("filters", JSON.stringify(prev));
@@ -132,25 +137,25 @@ export default function Organizations() {
       (item) => item?.id.toString() === "categories"
     );
     if (categoryFilters === undefined) {
-      alert("Assertion failed A");
-      return false;
+      alert("Assertion failed A")
+      return false
     }
     for (var category of organization.categories) {
       var categoryFilterOption = categoryFilters.options.find(
         (item) => item.id === category
       );
       if (categoryFilterOption === undefined) {
-        alert("Assertion failed B");
-        return false;
+        alert("Assertion failed B")
+        return false
       }
       if (categoryFilterOption.checked === false) {
-        return false;
+        return false
       }
     }
     // Look for a filtered option
     for (var option of organization.options) {
       if (isOptionFiltered(option)) {
-        return true;
+        return true
       }
     }
     // The organization doesn't have any filtered options
@@ -160,34 +165,34 @@ export default function Organizations() {
   const isOptionFiltered = (option: any) => {
     const typeFilters = filters.find((item) => item?.id.toString() === "types");
     if (typeFilters === undefined) {
-      alert("Assertion failed C");
-      return false;
+      alert("Assertion failed C")
+      return false
     }
     var typeFilter = typeFilters.options.find(
       (item) => item.id === option.type
     );
     if (typeFilter === undefined) {
-      alert("Assertion failed D " + option.type);
-      return false;
+      alert("Assertion failed D " + option.type)
+      return false
     }
     if (option.type === "cryptocurrency" && typeFilter.checked) {
       var cryptocurrencyFilters = filters.find(
         (item) => item?.id.toString() === "cryptocurrencies"
       );
       if (cryptocurrencyFilters === undefined) {
-        alert("Assertion failed E");
-        return false;
+        alert("Assertion failed E")
+        return false
       }
       var cryptocurrencyFilter = cryptocurrencyFilters.options.find(
         (item) => item.id === option.name
       );
       if (cryptocurrencyFilter === undefined) {
-        alert("Assertion failed F " + option.name);
-        return false;
+        alert("Assertion failed F " + option.name)
+        return false
       }
-      return cryptocurrencyFilter.checked;
+      return cryptocurrencyFilter.checked
     } else {
-      return typeFilter.checked;
+      return typeFilter.checked
     }
   };
 
@@ -201,8 +206,8 @@ export default function Organizations() {
       >
         {({ open }) => (
           <>
-            <h3 className="-my-3 flow-root">
-              <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
+            <h3 className="flow-root -my-3">
+              <Disclosure.Button className="flex items-center justify-between w-full py-3 text-sm text-gray-400 bg-white hover:text-gray-500">
                 <span className="font-medium text-gray-900">
                   {section.name}
                 </span>
@@ -211,21 +216,21 @@ export default function Organizations() {
                     open ? "rotate-180" : ""
                   } flex items-center transition-all duration-300`}
                 >
-                  <ChevronDownIcon className="h-5 w-5" />
+                  <ChevronDownIcon className="w-5 h-5" />
                 </span>
               </Disclosure.Button>
             </h3>
 
             <Transition
               show={open}
-              className="transition-all duration-500 overflow-hidden"
+              className="overflow-hidden transition-all duration-500"
               entered="overflow-auto"
               enterFrom="transform scale-95 opacity-0 max-h-0"
               enterTo="transform scale-100 opacity-100 max-h-[1000px]"
               leaveFrom="transform scale-100 opacity-100 max-h-[1000px]"
               leaveTo="transform scale-95 opacity-0 max-h-0"
             >
-              <Disclosure.Panel className="pt-6 p-2">
+              <Disclosure.Panel className="p-2 pt-6">
                 <div className="space-y-4">
                   {section.options.map((option: any) => (
                     <div key={option.id} className="flex items-center">
@@ -234,9 +239,9 @@ export default function Organizations() {
                         name={`${section.id}[]`}
                         defaultValue={option.id}
                         type="checkbox"
-                        defaultChecked={option.checked}
+                        checked={option.checked}
                         onClick={checkboxChangeHandler}
-                        className="h-4 w-4 rounded border-gray-300 text-red-600"
+                        className="w-4 h-4 text-red-600 border-gray-300 rounded"
                       />
                       <label
                         htmlFor={`filter-${section.id}-${option.id}`}
@@ -252,8 +257,21 @@ export default function Organizations() {
           </>
         )}
       </Disclosure>
-    ) : null;
-  };
+    ) : (
+      <></>
+    )
+  }
+  const resetFilter = () => {
+    setFilters((prev) =>
+      prev.map((section) => {
+        section.options = section.options.map((option) => {
+          option.checked = true
+          return option
+        })
+        return section
+      })
+    )
+  }
 
   useEffect(() => {
     applyQueryToFilters();
@@ -262,6 +280,13 @@ export default function Organizations() {
 
   useEffect(() => {
     history.pushState({}, "", applyFiltersToQuery());
+
+    const isChecked = filters.some(category => {
+      return category.options.some(option => {
+        return !option.checked;
+      });
+    });
+    setCanReset(isChecked)
     return () => {};
   }, [filters]);
 
@@ -280,7 +305,7 @@ export default function Organizations() {
   }
 
   return (
-    <div className="bg-white px-3 lg:px-8 md:px-6">
+    <div className="px-3 bg-white lg:px-8 md:px-6">
       <div>
         {/* Mobile filter dialog */}
         <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -311,18 +336,18 @@ export default function Organizations() {
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <Dialog.Panel className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-y-auto bg-white py-4 pb-12 shadow-xl">
+                <Dialog.Panel className="relative flex flex-col w-full h-full max-w-xs py-4 pb-12 ml-auto overflow-y-auto bg-white shadow-xl">
                   <div className="flex items-center justify-between px-4">
                     <h2 className="text-lg font-medium text-gray-900">
                       Filters
                     </h2>
                     <button
                       type="button"
-                      className="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400"
+                      className="flex items-center justify-center w-10 h-10 p-2 -mr-2 text-gray-400 bg-white rounded-md"
                       onClick={() => setMobileFiltersOpen(false)}
                     >
                       <span className="sr-only">Close menu</span>
-                      <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                      <XMarkIcon className="w-6 h-6" aria-hidden="true" />
                     </button>
                   </div>
 
@@ -334,8 +359,64 @@ export default function Organizations() {
                       createFilterElement(section, "px-4")
                     )}
                   </form>
-                  {sortedOrganizations.length !== organizations.length && (
-                    <p className="text-gray-400 mt-4 text-center">
+                  {canReset ? (
+                    <div className="flex flex-row items-center justify-center gap-4 ">
+                      <button
+                        id="reset"
+                        type="button"
+                        onClick={() => {
+                          resetFilter()
+                        }}
+                        className="relative inline-flex items-center gap-2 px-2 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
+                      >
+                        <TrashIcon
+                          className="-ml-0.5 w-4 h-4 md:h-6 md:w-6  text-gray-400"
+                          aria-hidden="true"
+                        />
+                        <span className="text-sm tracking-tight">
+                          Reset Filter
+                        </span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          toast(
+                            <div className="inline-flex items-center">
+                              <ClipboardIcon
+                                className="w-8 h-8 mr-5 text-gray-200 "
+                                aria-hidden="true"
+                              />
+                              <p>Copied the URL for the current filter</p>
+                            </div>,
+                            {
+                              position: "bottom-center",
+                              autoClose: 5000,
+                              hideProgressBar: false,
+                              closeOnClick: true,
+                              pauseOnHover: true,
+                              draggable: false,
+                              theme: "dark",
+                            }
+                          )
+                          navigator.clipboard.writeText(window.location.href)
+                        }}
+                        className="relative inline-flex items-center gap-1 px-2 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50"
+                      >
+                        <ClipboardIcon
+                          className="-ml-0.5 md:h-6 md:w-6 h-4 w-4 text-gray-400"
+                          aria-hidden="true"
+                        />
+
+                        <span className="text-sm tracking-tight">
+                          Share This Filter
+                        </span>
+                      </button>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+                  {filteredOrganizations.length !== organizations.length && (
+                    <p className="mt-4 text-center text-gray-400">
                       Displaying {filteredOrganizations.length} of{" "}
                       {organizations.length} options
                     </p>
@@ -346,8 +427,8 @@ export default function Organizations() {
           </Dialog>
         </Transition.Root>
 
-        <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between border-b border-gray-200 pt-24 pb-6">
+        <main className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="flex items-end justify-between pt-24 pb-6 border-b border-gray-200">
             <div className="font-bold tracking-tight">
               <h2 className="text-base font-semibold text-red-600">
                 You Can Make a Difference
@@ -360,10 +441,10 @@ export default function Organizations() {
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
                 <div>
-                  <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
+                  <Menu.Button className="inline-flex justify-center text-sm font-medium text-gray-700 group hover:text-gray-900">
                     Sort
                     <ChevronDownIcon
-                      className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                      className="flex-shrink-0 w-5 h-5 ml-1 -mr-1 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
                     />
                   </Menu.Button>
@@ -378,7 +459,7 @@ export default function Organizations() {
                   leaveFrom="transform opacity-100 scale-100"
                   leaveTo="transform opacity-0 scale-95"
                 >
-                  <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
+                  <Menu.Items className="absolute right-0 z-10 w-40 mt-2 origin-top-right bg-white rounded-md shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="py-1">
                       {sortOptions.map((sortOption) => (
                         <Menu.Item key={sortOption}>
@@ -405,13 +486,13 @@ export default function Organizations() {
 
               <button
                 type="button"
-                className="group inline-flex -m-2 ml-4 p-2 text-gray-700 hover:text-gray-900 sm:ml-6 lg:hidden"
+                className="inline-flex p-2 ml-4 -m-2 text-gray-700 group hover:text-gray-900 sm:ml-6 lg:hidden"
                 onClick={() => setMobileFiltersOpen(true)}
               >
                 <span className="sr-only">Filters</span>
                 <p className="text-sm font-medium">Filters</p>
                 <FunnelIcon
-                  className="text-gray-400 group-hover:text-gray-500 h-5 w-5 ml-1"
+                  className="w-5 h-5 ml-1 text-gray-400 group-hover:text-gray-500"
                   aria-hidden="true"
                 />
               </button>
@@ -429,9 +510,65 @@ export default function Organizations() {
                 <h3 className="sr-only">Categories</h3>
 
                 {filters.map((section) => createFilterElement(section))}
-                {sortedOrganizations.length !== organizations.length && (
-                  <p className="text-gray-400 text-center mt-4">
-                    Displaying {sortedOrganizations.length} of{" "}
+                {canReset ? (
+                  <div className="flex flex-col items-center justify-around gap-2 xl:gap-4 xl:flex-row ">
+                    <button
+                      id="reset"
+                      type="button"
+                      onClick={() => {
+                        resetFilter()
+                      }}
+                      className="relative inline-flex items-center gap-1 px-2 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm min-w-fit hover:bg-gray-50"
+                    >
+                      <TrashIcon
+                        className=" -ml-0.5 mt-0.5 h-4 w-4 lg:h-6 lg:w-6  text-gray-400"
+                        aria-hidden="true"
+                      />
+                      <span className="text-sm tracking-tight">
+                        Reset Filter
+                      </span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        toast(
+                          <div className="inline-flex items-center">
+                            <ClipboardIcon
+                              className="w-8 h-8 mr-5 text-gray-200 "
+                              aria-hidden="true"
+                            />
+                            <p>Copied the URL for the current filter</p>
+                          </div>,
+                          {
+                            position: "bottom-center",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: false,
+                            theme: "dark",
+                          }
+                        )
+                        navigator.clipboard.writeText(window.location.href)
+                      }}
+                      className="flex items-center gap-1 px-3 py-2 mt-4 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm min-w-fit hover:bg-gray-50"
+                    >
+                      <ClipboardIcon
+                        className="-ml-0.5 mt-0.5 sm:w-4 sm:h-4 lg:w-6 lg:h-6 text-gray-400"
+                        aria-hidden="true"
+                      />
+
+                      <span className="text-sm tracking-tight ">
+                        Share This Filter
+                      </span>
+                    </button>
+                  </div>
+                ) : (
+                  <></>
+                )}
+                {filteredOrganizations.length !== organizations.length && (
+                  <p className="mt-4 text-center text-gray-400">
+                    Displaying {filteredOrganizations.length} of{" "}
                     {organizations.length} options
                   </p>
                 )}
