@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { GoogleAnalytics } from "nextjs-google-analytics"
+import { GoogleAnalytics } from "nextjs-google-analytics";
 
-import "./globals.css"
-import Footer from "./Footer"
+import "./globals.css";
+import Footer from "./Footer";
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en" className="scroll-smooth">
@@ -19,5 +19,5 @@ export default function RootLayout({
         <Footer />
       </body>
     </html>
-  )
+  );
 }

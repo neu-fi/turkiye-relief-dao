@@ -2,70 +2,74 @@
 
 import { Fragment, useEffect, useState } from "react"
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react"
-import { XMarkIcon } from "@heroicons/react/24/outline"
+import { XMarkIcon } from "@heroicons/react/24/outline";
 import {
   ChevronDownIcon,
-  FunnelIcon,
   ClipboardIcon,
+  FunnelIcon,
   TrashIcon,
 } from "@heroicons/react/20/solid"
-import { ToastContainer } from "react-toastify"
+import { toast,ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import {
   organizations,
-  initialSortOptions,
+  sortOptions,
   initialFilters,
-} from "../config/donations"
-import { classNames } from "./utils"
-import OrganizationCard from "./OrganizationCard"
-import type { Organization } from "./types"
-import { toast } from "react-toastify"
+} from "../config/donations";
+import { classNames } from "./utils";
+import OrganizationCard from "./OrganizationCard";
+import type { Organization, SortOption } from "./types";
 
 export default function Organizations() {
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const [sortOptions, setSortOptions] = useState(initialSortOptions)
-  const [filters, setFilters] = useState(initialFilters)
-  const cryptoFilter = filters[0].options[0].checked
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
+  // `suggested` as default
+  const [selectedSortOption, setSelectedSortOption] = useState<SortOption>(
+    sortOptions[0]
+  );
+
+  const [filters, setFilters] = useState(initialFilters);
+  const cryptoFilter = filters[0].options[0].checked;
 
   const applyQueryToFilter = (id: string, newFilters: string[]) => {
     setFilters((prev) =>
       prev.map((section) => {
         if (section.id === id) {
           section.options = section.options.map((option) => {
-            option.checked = newFilters.includes(option.id)
-            return option
-          })
+            option.checked = newFilters.includes(option.id);
+            return option;
+          });
         }
-        return section
+        return section;
       })
-    )
-  }
+    );
+  };
 
   const applyQueryToFilters = () => {
-    const typesQueryMatch = document.location.href.match(/types=([^&#]*)/)
+    const typesQueryMatch = document.location.href.match(/types=([^&#]*)/);
     if (typesQueryMatch && typesQueryMatch?.length > 0) {
-      applyQueryToFilter("types", typesQueryMatch[1].split(","))
+      applyQueryToFilter("types", typesQueryMatch[1].split(","));
     }
 
     const cryptocurrenciesQueryMatch = document.location.href.match(
       /cryptocurrencies=([^&#]*)/
-    )
+    );
     if (cryptocurrenciesQueryMatch && cryptocurrenciesQueryMatch?.length > 0) {
       applyQueryToFilter(
         "cryptocurrencies",
         cryptocurrenciesQueryMatch[1].split(",")
-      )
+      );
     }
 
     const categoriesQueryMatch =
-      document.location.href.match(/categories=([^&#]*)/)
+      document.location.href.match(/categories=([^&#]*)/);
     if (categoriesQueryMatch && categoriesQueryMatch?.length > 0) {
-      applyQueryToFilter("categories", categoriesQueryMatch[1].split(","))
+      applyQueryToFilter("categories", categoriesQueryMatch[1].split(","));
     }
-  }
+  };
 
   const applyFiltersToQuery = (): string => {
-    let location = `${document.location.protocol}//${document.location.host}${document.location.pathname}?filtered=true`
+    let location = `${document.location.protocol}//${document.location.host}${document.location.pathname}?filtered=true`;
 
     const generateQueryForFilter = (id: string) => {
       if (
@@ -78,62 +82,44 @@ export default function Organizations() {
           .find((section) => section.id === id)
           ?.options.filter((option) => option.checked)
           .map((option) => option.id)
-          .join(",")}`
+          .join(",")}`;
       } else {
-        location.replaceAll(new RegExp(`/${id}=([^&#]*)/`, "g"), "")
+        location.replaceAll(new RegExp(`/${id}=([^&#]*)/`, "g"), "");
       }
-    }
+    };
 
-    generateQueryForFilter("types")
-    generateQueryForFilter("cryptocurrencies")
-    generateQueryForFilter("categories")
+    generateQueryForFilter("types");
+    generateQueryForFilter("cryptocurrencies");
+    generateQueryForFilter("categories");
 
-    return location
-  }
+    return location;
+  };
 
   const checkboxChangeHandler = ({ target }: any) => {
-    const { checked, id } = target
+    const { checked, id } = target;
     setFilters((prev) => {
-      const idParts = id.split("-")
+      const idParts = id.split("-");
       const clickedCategory = prev.find(
         (item) => item.id.toString() === idParts[1]
-      )
+      );
       if (!clickedCategory) {
         return [...prev]
       }
       const clickedOption = clickedCategory?.options.find(
         (item) => item.id.toString() === idParts[2]
-      )
+      );
       if (!clickedOption) {
         return [...prev]
       }
-      clickedOption.checked = checked
-      return [...prev]
-    })
-  }
-
-  const changeSortHandler = ({ target }: any) => {
-    setSortOptions((prev) => {
-      const currentOption = prev.find((item) => item.current === true)
-      if (!currentOption) {
-        return [...prev]
-      }
-      currentOption.current = false
-      const clickedOption = prev.find(
-        (item) => item.name.toString() === target.innerText
-      )
-      if (!clickedOption) {
-        return [...prev]
-      }
-      clickedOption.current = true
-      return [...prev]
-    })
-  }
+      clickedOption.checked = checked;
+      return [...prev];
+    });
+  };
 
   const isOrganizationFiltered = (organization: any) => {
     const categoryFilters = filters.find(
       (item) => item?.id.toString() === "categories"
-    )
+    );
     if (categoryFilters === undefined) {
       alert("Assertion failed A")
       return false
@@ -141,7 +127,7 @@ export default function Organizations() {
     for (var category of organization.categories) {
       var categoryFilterOption = categoryFilters.options.find(
         (item) => item.id === category
-      )
+      );
       if (categoryFilterOption === undefined) {
         alert("Assertion failed B")
         return false
@@ -157,16 +143,18 @@ export default function Organizations() {
       }
     }
     // The organization doesn't have any filtered options
-    return false
-  }
+    return false;
+  };
 
   const isOptionFiltered = (option: any) => {
-    const typeFilters = filters.find((item) => item?.id.toString() === "types")
+    const typeFilters = filters.find((item) => item?.id.toString() === "types");
     if (typeFilters === undefined) {
       alert("Assertion failed C")
       return false
     }
-    var typeFilter = typeFilters.options.find((item) => item.id === option.type)
+    var typeFilter = typeFilters.options.find(
+      (item) => item.id === option.type
+    );
     if (typeFilter === undefined) {
       alert("Assertion failed D " + option.type)
       return false
@@ -174,14 +162,14 @@ export default function Organizations() {
     if (option.type === "cryptocurrency" && typeFilter.checked) {
       var cryptocurrencyFilters = filters.find(
         (item) => item?.id.toString() === "cryptocurrencies"
-      )
+      );
       if (cryptocurrencyFilters === undefined) {
         alert("Assertion failed E")
         return false
       }
       var cryptocurrencyFilter = cryptocurrencyFilters.options.find(
         (item) => item.id === option.name
-      )
+      );
       if (cryptocurrencyFilter === undefined) {
         alert("Assertion failed F " + option.name)
         return false
@@ -190,7 +178,8 @@ export default function Organizations() {
     } else {
       return typeFilter.checked
     }
-  }
+  };
+
   const createFilterElement = (section: any, className?: string) => {
     return section.id != "cryptocurrencies" || cryptoFilter ? (
       <Disclosure
@@ -269,18 +258,24 @@ export default function Organizations() {
   }
 
   useEffect(() => {
-    applyQueryToFilters()
-    return () => {}
-  }, [])
+    applyQueryToFilters();
+    return () => {};
+  }, []);
 
   useEffect(() => {
-    history.pushState({}, "", applyFiltersToQuery())
-    return () => {}
-  }, [filters])
+    history.pushState({}, "", applyFiltersToQuery());
+    return () => {};
+  }, [filters]);
 
   const filteredOrganizations: Organization[] = organizations.filter((org) =>
     isOrganizationFiltered(org)
-  )
+  );
+
+  const sortedOrganizations =
+    selectedSortOption === "Suggested"
+      ? filteredOrganizations
+      : // we don't want to mutate the origital list as it is suggested.
+        [...filteredOrganizations].sort((a, b) => b.popularity - a.popularity);
 
   return (
     <div className="px-3 bg-white lg:px-8 md:px-6">
@@ -418,7 +413,7 @@ export default function Organizations() {
 
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
-                {/* <div>
+                <div>
                   <Menu.Button className="inline-flex justify-center text-sm font-medium text-gray-700 group hover:text-gray-900">
                     Sort
                     <ChevronDownIcon
@@ -426,7 +421,7 @@ export default function Organizations() {
                       aria-hidden="true"
                     />
                   </Menu.Button>
-                </div> */}
+                </div>
 
                 <Transition
                   as={Fragment}
@@ -439,20 +434,20 @@ export default function Organizations() {
                 >
                   <Menu.Items className="absolute right-0 z-10 w-40 mt-2 origin-top-right bg-white rounded-md shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="py-1">
-                      {sortOptions.map((option) => (
-                        <Menu.Item key={option.name}>
+                      {sortOptions.map((sortOption) => (
+                        <Menu.Item key={sortOption}>
                           {({ active }) => (
                             <a
-                              onClick={changeSortHandler}
+                              onClick={() => setSelectedSortOption(sortOption)}
                               className={classNames(
-                                option.current
+                                sortOption === selectedSortOption
                                   ? "font-medium text-gray-900 cursor-default"
                                   : "text-gray-500 cursor-pointer",
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm"
                               )}
                             >
-                              {option.name}
+                              {sortOption}
                             </a>
                           )}
                         </Menu.Item>
@@ -554,11 +549,12 @@ export default function Organizations() {
 
               {/* Contents */}
               <div className="lg:col-span-3">
-                {filteredOrganizations.map(
-                  (organization: Organization, i: number) => (
+                {sortedOrganizations.map(
+                  (organization: Organization, index: number) => (
                     <OrganizationCard
                       organization={organization}
                       isOptionFiltered={isOptionFiltered}
+                      key={index}
                     />
                   )
                 )}
@@ -569,5 +565,5 @@ export default function Organizations() {
       </div>
       <ToastContainer pauseOnFocusLoss={false} />
     </div>
-  )
+  );
 }

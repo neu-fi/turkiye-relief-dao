@@ -1,4 +1,4 @@
-import Image from "next/image"
+import Image from "next/image";
 
 const navigation = [
   {
@@ -41,7 +41,7 @@ const navigation = [
         className="w-7 mt-0.5 mx-auto h-7 "
         viewBox="0 0 290 290"
       >
-        <g clip-path="url(#a)">
+        <g clipPath="url(#a)">
           <circle cx="145" cy="145" r="145" />
           <mask
             id="b"
@@ -68,7 +68,7 @@ const navigation = [
       </svg>
     ),
   },
-]
+];
 
 export default function Footer() {
   return (
@@ -92,5 +92,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
