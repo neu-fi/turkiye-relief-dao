@@ -19,7 +19,7 @@ import {
 import { classNames } from "./utils";
 import OrganizationCard from "./OrganizationCard";
 import type { Organization, SortOption, Filter } from "./types";
-import Loader from "./Loader/Loader";
+import Loader from "./Loader";
 
 export default function Organizations() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
