@@ -80,6 +80,7 @@ const icons: Record<string, any> = {
   btcturk: "./icons/options/btcturk.svg",
   card: "./icons/options/card.svg",
   nft: "./icons/options/nft.svg",
+  giveth: "./icons/options/giveth.svg",
 };
 
 // All entries must have the following: name, description, logoUrl, websiteUrl, twitterUrl, popularity, endorsementUrls, categories, options
@@ -330,6 +331,13 @@ const organizations: Organization[] = [
         warning: "Only send USDT as this is an exchange wallet",
       },
       {
+        type: "cryptocurrency",
+        name: "Cosmos",
+        address: "cosmos1xlp4k2yz6zhhqxlp0hwdfqlpsz9k9gru3ezese",
+        sourceUrls: ["https://donation.btcturk.com/"],
+        warning: "Only send ATOM with MEMO: 5740025727779",
+      },
+      {
         type: "card",
         name: "Card",
         linkName: "Option of Credit Card on their official website",
@@ -533,7 +541,7 @@ const organizations: Organization[] = [
         type: "cryptocurrency",
         name: "Tron",
         address: "TFw4MPc55BadD5uaGu2Fgs7P5r2YbJ7mWb",
-        sourceUrls: ["https://donation.btcturk.com/"], // Turkish
+        sourceUrls: ["https://donation.btcturk.com/"],
         warning: "Only send TRX or USDT as this is an exchange wallet",
       },
       {
@@ -935,7 +943,7 @@ const organizations: Organization[] = [
         type: "cryptocurrency",
         name: "Tron",
         address: "TUSnyKAjXnhPJw7fNM7MFBnTN63x2q2jvs",
-        sourceUrls: ["https://donation.btcturk.com/"], // Turkish
+        sourceUrls: ["https://donation.btcturk.com/"],
         warning: "Only send TRX or USDT as this is an exchange wallet",
       },
       {
@@ -1136,6 +1144,55 @@ const organizations: Organization[] = [
     ],
   },
   {
+    name: "Gnosis DAO",
+    description:
+      "Team of experts within Gnosis Chain and its ecosystem and currently contributing in the Community, Communication and Marketing team.",
+    logoUrl: "./icons/organizations/gnosis.svg",
+    websiteUrl: "https://www.gnosis.io/gnosisdao",
+    twitterUrl: "https://twitter.com/GnosisDAO",
+    popularity: 1,
+    endorsementUrls: [
+      "https://twitter.com/Givethio/status/1623493391395815428?s=20&t=hTSxUyujyIj_o4ucioeNNA",
+    ],
+    categories: ["international", "dao"],
+    options: [
+      {
+        type: "giveth",
+        name: "Giveth",
+        linkName: "Donate crypto with Giveth",
+        linkUrl: "https://giveth.io/donate/gnosisdao-earthquake-relief",
+        sourceUrls: [
+          "https://twitter.com/Givethio/status/1623493391395815428?s=20&t=hTSxUyujyIj_o4ucioeNNA",
+        ],
+      },
+    ],
+  },
+  {
+    name: "Bankless DAO",
+    description:
+      "BanklessDAO is a decentralized community with one mission: Help the world.",
+    logoUrl: "./icons/organizations/bankless.svg",
+    websiteUrl: "https://www.bankless.community/",
+    twitterUrl: "https://twitter.com/banklessDAO",
+    popularity: 1,
+    endorsementUrls: [
+      "https://twitter.com/Givethio/status/1623493672149843969?s=20",
+    ],
+    categories: ["international", "dao"],
+    options: [
+      {
+        type: "giveth",
+        name: "Giveth",
+        linkName: "Donate crypto with Giveth",
+        linkUrl:
+          "https://giveth.io/donate/banklessdao-turkey-disaster-relief-fund",
+        sourceUrls: [
+          "https://twitter.com/Givethio/status/1623493672149843969?s=20",
+        ],
+      },
+    ],
+  },
+  {
     name: "Visualize Value",
     description:
       "Funds routed directly to Doctors Without Borders via The Giving Block for crisis relief in the wake of the 7.8 magnitude earthquake in Turkey and Syria.",
@@ -1153,6 +1210,31 @@ const organizations: Organization[] = [
         name: "NFT",
         linkName: "Mint Humanity Check NFTs",
         linkUrl: "https://app.manifold.xyz/c/humanitycheck",
+      },
+    ],
+  },
+  {
+    name: "Hold My Hand",
+    description:
+      "Donation drop with 30 artists for earthquake victims in Turkey. All mint payments are channelled directly to Ahbap's ERC20 address via smart contract.",
+    logoUrl: "./icons/organizations/hold-my-hand.svg",
+    websiteUrl: "https://forturkey.art",
+    twitterUrl: "https://twitter.com/houseofmat_/",
+    popularity: 2,
+    endorsementUrls: [
+      "https://twitter.com/houseofmat_/status/1623837198863720452",
+    ],
+    categories: ["turkish", "individual"],
+    options: [
+      {
+        type: "nft",
+        name: "NFT",
+        linkName: "Mint Hold My Hand NFTs",
+        linkUrl: "https://forturkey.art",
+        sourceUrls: [
+          "https://twitter.com/houseofmat_/status/1623837198863720452?s=20",
+          "https://etherscan.io/address/0xe631fbfd5141c0fb1c6c0fbcfb2c19f8073bc6ba#code",
+        ],
       },
     ],
   },
@@ -1189,6 +1271,7 @@ const initialFilters: Filter[] = [
       { id: "nft", label: "NFTs", checked: true },
       { id: "card", label: "Card", checked: true },
       { id: "bank", label: "Bank Wire", checked: true },
+      { id: "giveth", label: "Giveth", checked: true },
       { id: "btcturk", label: "Other", checked: true },
     ],
   },

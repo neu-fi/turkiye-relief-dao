@@ -19,7 +19,13 @@ export type Network =
   | "Optimism"
   | "Arbitrum";
 
-export type OptionType = "cryptocurrency" | "bank" | "btcturk" | "card" | "nft";
+export type OptionType =
+  | "cryptocurrency"
+  | "bank"
+  | "btcturk"
+  | "card"
+  | "nft"
+  | "giveth";
 
 export type SortOption = "Suggested" | "Most Popular";
 
