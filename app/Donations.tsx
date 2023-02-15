@@ -18,7 +18,8 @@ import {
 } from "../config/donations";
 import { classNames } from "./utils";
 import OrganizationCard from "./OrganizationCard";
-import type { Organization, SortOption } from "./types";
+import type { Organization, SortOption, Filter } from "./types";
+import Loader from "./Loader";
 
 export default function Organizations() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
@@ -27,9 +28,23 @@ export default function Organizations() {
   const [selectedSortOption, setSelectedSortOption] = useState<SortOption>(
     sortOptions[0]
   );
-
-  const [filters, setFilters] = useState(initialFilters);
+  
+  const [loading, setLoading] = useState<boolean>(true);
+  const [filters, setFilters] = useState<Filter[]>(initialFilters);
   const cryptoFilter = filters[0].options[0].checked;
+
+  useEffect(() => {
+    const fetchLocalStorage = async () => {
+      const localStorageValue = localStorage.getItem("filters");
+      const initialFilterFromLocalStorage: Filter[] = localStorageValue ? JSON.parse(localStorageValue) : [];
+      if (initialFilterFromLocalStorage.length) {
+        setFilters(initialFilterFromLocalStorage);
+      } else {
+        localStorage.setItem("filters", JSON.stringify(initialFilters));
+      }
+    };
+    fetchLocalStorage().then(() => setLoading(false));
+  }, [])
 
   const applyQueryToFilter = (id: string, newFilters: string[]) => {
     setFilters((prev) =>
@@ -112,6 +127,7 @@ export default function Organizations() {
         return [...prev];
       }
       clickedOption.checked = checked;
+      localStorage.setItem("filters", JSON.stringify(prev));
       return [...prev];
     });
   };
@@ -224,7 +240,7 @@ export default function Organizations() {
                         defaultValue={option.id}
                         type="checkbox"
                         checked={option.checked}
-                        onChange={checkboxChangeHandler}
+                        onClick={checkboxChangeHandler}
                         className="w-4 h-4 text-red-600 border-gray-300 rounded"
                       />
                       <label
@@ -241,10 +257,9 @@ export default function Organizations() {
           </>
         )}
       </Disclosure>
-    ) : (
-      <></>
-    );
+    ) : null;
   };
+
   const resetFilter = () => {
     setFilters((prev) =>
       prev.map((section) => {
@@ -255,6 +270,7 @@ export default function Organizations() {
         return section;
       })
     );
+    localStorage.setItem("filters", JSON.stringify(initialFilters));
   };
 
   useEffect(() => {
@@ -283,6 +299,10 @@ export default function Organizations() {
       ? filteredOrganizations
       : // we don't want to mutate the origital list as it is suggested.
         [...filteredOrganizations].sort((a, b) => b.popularity - a.popularity);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="px-3 bg-white lg:px-8 md:px-6">
