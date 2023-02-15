@@ -257,10 +257,9 @@ export default function Organizations() {
           </>
         )}
       </Disclosure>
-    ) : (
-      <></>
-    );
+    ) : null;
   };
+
   const resetFilter = () => {
     setFilters((prev) =>
       prev.map((section) => {
@@ -271,6 +270,7 @@ export default function Organizations() {
         return section;
       })
     );
+    localStorage.setItem("filters", JSON.stringify(initialFilters));
   };
 
   useEffect(() => {
