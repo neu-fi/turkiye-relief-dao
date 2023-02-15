@@ -30,7 +30,7 @@ export default function Organizations() {
   const [selectedSortOption, setSelectedSortOption] = useState<SortOption>(
     sortOptions[0]
   );
-  
+
   const [loading, setLoading] = useState<boolean>(true);
   const [filters, setFilters] = useState<Filter[]>(initialFilters);
   const cryptoFilter = filters[0].options[0].checked;
@@ -38,7 +38,9 @@ export default function Organizations() {
   useEffect(() => {
     const fetchLocalStorage = async () => {
       const localStorageValue = localStorage.getItem("filters");
-      const initialFilterFromLocalStorage: Filter[] = localStorageValue ? JSON.parse(localStorageValue) : [];
+      const initialFilterFromLocalStorage: Filter[] = localStorageValue
+        ? JSON.parse(localStorageValue)
+        : [];
       if (initialFilterFromLocalStorage.length) {
         setFilters(initialFilterFromLocalStorage);
       } else {
@@ -46,7 +48,7 @@ export default function Organizations() {
       }
     };
     fetchLocalStorage().then(() => setLoading(false));
-  }, [])
+  }, []);
 
   const applyQueryToFilter = (id: string, newFilters: string[]) => {
     setFilters((prev) =>
