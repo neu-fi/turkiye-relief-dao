@@ -1144,30 +1144,6 @@ const organizations: Organization[] = [
     ],
   },
   {
-    name: "Gnosis DAO",
-    description:
-      "Team of experts within Gnosis Chain and its ecosystem and currently contributing in the Community, Communication and Marketing team.",
-    logoUrl: "./icons/organizations/gnosis.svg",
-    websiteUrl: "https://www.gnosis.io/gnosisdao",
-    twitterUrl: "https://twitter.com/GnosisDAO",
-    popularity: 1,
-    endorsementUrls: [
-      "https://twitter.com/Givethio/status/1623493391395815428?s=20&t=hTSxUyujyIj_o4ucioeNNA",
-    ],
-    categories: ["international", "dao"],
-    options: [
-      {
-        type: "giveth",
-        name: "Giveth",
-        linkName: "Donate crypto with Giveth",
-        linkUrl: "https://giveth.io/donate/gnosisdao-earthquake-relief",
-        sourceUrls: [
-          "https://twitter.com/Givethio/status/1623493391395815428?s=20&t=hTSxUyujyIj_o4ucioeNNA",
-        ],
-      },
-    ],
-  },
-  {
     name: "Bankless DAO",
     description:
       "BanklessDAO is a decentralized community with one mission: Help the world.",
