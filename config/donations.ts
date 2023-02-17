@@ -1158,7 +1158,7 @@ const organizations: Organization[] = [
     ],
   },
   {
-    name: "Bankless DAO",
+    name: "BanklessDAO Turkey Disaster Relief Fund",
     description:
       "BanklessDAO is a decentralized community with one mission: Help the world.",
     logoUrl: "./icons/organizations/bankless.svg",
