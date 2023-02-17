@@ -25,7 +25,8 @@ export type OptionType =
   | "btcturk"
   | "card"
   | "nft"
-  | "giveth";
+  | "giveth"
+  | "sos_chain";
 
 export type SortOption = "Suggested" | "Most Popular";
 
