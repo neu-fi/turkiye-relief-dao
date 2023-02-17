@@ -16,12 +16,14 @@ import {
   sortOptions,
   initialFilters,
   NETWORKS,
+  otherFilterOptions,
 } from "../config/donations";
 import { classNames } from "./utils";
 import OrganizationCard from "./OrganizationCard";
 import type { Network, Organization, SortOption, Filter } from "./types";
 import { Option } from "./types";
 import Loader from "./Loader";
+import { Tooltip } from "flowbite-react";
 
 export default function Organizations() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
@@ -173,7 +175,10 @@ export default function Organizations() {
       return false;
     }
     var typeFilter = typeFilters.options.find(
-      (item) => item.id === option.type
+      (item) =>
+        item.id === option.type ||
+        (item.id === "other" &&
+          otherFilterOptions.map((option) => option.id).includes(option.type))
     );
     if (typeFilter === undefined) {
       alert("Assertion failed D " + option.type);
@@ -237,23 +242,51 @@ export default function Organizations() {
               <Disclosure.Panel className="p-2 pt-6">
                 <div className="space-y-4">
                   {section.options.map((option: any) => (
-                    <div key={option.id} className="flex items-center">
-                      <input
-                        id={`filter-${section.id}-${option.id}`}
-                        name={`${section.id}[]`}
-                        defaultValue={option.id}
-                        type="checkbox"
-                        checked={option.checked}
-                        onClick={checkboxChangeHandler}
-                        className="w-4 h-4 text-red-600 border-gray-300 rounded"
-                      />
-                      <label
-                        htmlFor={`filter-${section.id}-${option.id}`}
-                        className="ml-3 text-sm text-gray-600"
-                      >
-                        {option.label}
-                      </label>
-                    </div>
+                    <>
+                      <div key={option.id} className="flex items-center">
+                        <input
+                          id={`filter-${section.id}-${option.id}`}
+                          name={`${section.id}[]`}
+                          defaultValue={option.id}
+                          type="checkbox"
+                          checked={option.checked}
+                          onClick={checkboxChangeHandler}
+                          className="w-4 h-4 text-red-600 border-gray-300 rounded"
+                        />
+                        <label
+                          htmlFor={`filter-${section.id}-${option.id}`}
+                          className="ml-3 text-sm text-gray-600"
+                        >
+                          {option.label}
+                        </label>
+                        {option.id === "other" && (
+                          <Tooltip
+                            content={`${otherFilterOptions
+                              .map((item) => item.label)
+                              .join(", ")}, etc.`}
+                            className="align-center"
+                            placement="right"
+                          >
+                            <div className="flex items-center">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="currentColor"
+                                className="ml-1 w-6 h-6"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+                                />
+                              </svg>
+                            </div>
+                          </Tooltip>
+                        )}
+                      </div>
+                    </>
                   ))}
                 </div>
               </Disclosure.Panel>

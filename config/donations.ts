@@ -1,4 +1,10 @@
-import type { Network, Filter, Organization, SortOption } from "../app/types";
+import type {
+  Network,
+  Filter,
+  Organization,
+  SortOption,
+  FilterOption,
+} from "../app/types";
 
 // All the cryptocurrency networks must be listed here
 const NETWORKS: Network[] = [
@@ -81,6 +87,7 @@ const icons: Record<string, any> = {
   card: "./icons/options/card.svg",
   nft: "./icons/options/nft.svg",
   giveth: "./icons/options/giveth.svg",
+  sos_chain: "./icons/options/sos_chain.svg",
 };
 
 // All entries must have the following: name, description, logoUrl, websiteUrl, twitterUrl, popularity, endorsementUrls, categories, options
@@ -336,6 +343,13 @@ const organizations: Organization[] = [
         address: "cosmos1xlp4k2yz6zhhqxlp0hwdfqlpsz9k9gru3ezese",
         sourceUrls: ["https://donation.btcturk.com/"],
         warning: "Only send ATOM with MEMO: 5740025727779",
+      },
+      {
+        type: "sos_chain",
+        name: "SOS Chain",
+        linkName: "Donate through SOS Chain, an Avalanche dApp",
+        linkUrl: "https://app.soschain.net/funds/0",
+        sourceUrls: ["https://www.soschain.net/#what"],
       },
       {
         type: "card",
@@ -1144,7 +1158,7 @@ const organizations: Organization[] = [
     ],
   },
   {
-    name: "Bankless DAO",
+    name: "BanklessDAO Turkey Disaster Relief Fund",
     description:
       "BanklessDAO is a decentralized community with one mission: Help the world.",
     logoUrl: "./icons/organizations/bankless.svg",
@@ -1238,6 +1252,12 @@ const organizations: Organization[] = [
 
 const sortOptions: SortOption[] = ["Suggested", "Most Popular"];
 
+const otherFilterOptions: FilterOption[] = [
+  { id: "giveth", label: "Giveth", checked: true },
+  { id: "btcturk", label: "BTCTurk", checked: true },
+  { id: "sos_chain", label: "SOS Chain", checked: true },
+];
+
 const initialFilters: Filter[] = [
   {
     id: "types",
@@ -1247,8 +1267,7 @@ const initialFilters: Filter[] = [
       { id: "nft", label: "NFTs", checked: true },
       { id: "card", label: "Card", checked: true },
       { id: "bank", label: "Bank Wire", checked: true },
-      { id: "giveth", label: "Giveth", checked: true },
-      { id: "btcturk", label: "Other", checked: true },
+      { id: "other", label: "Other", checked: true },
     ],
   },
   {
@@ -1317,6 +1336,7 @@ export {
   icons,
   organizations,
   sortOptions,
+  otherFilterOptions,
   initialFilters,
   explorers,
   NETWORKS,
