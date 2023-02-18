@@ -1248,6 +1248,28 @@ const organizations: Organization[] = [
       },
     ],
   },
+  {
+    name: "NFTea",
+    description:
+      "All voluntary contributions raised will be sent to Needs Map.",
+    logoUrl: "./icons/organizations/nftea.png",
+    websiteUrl: "https://cupofteanft.xyz/",
+    twitterUrl: "https://twitter.com/NFTeaProject",
+    popularity: 2,
+    endorsementUrls: ["https://twitter.com/TurkeyReliefDAO/status/1626220422160343049"],
+    categories: ["international", "individual"],
+    options: [
+      {
+        type: "nft",
+        name: "NFT",
+        linkName: "Mint NFTea NFTs",
+        linkUrl: "https://cupofteanft.xyz/",
+        sourceUrls: [
+          "https://polygonscan.com/address/0xdee416e75a8443de13dbbbf0c3b558f7fc45ec2c#code",
+        ],
+      },
+    ],
+  },
 ];
 
 const sortOptions: SortOption[] = ["Suggested", "Most Popular"];
