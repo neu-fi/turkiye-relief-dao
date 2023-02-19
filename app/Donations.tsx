@@ -15,6 +15,7 @@ import {
   organizations,
   sortOptions,
   initialFilters,
+  initialFiltersVersion,
   NETWORKS,
   otherFilterOptions,
 } from "../config/donations";
@@ -39,6 +40,18 @@ export default function Organizations() {
 
   useEffect(() => {
     const fetchLocalStorage = async () => {
+      // Version check
+      const initialFiltersVersionFromLocalStorage =
+        localStorage.getItem("version");
+      if (
+        !initialFiltersVersionFromLocalStorage ||
+        initialFiltersVersionFromLocalStorage !== initialFiltersVersion
+      ) {
+        localStorage.setItem("version", initialFiltersVersion);
+        localStorage.setItem("filters", JSON.stringify(initialFilters));
+        return; // Don't need to fetch if version is wrong.
+      }
+
       const localStorageValue = localStorage.getItem("filters");
       const initialFilterFromLocalStorage: Filter[] = localStorageValue
         ? JSON.parse(localStorageValue)

@@ -1256,7 +1256,9 @@ const organizations: Organization[] = [
     websiteUrl: "https://cupofteanft.xyz/",
     twitterUrl: "https://twitter.com/NFTeaProject",
     popularity: 2,
-    endorsementUrls: ["https://twitter.com/TurkeyReliefDAO/status/1626220422160343049"],
+    endorsementUrls: [
+      "https://twitter.com/TurkeyReliefDAO/status/1626220422160343049",
+    ],
     categories: ["international", "individual"],
     options: [
       {
@@ -1279,6 +1281,8 @@ const otherFilterOptions: FilterOption[] = [
   { id: "btcturk", label: "BTCTurk", checked: true },
   { id: "sos_chain", label: "SOS Chain", checked: true },
 ];
+
+const initialFiltersVersion: string = "1.0";
 
 const initialFilters: Filter[] = [
   {
@@ -1362,4 +1366,5 @@ export {
   initialFilters,
   explorers,
   NETWORKS,
+  initialFiltersVersion,
 };
