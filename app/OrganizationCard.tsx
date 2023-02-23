@@ -213,7 +213,7 @@ export default function OrganizationCard({
             </div>
           </div>
         ) : option.linkUrl ? (
-          <div className="space-x-2 mt-0.5">
+          <div className="space-x-2 mt-0.5 overflow-x-auto">
             <Link
               className="truncate underline decoration-dotted"
               href={option.linkUrl}
