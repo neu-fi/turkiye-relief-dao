@@ -1174,7 +1174,7 @@ const organizations: Organization[] = [
     endorsementUrls: [
       "https://donate.tpfund.org/campaign/tpf-turkiye-earthquake/c465112",
     ],
-    categories: ["international", "dao"],
+    categories: ["international", "ngo"],
     options: [
       {
         type: "card",
@@ -1192,7 +1192,7 @@ const organizations: Organization[] = [
     twitterUrl: "https://twitter.com/AktionDHilft",
     popularity: 4,
     endorsementUrls: [""],
-    categories: ["international", "dao"],
+    categories: ["international", "ngo"],
     options: [
       {
         type: "bank",
@@ -1219,7 +1219,7 @@ const organizations: Organization[] = [
     endorsementUrls: [
       "https://www.justgiving.com/campaign/kahramanmarasearthquake",
     ],
-    categories: ["international", "dao"],
+    categories: ["international", "ngo"],
     options: [
       {
         type: "card",
@@ -1240,7 +1240,7 @@ const organizations: Organization[] = [
     endorsementUrls: [
       "https://www.doctorswithoutborders.org/latest/msf-responds-overwhelming-medical-needs-following-earthquakes-turkey-and-syria",
     ],
-    categories: ["international", "dao"],
+    categories: ["international", "ngo"],
     options: [
       {
         type: "card",
