@@ -193,7 +193,7 @@ const organizations: Organization[] = [
       {
         type: "bank",
         name: "Bank Wire",
-        linkName: "The list of Ahbap bank accounts on their official website",
+        linkName: "List of Bank Accounts",
         linkUrl: "https://ahbap.org/disasters-turkey",
       },
     ],
@@ -347,14 +347,14 @@ const organizations: Organization[] = [
       {
         type: "sos_chain",
         name: "SOS Chain",
-        linkName: "Donate through SOS Chain, an Avalanche dApp",
+        linkName: "Donate through SOS Chain",
         linkUrl: "https://app.soschain.net/funds/0",
         sourceUrls: ["https://www.soschain.net/#what"],
       },
       {
         type: "card",
         name: "Card",
-        linkName: "Option of Credit Card on their official website",
+        linkName: "Donate with Credit Card",
         linkUrl: "https://fonzip.com/ihtiyacharitasi/onlineimece",
       },
     ],
@@ -478,13 +478,13 @@ const organizations: Organization[] = [
       {
         type: "card",
         name: "Card",
-        linkName: "Option of Credit Card on their official website",
+        linkName: "Donate with Credit Card",
         linkUrl: "https://www.tog.org.tr/bagisci-ol/#tek-seferlik-bagis",
       },
       {
         type: "bank",
         name: "Bank Wire",
-        linkName: "The list of bank accounts on the official website",
+        linkName: "Donate with Bank Transfer",
         linkUrl:
           "https://www.tog.org.tr/bagisci-ol/#1630673115839-aeef1bfb-85a7",
       },
@@ -634,13 +634,13 @@ const organizations: Organization[] = [
       {
         type: "card",
         name: "Card",
-        linkName: "Option of Credit Card on their official website",
+        linkName: "Donate with Credit Card",
         linkUrl: "https://www.supporttolife.org/donate/",
       },
       {
         type: "bank",
         name: "Bank Wire",
-        linkName: "The list of bank accounts on the official website",
+        linkName: "Donate with Bank Transfer",
         linkUrl:
           "https://www.supporttolife.org/support-us/donate-by-money-transfer/",
       },
@@ -718,13 +718,13 @@ const organizations: Organization[] = [
       {
         type: "bank",
         name: "Bank Wire",
-        linkName: "The list of AFAD bank accounts on their official website",
+        linkName: "List of Bank Accounts",
         linkUrl: "https://en.afad.gov.tr/earthquake-donation-accounts",
       },
       {
         type: "btcturk",
         name: "BtcTurk",
-        linkName: "Instructions for donating Turkish Lira from BtcTurk",
+        linkName: "Donate ₺ with BTCTurk",
         linkUrl: "https://pro.btcturk.com/deprem-bagis",
         info: "Matched 1:1 by BtcTurk",
         warning: "Only Turkish citizens can register to BtcTurk",
@@ -768,7 +768,7 @@ const organizations: Organization[] = [
       {
         type: "card",
         name: "Card",
-        linkName: "Option of Credit Card on their official website",
+        linkName: "Donate with Credit Card",
         linkUrl: "https://www.tider.org/eng/donate",
       },
     ],
@@ -845,14 +845,14 @@ const organizations: Organization[] = [
       {
         type: "card",
         name: "Card",
-        linkName: "Option of Credit Card on their official website",
+        linkName: "Donate with Credit Card",
         linkUrl:
           "https://www.kizilay.org.tr/Bagis/BagisYap/43/general-donation",
       },
       {
         type: "bank",
         name: "Bank Wire",
-        linkName: "The list of bank accounts on the official website",
+        linkName: "List of Bank Accounts",
         linkUrl:
           "https://www.kizilay.org.tr/donation-methods/bank-account-numbers",
       },
@@ -915,13 +915,13 @@ const organizations: Organization[] = [
       {
         type: "card",
         name: "Card",
-        linkName: "Option of Credit Card on their official website",
+        linkName: "Donate with Credit Card",
         linkUrl: "https://www.akut.org.tr/bagis-yap",
       },
       {
         type: "bank",
         name: "Bank Wire",
-        linkName: "The list of bank accounts on the official website",
+        linkName: "List of Bank Accounts",
         linkUrl: "https://www.akut.org.tr/en/donation",
       },
     ],
@@ -1284,6 +1284,7 @@ const otherFilterOptions: FilterOption[] = [
 
 const initialFiltersVersion: string = "1.0";
 
+// @notes: Any changes to the filters should be reflected in the initialFiltersVersion
 const initialFilters: Filter[] = [
   {
     id: "types",
