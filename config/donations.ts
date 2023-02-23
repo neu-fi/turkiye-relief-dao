@@ -196,6 +196,12 @@ const organizations: Organization[] = [
         linkName: "List of Bank Accounts",
         linkUrl: "https://ahbap.org/disasters-turkey",
       },
+      {
+        type: "card",
+        name: "Card",
+        linkName: "Donate with Credit Card",
+        linkUrl: "https://fonzip.com/ahbap/bagis",
+      },
     ],
   },
   {
@@ -1154,6 +1160,94 @@ const organizations: Organization[] = [
         ],
         info: "https://twitter.com/o1_labs/status/1623410090249183232",
         warning: "Only send XTZ as this is an exchange wallet",
+      },
+    ],
+  },
+  {
+    name: "Turkish Philanthropy Funds",
+    description:
+      "Turkish Philanthropy Funds (TPF) is the leading U.S. community foundation for high-impact social investments dedicated to Turkish and Turkish-American communities.",
+    logoUrl: "./icons/organizations/tpf.png",
+    websiteUrl: "https://www.tpfund.org/",
+    twitterUrl: "https://twitter.com/tphilanthropy",
+    popularity: 4,
+    endorsementUrls: [
+      "https://donate.tpfund.org/campaign/tpf-turkiye-earthquake/c465112",
+    ],
+    categories: ["international", "dao"],
+    options: [
+      {
+        type: "card",
+        name: "Card",
+        linkUrl: "https://donate.tpfund.org/give/465112/#!/donation/checkout",
+        linkName: "Donate with card",
+      },
+    ],
+  },
+  {
+    name: "Aktion Deutschland Hilft",
+    description: "Aktion Deutsschland Hlift is a collection of German NGOs",
+    logoUrl: "./icons/organizations/adh.svg",
+    websiteUrl: "https://www.aktion-deutschland-hilft.de/en/",
+    twitterUrl: "https://twitter.com/AktionDHilft",
+    popularity: 4,
+    endorsementUrls: [""],
+    categories: ["international", "dao"],
+    options: [
+      {
+        type: "bank",
+        name: "Bank Wire",
+        linkUrl: "https://www.aktion-deutschland-hilft.de/en/donate/donate/",
+        linkName: "Donate with Bank Transfer",
+      },
+      {
+        type: "card",
+        name: "Card",
+        linkUrl: "https://www.aktion-deutschland-hilft.de/en/donate/donate/",
+        linkName: "Donate with card",
+      },
+    ],
+  },
+  {
+    name: "JustGiving",
+    description:
+      "JustGiving is the world's most trusted platform for online giving.We help people raise money for the charities and people they care about the most.",
+    logoUrl: "./icons/organizations/justgiving.svg",
+    websiteUrl: "https://justgiving.com/",
+    twitterUrl: "https://twitter.com/justgiving",
+    popularity: 4,
+    endorsementUrls: [
+      "https://www.justgiving.com/campaign/kahramanmarasearthquake",
+    ],
+    categories: ["international", "dao"],
+    options: [
+      {
+        type: "card",
+        name: "Card",
+        linkUrl: "https://www.justgiving.com/campaign/kahramanmarasearthquake",
+        linkName: "Donate with card",
+      },
+    ],
+  },
+  {
+    name: "Doctors Without Borders",
+    description:
+      "Doctors Without Borders (MSF USA) is an international, independent medical humanitarian organisation.",
+    logoUrl: "./icons/organizations/msf.svg",
+    websiteUrl: "https://doctorswithoutborders.org/",
+    twitterUrl: "https://twitter.com/MSF_USA",
+    popularity: 4,
+    endorsementUrls: [
+      "https://www.doctorswithoutborders.org/latest/msf-responds-overwhelming-medical-needs-following-earthquakes-turkey-and-syria",
+    ],
+    categories: ["international", "dao"],
+    options: [
+      {
+        type: "card",
+        name: "Card",
+        linkUrl:
+          "https://donate.doctorswithoutborders.org/secure/turkey-syria-earthquake-onetime",
+        linkName: "Donate with card",
       },
     ],
   },
