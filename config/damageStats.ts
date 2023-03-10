@@ -12,11 +12,11 @@ export default {
         "https://en.wikipedia.org/wiki/2023_Turkey%E2%80%93Syria_earthquake",
     },
     {
-      stat: "31,643",
+      stat: "45,968",
       emphasis: "Death toll",
       rest: "from the latest official figures.",
       source:
-        "https://www.washingtonpost.com/world/2023/02/13/turkey-syria-earthquake-updates-deaths/",
+        "https://reliefweb.int/report/syrian-arab-republic/syriaturkey-earthquakes-situation-report-7-march-8-2023",
     },
     {
       stat: "12,000",
